@@ -1,0 +1,19 @@
+{
+  "intervention_1_elective": {
+    "patients_affected": 11318,
+    "bed_days_saved": 10011,
+    "beds_freed": 27.4
+  },
+  "intervention_2_protocol": {
+    "patients_affected": 75826,
+    "bed_days_saved": 4551,
+    "beds_freed": 12.5
+  },
+  "combined_impact": {
+    "total_bed_days_saved": 14562,
+    "total_beds_freed": 39.9,
+    "cost_saved_brl": 6785769,
+    "deaths_prevented": 13.9,
+    "long_stays_eliminated": 119
+  }
+}

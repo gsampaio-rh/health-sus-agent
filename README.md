@@ -1,77 +1,100 @@
 # Health SUS Agent
 
-Pipeline de download e análise de dados históricos do SUS (DATASUS) para modelos preditivos de saúde pública, focado no estado de São Paulo (PRODESP).
+Research platform for investigating public health patterns in the Brazilian Unified Health System (SUS), using São Paulo state data.
 
-## Databases
+## What This Is
 
-| Base | Descrição | Cobertura |
-|------|-----------|-----------|
-| **SIH** | Internações Hospitalares (AIH) | 2000–2025 |
-| **SIM** | Mortalidade (CID-10) | 1996–2022 |
-| **SINASC** | Nascidos Vivos | 1994–2022 |
-| **SINAN** | Agravos de Notificação (dengue, TB, etc.) | 2001–2023 |
-| **SIA** | Produção Ambulatorial | 2008–2025 |
-| **CNES** | Rede Assistencial (estabelecimentos, leitos) | 2005–2025 |
+A structured environment for running data-driven health investigations:
 
-## Setup
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e ".[dev]"
-```
-
-## Usage
-
-```bash
-# Show available databases
-python -m src.cli info
-
-# List files available for SIH in SP, year 2023
-python -m src.cli list-files SIH --uf SP --year 2023
-
-# Download all 6 databases for SP (2019-2024)
-python -m src.cli download --uf SP --start-year 2019 --end-year 2024
-
-# Download only SIH and SINAN
-python -m src.cli download -s SIH -s SINAN --uf SP --start-year 2020 --end-year 2023
-
-# Download to a custom directory
-python -m src.cli download -s SIH --output-dir ./my_data
-```
+1. **Download** public SUS datasets (SIH, CNES, SIM, SINAN, SINASC) via PySUS
+2. **Investigate** health conditions using a reproducible notebook pipeline
+3. **Model** drivers of outcomes (length of stay, cost, mortality) with ML
+4. **Simulate** policy interventions and quantify their impact
+5. **Report** findings in publication-quality documents
 
 ## Project Structure
 
 ```
 health-sus-agent/
-├── src/
-│   ├── domain/          # Models and interfaces (no external deps)
-│   │   ├── models.py    # DatabaseSource, FileMetadata, DownloadResult
-│   │   └── ports.py     # DataSourcePort, DownloadProgressPort
-│   ├── application/     # Use cases and orchestration
-│   │   ├── download_pipeline.py  # Main pipeline orchestrator
-│   │   └── progress.py  # Rich progress reporter
-│   ├── infrastructure/  # External system adapters
-│   │   └── datasus/     # PySUS adapters for each database
-│   │       ├── base_adapter.py
-│   │       ├── sih_adapter.py
-│   │       ├── sim_adapter.py
-│   │       ├── sinasc_adapter.py
-│   │       ├── sinan_adapter.py
-│   │       ├── sia_adapter.py
-│   │       ├── cnes_adapter.py
-│   │       └── registry.py
-│   ├── cli.py           # Typer CLI entrypoint
-│   └── settings.py      # Pydantic settings
-├── data/                # Downloaded data (gitignored)
-├── tests/
-├── docs/
-└── pyproject.toml
+  data/                          # Downloaded SUS parquets (gitignored)
+    sih/                         # Hospital admissions (AIH Reduzida)
+    cnes/                        # Facility registry
+    sim/                         # Mortality records
+    sinan/                       # Disease notifications
+    sinasc/                      # Birth records
+  src/
+    domain/                      # Domain models and ports
+    infrastructure/datasus/      # PySUS adapters for each data source
+  experiments/
+    kidney/                      # Kidney stone deep dive (first investigation)
+      notebooks/                 # 6 ordered Jupyter notebooks
+      outputs/                   # Plots, metrics, findings
+      EXPERIMENT.md              # Pre-registered hypotheses
+  docs/
+    PRD_LANGGRAPH_AGENT.md       # PRD for autonomous investigation agent
+  .cursor/
+    skills/sus-deep-dive/        # Agent skill for SUS investigations
+    rules/                       # Coding standards and project rules
 ```
 
-## Architecture
+## Quick Start
 
-- **Hexagonal Architecture**: domain core isolated from infrastructure
-- **Ports & Adapters**: each SUS database has its own adapter implementing `DataSourcePort`
-- **Factory pattern**: `registry.py` creates the right adapter for each `DatabaseSource`
-- **PySUS**: downloads `.dbc` files from DATASUS FTP, converts to Parquet/DataFrame
+### 1. Setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+pip install jupyter lightgbm shap matplotlib seaborn scikit-learn
+```
+
+### 2. Download Data
+
+```bash
+# Hospital admissions (required for all investigations)
+sus-pipeline download SIH --years 2014-2024 --uf SP --group RD
+
+# Facility registry (required for ML modeling)
+sus-pipeline download CNES --years 2014-2024 --uf SP --group ST
+```
+
+### 3. Run an Investigation
+
+```bash
+cd experiments/kidney/notebooks
+jupyter notebook
+```
+
+Run notebooks in order: `01_data_loading` → `02_exploratory` → ... → `06_executive_summary`.
+
+Each notebook saves outputs to `experiments/kidney/outputs/`.
+
+## Running a New Investigation
+
+To investigate a different health condition:
+
+1. Copy the `experiments/kidney/` folder structure
+2. Update `EXPERIMENT.md` with your hypotheses
+3. Modify `01_data_loading.ipynb` to filter for your ICD-10 code
+4. Follow the 7-step workflow in `.cursor/skills/sus-deep-dive/SKILL.md`
+
+## Data Dictionary
+
+See `.cursor/skills/sus-deep-dive/reference.md` for:
+- SIH column definitions and code tables
+- ICD-10 codes for common conditions
+- IBGE municipality codes
+- SUS procedure code structure
+- CNES file naming conventions
+
+## Agent Skill
+
+The `sus-deep-dive` skill (`.cursor/skills/sus-deep-dive/SKILL.md`) encodes the full domain knowledge for SUS investigations — data schemas, investigation workflow, ML playbook, output standards, and common pitfalls. AI agents can use this skill to autonomously conduct health data investigations.
+
+## Tech Stack
+
+- **Python 3.11+** with pandas, pyarrow, PySUS
+- **ML**: LightGBM + SHAP for explainable predictions
+- **Visualization**: Matplotlib + Seaborn
+- **Notebooks**: Jupyter for interactive investigation
+- **Architecture**: Hexagonal (Ports & Adapters) for data access

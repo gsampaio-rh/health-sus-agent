@@ -1,0 +1,19 @@
+{
+  "total_admissions": 206500,
+  "year_range": [
+    2015,
+    2025
+  ],
+  "growth_pct": 4800.3,
+  "avg_stay_first_year": 4.02,
+  "avg_stay_last_year": 2.13,
+  "pct_male": 0.0,
+  "pct_female": 0.0,
+  "top_5_municipalities": {
+    "355030": 43995,
+    "354980": 9759,
+    "355220": 8030,
+    "354140": 7705,
+    "354340": 7576
+  }
+}

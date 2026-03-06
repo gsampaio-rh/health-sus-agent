@@ -16,7 +16,11 @@ ENV/
 # IDE
 .vscode/
 .idea/
-.cursor/
+
+# Cursor (rules and skills are tracked, rest is ignored)
+.cursor/mcp.json
+.cursor/chat/
+.cursor/projects/
 
 # Data files (large, downloaded from DATASUS)
 data/
@@ -40,10 +44,17 @@ logs/
 # Jupyter
 .ipynb_checkpoints/
 
-# ML artifacts (large binary files, reproducible from source code)
+# ML artifacts (large binary files, reproducible from notebooks)
 *.npy
 *.parquet
+experiments/*/outputs/*.txt
 
-# Keep analysis JSON metrics (small, meaningful)
-# Keep analysis PNGs (plots for documentation)
-# Keep analysis FINDINGS.md (narrative)
+# LightGBM model files
+*.lgbm
+lgbm_model.txt
+
+# Keep these (small, meaningful outputs)
+# - *.json metrics in outputs/metrics/
+# - *.png plots in outputs/plots/
+# - *.md findings documents
+# - *.ipynb notebooks (source code)

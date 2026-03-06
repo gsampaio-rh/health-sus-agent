@@ -1,0 +1,142 @@
+---
+description: Advanced data science thinking — novel hypotheses, creative feature engineering, and compelling storytelling for health data analysis
+alwaysApply: false
+---
+
+# Advanced Data Science Thinking
+
+## The Bar
+
+Before proposing any hypothesis, feature, or analysis, pass this filter:
+
+> "Would a principal researcher at OpenAI/Anthropic/DeepMind find this obvious? If yes, go deeper."
+
+The goal is not just accurate models — it's **insight that changes how people think about the problem**.
+
+---
+
+## Hypothesis Generation
+
+### Reject First-Order Thinking
+
+First-order: "Past dengue cases predict future dengue cases." Everyone knows this. This is table stakes, not a finding.
+
+**Push to second and third order:**
+
+- **Mechanism hypotheses:** WHY does the prediction work? What latent process connects features to outcome? If you can't name the causal mechanism, you don't understand it yet.
+- **Cross-domain hypotheses:** The most powerful predictions come from data sources that *seem* unrelated. Look for cross-database signals (e.g., SIH respiratory admissions as a leading indicator for dengue because early dengue is misdiagnosed as flu; CNES capacity changes creating notification artifacts; SIM cause-of-death shifts revealing emerging disease before SINAN catches it).
+- **Confounders-as-features:** Factors everyone controls for might actually BE the signal. Surveillance intensity varies by municipality — is detection capability itself predictive of outcomes?
+- **Contradiction hypotheses:** Where does the model succeed where experts predict failure? Where does it fail where experts expect success? These are the most publishable findings.
+
+### The "So What?" Test
+
+Every hypothesis must answer: **"If confirmed, what decision changes?"**
+
+- ❌ "There is a correlation between X and Y"
+- ✅ "Municipality health directors should trigger vector control when respiratory admissions rise >20% in 2 weeks, because this precedes dengue notification peaks by 3 weeks"
+
+### The Novelty Ladder
+
+1. **Known-known** (skip): "Dengue peaks in rainy season"
+2. **Known-unknown** (acceptable start): "Can we predict this year's peak magnitude?"
+3. **Unknown-unknown** (aim here): "Hospital readmission rates predict dengue severity in neighboring municipalities 6 weeks later because..."
+
+**Always ask: "Am I at level 3? If not, keep pushing."**
+
+---
+
+## Feature Engineering
+
+### Beyond Lags and Rolling Averages
+
+Lag features and rolling means are the "hello world" of time series. Required but insufficient.
+
+**Velocity and acceleration:**
+- d(cases)/dt (velocity) and d²(cases)/dt² (acceleration) — epidemic acceleration is a stronger early warning signal than case count level
+
+**Cross-database joins as features:**
+- Hospital capacity utilization (SIH demand / CNES beds) as mortality risk predictor
+- Notification-to-hospitalization ratio (SINAN / SIH) as surveillance quality proxy
+- Professional density (CNES doctors per 10k pop) as outcome moderator
+
+**Spatial features:**
+- Epidemic status in neighboring municipalities (adjacency-weighted, distance-weighted)
+- Patient flow networks: hub municipalities see different patterns than spoke municipalities
+- Spatial autocorrelation (Moran's I) as a feature — clustered outbreaks ≠ isolated ones
+
+**Anomaly-derived features:**
+- Deviation from expected seasonal pattern (residuals from decomposition)
+- Z-score relative to same-epi-week historical distribution
+- Standardized Incidence Ratio (observed/expected)
+
+**Interaction effects (not just main effects):**
+- Age × diagnosis × hospital type
+- Urbanization × season (dengue dynamics differ urban vs. rural)
+- System capacity × demand (outcomes degrade non-linearly when capacity saturates)
+
+**Information signals:**
+- Reporting delay patterns: WHEN municipalities report is itself informative
+- Data completeness as a feature: missing fields are not random — they correlate with outcomes
+
+### Feature Engineering Acid Test
+
+1. Is this available at prediction time? (no future leakage)
+2. Does this encode a **mechanism**, not just a pattern? (mechanisms generalize, patterns overfit)
+3. Would a domain expert say **"I never thought of using that"**?
+
+If #3 is "no", keep going.
+
+---
+
+## Analytical Depth
+
+### Natural Experiments
+
+Exploit exogenous shocks for causal claims:
+- COVID lockdowns → dengue transmission changes (vector ecology constant, human behavior changed)
+- Hospital closures/openings (CNES) → patient outcome shifts in catchment areas
+- Policy changes → before/after with proper difference-in-differences design
+
+### Counterfactual Analysis
+
+Don't just report accuracy. Report **impact**:
+- "If deployed in 2023, this model would have flagged 87% of epidemic municipalities 4 weeks early"
+- "The 13% missed epidemics share these characteristics: [X], revealing the model's blind spot is [Y]"
+
+### Equity and Disparity Analysis
+
+Always stratify by HDI, urban/rural, health infrastructure density. If the model works better for well-resourced areas and worse for vulnerable ones — **that's a finding, not a footnote**.
+
+### Failure Analysis > Success Celebration
+
+Where the model **fails** is more interesting than where it succeeds:
+- Cluster the errors. What do false negatives share?
+- Are there systematic biases (geographic, temporal, demographic)?
+- The error pattern is the next hypothesis.
+
+---
+
+## Storytelling
+
+### Structure for Impact
+
+1. **Lead with the surprise**, not the expected result
+2. **Quantify the counterfactual**: "X additional weeks of warning for Y% of municipalities"
+3. **Show the mechanism**: Feature importance + SHAP values + case studies — HOW, not just THAT
+4. **End with the gap**: What data would unlock the next level?
+
+### Narrative Patterns That Resonate
+
+- **The surprising proxy**: An unexpected data source outpredicts the "obvious" one
+- **The hidden inequity**: Works on average, fails for exactly who needs it most
+- **The cascade**: A → B → C multi-step causal chains in health systems
+- **The early warning**: Prediction weeks before traditional surveillance detects it
+- **The counterfactual**: "What would have happened if..."
+
+### Visualization as Argument
+
+Every plot makes exactly ONE argument. If it needs a paragraph of explanation, redesign it.
+
+- Spatial maps of epidemic wave propagation over time
+- Dual-axis timelines: prediction vs. reality overlaid
+- Error heatmaps by municipality × time revealing systematic failure patterns
