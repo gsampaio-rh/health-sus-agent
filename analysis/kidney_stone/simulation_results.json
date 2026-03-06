@@ -1,0 +1,30 @@
+{
+  "interventions": [
+    {
+      "name": "Elective Urology Pathway",
+      "description": "Convert 30% of emergency admissions to scheduled elective at high-ER hospitals",
+      "hospitals_targeted": 72,
+      "patients_affected": 5359,
+      "bed_days_saved_per_year": 4198.744164637292,
+      "beds_freed": 11.503408670239155
+    },
+    {
+      "name": "Protocol Standardization",
+      "description": "Reduce conservative treatment culture from >40% to 20% at high-conservative hospitals",
+      "hospitals_targeted": 32,
+      "bed_days_saved_per_year": 772.1257074251599,
+      "beds_freed": 2.115412897055233
+    },
+    {
+      "name": "Combined",
+      "bed_days_saved_per_year": 5171.046307916817,
+      "beds_freed": 14.16725015867621,
+      "money_saved_per_year": 2420437.500578164,
+      "deaths_prevented_per_year": 11.37194177292272,
+      "long_stays_eliminated_per_year": 129.0
+    }
+  ],
+  "cost_per_bed_day": 468.075,
+  "mortality_emergency": 0.005420669955855622,
+  "mortality_elective": 0.001176616299232103
+}

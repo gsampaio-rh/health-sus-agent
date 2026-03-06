@@ -1,0 +1,61 @@
+{
+  "model": "LightGBM (no outcome leakage)",
+  "cv_mae": "0.780\u00b10.083",
+  "cv_r2": "0.149\u00b10.063",
+  "oof_mae": 0.7796116822614978,
+  "oof_r2": 0.17751643774419024,
+  "n_hospitals": 211,
+  "n_features": 25,
+  "top_10_shap": [
+    {
+      "feature": "% Emergency Admissions",
+      "mean_abs_shap": 0.3485351054342447,
+      "pct": 18.359781769114313
+    },
+    {
+      "feature": "% Conservative Treatment",
+      "mean_abs_shap": 0.3206473517217079,
+      "pct": 16.890738725214735
+    },
+    {
+      "feature": "Surgical Beds (CNES)",
+      "mean_abs_shap": 0.14726402301442515,
+      "pct": 7.7574261038010865
+    },
+    {
+      "feature": "% Traditional Surgery",
+      "mean_abs_shap": 0.12252410847921227,
+      "pct": 6.454201766364174
+    },
+    {
+      "feature": "Procedure Diversity",
+      "mean_abs_shap": 0.0965493630736914,
+      "pct": 5.085930250186477
+    },
+    {
+      "feature": "Patient Volume",
+      "mean_abs_shap": 0.08981069072480619,
+      "pct": 4.730957245143118
+    },
+    {
+      "feature": "Clinical Beds (CNES)",
+      "mean_abs_shap": 0.08193460427674923,
+      "pct": 4.316068684058744
+    },
+    {
+      "feature": "% Ureter Stone (N201)",
+      "mean_abs_shap": 0.07249201110238042,
+      "pct": 3.8186612570509446
+    },
+    {
+      "feature": "% Clinical Medicine Spec",
+      "mean_abs_shap": 0.06970665711621951,
+      "pct": 3.671937180944084
+    },
+    {
+      "feature": "Avg Patient Age",
+      "mean_abs_shap": 0.06869808230223284,
+      "pct": 3.6188084911968934
+    }
+  ]
+}

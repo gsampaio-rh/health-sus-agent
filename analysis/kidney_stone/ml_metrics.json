@@ -1,0 +1,55 @@
+{
+  "cv_mae_mean": 0.432646952739988,
+  "cv_mae_std": 0.05914139426022288,
+  "cv_rmse_mean": 0.5690206134827664,
+  "cv_rmse_std": 0.12850045870267926,
+  "cv_r2_mean": 0.7629594808823541,
+  "cv_r2_std": 0.05185246576090281,
+  "oof_mae": 0.4324629574115057,
+  "oof_rmse": 0.5828191354127269,
+  "oof_r2": 0.7699156020555697,
+  "n_hospitals": 211,
+  "n_features": 28,
+  "top_features_shap": [
+    {
+      "feature": "pct_gt7d",
+      "pct": 46.34609536048218
+    },
+    {
+      "feature": "pct_emergency",
+      "pct": 10.715508201083109
+    },
+    {
+      "feature": "pct_conservative",
+      "pct": 7.142513662349826
+    },
+    {
+      "feature": "surgical_beds",
+      "pct": 4.310303506932884
+    },
+    {
+      "feature": "n_procedures",
+      "pct": 3.422699173225125
+    },
+    {
+      "feature": "icu_rate",
+      "pct": 3.2590929696643727
+    },
+    {
+      "feature": "pct_n200",
+      "pct": 2.5384861276571793
+    },
+    {
+      "feature": "pct_elderly",
+      "pct": 2.45949514931727
+    },
+    {
+      "feature": "avg_age",
+      "pct": 2.2584205995553237
+    },
+    {
+      "feature": "mortality",
+      "pct": 2.1579663120197665
+    }
+  ]
+}

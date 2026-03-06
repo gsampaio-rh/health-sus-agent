@@ -1,0 +1,638 @@
+{
+  "total_admissions": 206500,
+  "years_covered": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "growth_pct": 124.44258055497308,
+  "yearly_trend": [
+    {
+      "year": 2016,
+      "admissions": 14307,
+      "deaths": 57,
+      "avg_stay": 2.8619556860278186,
+      "total_cost": 10957743.17,
+      "avg_age": 43.95311153048624,
+      "mortality_per_1000": 3.9840637450199203,
+      "avg_cost": 765.9008296638009
+    },
+    {
+      "year": 2017,
+      "admissions": 14877,
+      "deaths": 50,
+      "avg_stay": 2.785104523761511,
+      "total_cost": 11417249.44,
+      "avg_age": 43.86586117272747,
+      "mortality_per_1000": 3.3608926530886603,
+      "avg_cost": 767.4429952275324
+    },
+    {
+      "year": 2018,
+      "admissions": 16372,
+      "deaths": 46,
+      "avg_stay": 2.728683117517713,
+      "total_cost": 13109220.0,
+      "avg_age": 44.47891725710563,
+      "mortality_per_1000": 2.809675054971903,
+      "avg_cost": 800.7097483508429
+    },
+    {
+      "year": 2019,
+      "admissions": 17933,
+      "deaths": 70,
+      "avg_stay": 2.6796408855183182,
+      "total_cost": 14120070.13,
+      "avg_age": 44.99330842580717,
+      "mortality_per_1000": 3.90341827915017,
+      "avg_cost": 787.3791406903474
+    },
+    {
+      "year": 2020,
+      "admissions": 16633,
+      "deaths": 65,
+      "avg_stay": 2.547105152407864,
+      "total_cost": 12997637.76,
+      "avg_age": 44.75580672959378,
+      "mortality_per_1000": 3.9078939457704567,
+      "avg_cost": 781.4367678710996
+    },
+    {
+      "year": 2021,
+      "admissions": 17051,
+      "deaths": 71,
+      "avg_stay": 2.464664829042285,
+      "total_cost": 14148198.17,
+      "avg_age": 45.20798389146287,
+      "mortality_per_1000": 4.163978652278459,
+      "avg_cost": 829.7576781420445
+    },
+    {
+      "year": 2022,
+      "admissions": 20663,
+      "deaths": 66,
+      "avg_stay": 2.5035570827082223,
+      "total_cost": 18371832.02,
+      "avg_age": 46.631503169917245,
+      "mortality_per_1000": 3.194115084934424,
+      "avg_cost": 889.1173604994434
+    },
+    {
+      "year": 2023,
+      "admissions": 25560,
+      "deaths": 84,
+      "avg_stay": 2.319287949921753,
+      "total_cost": 24597495.1,
+      "avg_age": 47.76354329681795,
+      "mortality_per_1000": 3.2863849765258215,
+      "avg_cost": 962.3433137715181
+    },
+    {
+      "year": 2024,
+      "admissions": 30993,
+      "deaths": 100,
+      "avg_stay": 2.1794921433872165,
+      "total_cost": 35320358.95,
+      "avg_age": 48.24444498220028,
+      "mortality_per_1000": 3.2265350240376858,
+      "avg_cost": 1139.6237521375795
+    },
+    {
+      "year": 2025,
+      "admissions": 32111,
+      "deaths": 105,
+      "avg_stay": 2.1614088630064465,
+      "total_cost": 32783350.81,
+      "avg_age": 48.366084311710416,
+      "mortality_per_1000": 3.2699075083304785,
+      "avg_cost": 1020.9383329700103
+    }
+  ],
+  "seasonality": [
+    {
+      "month": 1,
+      "avg_admissions": 1608.9,
+      "month_name": "Jan",
+      "season": "Summer"
+    },
+    {
+      "month": 2,
+      "avg_admissions": 1650.8,
+      "month_name": "Feb",
+      "season": "Summer"
+    },
+    {
+      "month": 3,
+      "avg_admissions": 1831.9,
+      "month_name": "Mar",
+      "season": "Autumn"
+    },
+    {
+      "month": 4,
+      "avg_admissions": 1672.4,
+      "month_name": "Apr",
+      "season": "Autumn"
+    },
+    {
+      "month": 5,
+      "avg_admissions": 1700.5,
+      "month_name": "May",
+      "season": "Autumn"
+    },
+    {
+      "month": 6,
+      "avg_admissions": 1614.5,
+      "month_name": "Jun",
+      "season": "Winter"
+    },
+    {
+      "month": 7,
+      "avg_admissions": 1665.1,
+      "month_name": "Jul",
+      "season": "Winter"
+    },
+    {
+      "month": 8,
+      "avg_admissions": 1742.1,
+      "month_name": "Aug",
+      "season": "Winter"
+    },
+    {
+      "month": 9,
+      "avg_admissions": 1733.6,
+      "month_name": "Sep",
+      "season": "Spring"
+    },
+    {
+      "month": 10,
+      "avg_admissions": 1847.0,
+      "month_name": "Oct",
+      "season": "Spring"
+    },
+    {
+      "month": 11,
+      "avg_admissions": 1793.3,
+      "month_name": "Nov",
+      "season": "Spring"
+    },
+    {
+      "month": 12,
+      "avg_admissions": 1789.9,
+      "month_name": "Dec",
+      "season": "Summer"
+    }
+  ],
+  "sex_summary": [
+    {
+      "year": 2016,
+      "sex": "Female",
+      "admissions": 7486,
+      "avg_age": 42.41379463888147,
+      "avg_stay": 2.99091637723751,
+      "year_total": 14307,
+      "share_pct": 52.32403718459495
+    },
+    {
+      "year": 2016,
+      "sex": "Male",
+      "admissions": 6821,
+      "avg_age": 45.64250109954552,
+      "avg_stay": 2.7204222254801347,
+      "year_total": 14307,
+      "share_pct": 47.67596281540505
+    },
+    {
+      "year": 2017,
+      "sex": "Female",
+      "admissions": 7882,
+      "avg_age": 42.37926076291973,
+      "avg_stay": 2.8822633849276835,
+      "year_total": 14877,
+      "share_pct": 52.98111178328965
+    },
+    {
+      "year": 2017,
+      "sex": "Male",
+      "admissions": 6995,
+      "avg_age": 45.540969740290684,
+      "avg_stay": 2.6756254467476768,
+      "year_total": 14877,
+      "share_pct": 47.01888821671036
+    },
+    {
+      "year": 2018,
+      "sex": "Female",
+      "admissions": 8617,
+      "avg_age": 42.69863835054737,
+      "avg_stay": 2.836486016014854,
+      "year_total": 16372,
+      "share_pct": 52.632543366723674
+    },
+    {
+      "year": 2018,
+      "sex": "Male",
+      "admissions": 7755,
+      "avg_age": 46.45708145282614,
+      "avg_stay": 2.6088974854932303,
+      "year_total": 16372,
+      "share_pct": 47.367456633276326
+    },
+    {
+      "year": 2019,
+      "sex": "Female",
+      "admissions": 9315,
+      "avg_age": 43.40450885668277,
+      "avg_stay": 2.7506172839506173,
+      "year_total": 17933,
+      "share_pct": 51.94334467183405
+    },
+    {
+      "year": 2019,
+      "sex": "Male",
+      "admissions": 8618,
+      "avg_age": 46.710605708981205,
+      "avg_stay": 2.602924112323045,
+      "year_total": 17933,
+      "share_pct": 48.05665532816595
+    },
+    {
+      "year": 2020,
+      "sex": "Female",
+      "admissions": 8664,
+      "avg_age": 43.0252000615574,
+      "avg_stay": 2.6722068328716526,
+      "year_total": 16633,
+      "share_pct": 52.0892202248542
+    },
+    {
+      "year": 2020,
+      "sex": "Male",
+      "admissions": 7969,
+      "avg_age": 46.63734471075417,
+      "avg_stay": 2.4110929853181076,
+      "year_total": 16633,
+      "share_pct": 47.9107797751458
+    },
+    {
+      "year": 2021,
+      "sex": "Female",
+      "admissions": 9042,
+      "avg_age": 43.548541989235424,
+      "avg_stay": 2.5877018358770183,
+      "year_total": 17051,
+      "share_pct": 53.02914785056595
+    },
+    {
+      "year": 2021,
+      "sex": "Male",
+      "admissions": 8009,
+      "avg_age": 47.081460440337956,
+      "avg_stay": 2.325758521663129,
+      "year_total": 17051,
+      "share_pct": 46.97085214943405
+    },
+    {
+      "year": 2022,
+      "sex": "Female",
+      "admissions": 10989,
+      "avg_age": 44.90570873904207,
+      "avg_stay": 2.581763581763582,
+      "year_total": 20663,
+      "share_pct": 53.18201616415815
+    },
+    {
+      "year": 2022,
+      "sex": "Male",
+      "admissions": 9674,
+      "avg_age": 48.591887189029016,
+      "avg_stay": 2.4147198676865824,
+      "year_total": 20663,
+      "share_pct": 46.817983835841844
+    },
+    {
+      "year": 2023,
+      "sex": "Female",
+      "admissions": 13406,
+      "avg_age": 46.02055671589836,
+      "avg_stay": 2.382962852454125,
+      "year_total": 25560,
+      "share_pct": 52.4491392801252
+    },
+    {
+      "year": 2023,
+      "sex": "Male",
+      "admissions": 12154,
+      "avg_age": 49.68607728594153,
+      "avg_stay": 2.24905380944545,
+      "year_total": 25560,
+      "share_pct": 47.550860719874805
+    },
+    {
+      "year": 2024,
+      "sex": "Female",
+      "admissions": 16257,
+      "avg_age": 46.530115232412705,
+      "avg_stay": 2.2672694839146215,
+      "year_total": 30993,
+      "share_pct": 52.45377988578066
+    },
+    {
+      "year": 2024,
+      "sex": "Male",
+      "admissions": 14736,
+      "avg_age": 50.1357220412595,
+      "avg_stay": 2.082654723127036,
+      "year_total": 30993,
+      "share_pct": 47.54622011421934
+    },
+    {
+      "year": 2025,
+      "sex": "Female",
+      "admissions": 17380,
+      "avg_age": 46.5221087456847,
+      "avg_stay": 2.244246260069045,
+      "year_total": 32111,
+      "share_pct": 54.12475475693688
+    },
+    {
+      "year": 2025,
+      "sex": "Male",
+      "admissions": 14731,
+      "avg_age": 50.54165252415541,
+      "avg_stay": 2.063675242685493,
+      "year_total": 32111,
+      "share_pct": 45.87524524306312
+    }
+  ],
+  "severity": [
+    {
+      "year": 2016,
+      "admissions": 14307,
+      "avg_stay": 2.8619556860278186,
+      "median_stay": 2.0,
+      "deaths": 57,
+      "avg_cost": 765.9008296638009,
+      "pct_over_5_days": 10.134899000489272,
+      "mortality_per_10k": 39.8406374501992
+    },
+    {
+      "year": 2017,
+      "admissions": 14877,
+      "avg_stay": 2.785104523761511,
+      "median_stay": 2.0,
+      "deaths": 50,
+      "avg_cost": 767.4429952275324,
+      "pct_over_5_days": 9.491160852322377,
+      "mortality_per_10k": 33.608926530886606
+    },
+    {
+      "year": 2018,
+      "admissions": 16372,
+      "avg_stay": 2.728683117517713,
+      "median_stay": 2.0,
+      "deaths": 46,
+      "avg_cost": 800.7097483508429,
+      "pct_over_5_days": 9.473491326655264,
+      "mortality_per_10k": 28.09675054971903
+    },
+    {
+      "year": 2019,
+      "admissions": 17933,
+      "avg_stay": 2.6796408855183182,
+      "median_stay": 2.0,
+      "deaths": 70,
+      "avg_cost": 787.3791406903474,
+      "pct_over_5_days": 8.994590977527462,
+      "mortality_per_10k": 39.0341827915017
+    },
+    {
+      "year": 2020,
+      "admissions": 16633,
+      "avg_stay": 2.547105152407864,
+      "median_stay": 2.0,
+      "deaths": 65,
+      "avg_cost": 781.4367678710996,
+      "pct_over_5_days": 8.453075211928095,
+      "mortality_per_10k": 39.078939457704564
+    },
+    {
+      "year": 2021,
+      "admissions": 17051,
+      "avg_stay": 2.464664829042285,
+      "median_stay": 2.0,
+      "deaths": 71,
+      "avg_cost": 829.7576781420445,
+      "pct_over_5_days": 8.3338220632221,
+      "mortality_per_10k": 41.63978652278459
+    },
+    {
+      "year": 2022,
+      "admissions": 20663,
+      "avg_stay": 2.5035570827082223,
+      "median_stay": 2.0,
+      "deaths": 66,
+      "avg_cost": 889.1173604994434,
+      "pct_over_5_days": 8.885447418090306,
+      "mortality_per_10k": 31.94115084934424
+    },
+    {
+      "year": 2023,
+      "admissions": 25560,
+      "avg_stay": 2.319287949921753,
+      "median_stay": 2.0,
+      "deaths": 84,
+      "avg_cost": 962.3433137715181,
+      "pct_over_5_days": 7.820813771517996,
+      "mortality_per_10k": 32.863849765258216
+    },
+    {
+      "year": 2024,
+      "admissions": 30993,
+      "avg_stay": 2.1794921433872165,
+      "median_stay": 1.0,
+      "deaths": 100,
+      "avg_cost": 1139.6237521375795,
+      "pct_over_5_days": 7.1919465685800015,
+      "mortality_per_10k": 32.26535024037686
+    },
+    {
+      "year": 2025,
+      "admissions": 32111,
+      "avg_stay": 2.1614088630064465,
+      "median_stay": 1.0,
+      "deaths": 105,
+      "avg_cost": 1020.9383329700103,
+      "pct_over_5_days": 7.003830463081187,
+      "mortality_per_10k": 32.699075083304784
+    }
+  ],
+  "top_municipalities": [
+    {
+      "muni_res": "355030",
+      "early_admissions": 7445.0,
+      "late_admissions": 14158.0,
+      "growth_pct": 90.16789791806582,
+      "total": 21603.0,
+      "muni_name": "S\u00e3o Paulo"
+    },
+    {
+      "muni_res": "350950",
+      "early_admissions": 1064.0,
+      "late_admissions": 1940.0,
+      "growth_pct": 82.33082706766918,
+      "total": 3004.0,
+      "muni_name": "Campinas"
+    },
+    {
+      "muni_res": "350570",
+      "early_admissions": 432.0,
+      "late_admissions": 1653.0,
+      "growth_pct": 282.63888888888886,
+      "total": 2085.0,
+      "muni_name": "Bebedouro"
+    },
+    {
+      "muni_res": "355220",
+      "early_admissions": 570.0,
+      "late_admissions": 1442.0,
+      "growth_pct": 152.98245614035088,
+      "total": 2012.0,
+      "muni_name": "Sorocaba"
+    },
+    {
+      "muni_res": "354340",
+      "early_admissions": 1016.0,
+      "late_admissions": 1334.0,
+      "growth_pct": 31.299212598425196,
+      "total": 2350.0,
+      "muni_name": "Ribeir\u00e3o Preto"
+    },
+    {
+      "muni_res": "352690",
+      "early_admissions": 269.0,
+      "late_admissions": 1078.0,
+      "growth_pct": 300.7434944237918,
+      "total": 1347.0,
+      "muni_name": "Limeira"
+    },
+    {
+      "muni_res": "354870",
+      "early_admissions": 1068.0,
+      "late_admissions": 1074.0,
+      "growth_pct": 0.5617977528089888,
+      "total": 2142.0,
+      "muni_name": "S\u00e3o Bernardo do Campo"
+    },
+    {
+      "muni_res": "353870",
+      "early_admissions": 454.0,
+      "late_admissions": 1060.0,
+      "growth_pct": 133.48017621145374,
+      "total": 1514.0,
+      "muni_name": "Piracicaba"
+    },
+    {
+      "muni_res": "354980",
+      "early_admissions": 792.0,
+      "late_admissions": 1020.0,
+      "growth_pct": 28.78787878787879,
+      "total": 1812.0,
+      "muni_name": "S\u00e3o Jos\u00e9 dos Campos"
+    },
+    {
+      "muni_res": "354890",
+      "early_admissions": 398.0,
+      "late_admissions": 955.0,
+      "growth_pct": 139.9497487437186,
+      "total": 1353.0,
+      "muni_name": "354890"
+    },
+    {
+      "muni_res": "351880",
+      "early_admissions": 762.0,
+      "late_admissions": 937.0,
+      "growth_pct": 22.965879265091864,
+      "total": 1699.0,
+      "muni_name": "Guarulhos"
+    },
+    {
+      "muni_res": "352530",
+      "early_admissions": 988.0,
+      "late_admissions": 932.0,
+      "growth_pct": -5.668016194331984,
+      "total": 1920.0,
+      "muni_name": "352530"
+    },
+    {
+      "muni_res": "354140",
+      "early_admissions": 635.0,
+      "late_admissions": 865.0,
+      "growth_pct": 36.22047244094488,
+      "total": 1500.0,
+      "muni_name": "Presidente Prudente"
+    },
+    {
+      "muni_res": "350600",
+      "early_admissions": 590.0,
+      "late_admissions": 774.0,
+      "growth_pct": 31.186440677966104,
+      "total": 1364.0,
+      "muni_name": "350600"
+    },
+    {
+      "muni_res": "352050",
+      "early_admissions": 383.0,
+      "late_admissions": 707.0,
+      "growth_pct": 84.59530026109661,
+      "total": 1090.0,
+      "muni_name": "Indaiatuba"
+    },
+    {
+      "muni_res": "352590",
+      "early_admissions": 524.0,
+      "late_admissions": 702.0,
+      "growth_pct": 33.969465648854964,
+      "total": 1226.0,
+      "muni_name": "Jundia\u00ed"
+    },
+    {
+      "muni_res": "355410",
+      "early_admissions": 443.0,
+      "late_admissions": 698.0,
+      "growth_pct": 57.56207674943566,
+      "total": 1141.0,
+      "muni_name": "Taubat\u00e9"
+    },
+    {
+      "muni_res": "352940",
+      "early_admissions": 507.0,
+      "late_admissions": 681.0,
+      "growth_pct": 34.319526627218934,
+      "total": 1188.0,
+      "muni_name": "352940"
+    },
+    {
+      "muni_res": "351050",
+      "early_admissions": 206.0,
+      "late_admissions": 675.0,
+      "growth_pct": 227.66990291262138,
+      "total": 881.0,
+      "muni_name": "351050"
+    },
+    {
+      "muni_res": "354780",
+      "early_admissions": 512.0,
+      "late_admissions": 654.0,
+      "growth_pct": 27.734375,
+      "total": 1166.0,
+      "muni_name": "Santo Andr\u00e9"
+    }
+  ]
+}

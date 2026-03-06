@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+.cursor/
+
+# Data files (large, downloaded from DATASUS)
+data/
+
+# Raw data formats
+*.dbc
+*.dbf
+
+# Environment variables
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ML artifacts (large binary files, reproducible from source code)
+*.npy
+*.parquet
+
+# Keep analysis JSON metrics (small, meaningful)
+# Keep analysis PNGs (plots for documentation)
+# Keep analysis FINDINGS.md (narrative)

@@ -1,0 +1,89 @@
+{
+  "model": "LightGBM Patient-Level (63K obs, 29 features)",
+  "train_mae": 1.2283336967110532,
+  "train_r2": 0.2984426551363967,
+  "test_mae": 1.3181910207874614,
+  "test_rmse": 2.855963036583893,
+  "test_r2": 0.2257376212273815,
+  "baseline_mae": 1.5695269788447825,
+  "improvement_pct": 16.013484409316213,
+  "n_patients": 63104,
+  "n_features": 29,
+  "top_features": [
+    {
+      "feature": "Emergency Admission",
+      "mean_abs_shap": 0.6216177982381523,
+      "pct": 21.36196740240443
+    },
+    {
+      "feature": "Hosp: % Conservative",
+      "mean_abs_shap": 0.23542401277025082,
+      "pct": 8.09037337861842
+    },
+    {
+      "feature": "Facility: Surgical Beds",
+      "mean_abs_shap": 0.19726503825684755,
+      "pct": 6.779035814000933
+    },
+    {
+      "feature": "Patient Age",
+      "mean_abs_shap": 0.19726409154857624,
+      "pct": 6.779003280261891
+    },
+    {
+      "feature": "Hosp: Log Volume",
+      "mean_abs_shap": 0.1612973309399873,
+      "pct": 5.543001399575065
+    },
+    {
+      "feature": "Spec: Surgery",
+      "mean_abs_shap": 0.15749566819806932,
+      "pct": 5.412356820546016
+    },
+    {
+      "feature": "Proc: Traditional Surgery",
+      "mean_abs_shap": 0.14479214776233473,
+      "pct": 4.975798874146976
+    },
+    {
+      "feature": "Hosp: % Emergency",
+      "mean_abs_shap": 0.1376033701815243,
+      "pct": 4.7287557026360245
+    },
+    {
+      "feature": "Male",
+      "mean_abs_shap": 0.1099807435839727,
+      "pct": 3.779500950571123
+    },
+    {
+      "feature": "Hosp: % New Procedure",
+      "mean_abs_shap": 0.10958944442373272,
+      "pct": 3.7660539097538774
+    },
+    {
+      "feature": "Ureter Stone (N201)",
+      "mean_abs_shap": 0.10493132801762527,
+      "pct": 3.605977201677141
+    },
+    {
+      "feature": "Spec: Lithotripsy",
+      "mean_abs_shap": 0.09288437559571021,
+      "pct": 3.191982290873971
+    },
+    {
+      "feature": "Facility: Equipment Count",
+      "mean_abs_shap": 0.07483469153077275,
+      "pct": 2.5717028141412737
+    },
+    {
+      "feature": "Proc: Observation",
+      "mean_abs_shap": 0.0674175375430077,
+      "pct": 2.316811461039205
+    },
+    {
+      "feature": "Hosp: % Clinical Med",
+      "mean_abs_shap": 0.06557596927607645,
+      "pct": 2.253525754936536
+    }
+  ]
+}

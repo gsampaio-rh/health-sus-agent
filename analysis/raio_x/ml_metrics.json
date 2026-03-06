@@ -1,0 +1,245 @@
+{
+  "future_gap": [
+    {
+      "bed_type": "clinical",
+      "year": 2026,
+      "beds_needed": 23644,
+      "beds_available": 34343,
+      "deficit": 1953,
+      "municipalities_in_deficit": 89,
+      "doctors_needed": 1953
+    },
+    {
+      "bed_type": "clinical",
+      "year": 2027,
+      "beds_needed": 23686,
+      "beds_available": 34343,
+      "deficit": 1913,
+      "municipalities_in_deficit": 85,
+      "doctors_needed": 1913
+    },
+    {
+      "bed_type": "clinical",
+      "year": 2028,
+      "beds_needed": 23699,
+      "beds_available": 34343,
+      "deficit": 2003,
+      "municipalities_in_deficit": 82,
+      "doctors_needed": 2003
+    },
+    {
+      "bed_type": "obstetric",
+      "year": 2026,
+      "beds_needed": 2520,
+      "beds_available": 19650,
+      "deficit": 156,
+      "municipalities_in_deficit": 112,
+      "doctors_needed": 268
+    },
+    {
+      "bed_type": "obstetric",
+      "year": 2027,
+      "beds_needed": 2404,
+      "beds_available": 19650,
+      "deficit": 143,
+      "municipalities_in_deficit": 111,
+      "doctors_needed": 254
+    },
+    {
+      "bed_type": "obstetric",
+      "year": 2028,
+      "beds_needed": 2291,
+      "beds_available": 19650,
+      "deficit": 131,
+      "municipalities_in_deficit": 108,
+      "doctors_needed": 239
+    },
+    {
+      "bed_type": "other",
+      "year": 2026,
+      "beds_needed": 9210,
+      "beds_available": 0,
+      "deficit": 9210,
+      "municipalities_in_deficit": 94,
+      "doctors_needed": 9210
+    },
+    {
+      "bed_type": "other",
+      "year": 2027,
+      "beds_needed": 12213,
+      "beds_available": 0,
+      "deficit": 12213,
+      "municipalities_in_deficit": 94,
+      "doctors_needed": 12213
+    },
+    {
+      "bed_type": "other",
+      "year": 2028,
+      "beds_needed": 12226,
+      "beds_available": 0,
+      "deficit": 12226,
+      "municipalities_in_deficit": 94,
+      "doctors_needed": 12226
+    },
+    {
+      "bed_type": "surgical",
+      "year": 2026,
+      "beds_needed": 8837,
+      "beds_available": 25002,
+      "deficit": 108,
+      "municipalities_in_deficit": 30,
+      "doctors_needed": 171
+    },
+    {
+      "bed_type": "surgical",
+      "year": 2027,
+      "beds_needed": 8690,
+      "beds_available": 25002,
+      "deficit": 90,
+      "municipalities_in_deficit": 26,
+      "doctors_needed": 144
+    },
+    {
+      "bed_type": "surgical",
+      "year": 2028,
+      "beds_needed": 8526,
+      "beds_available": 25002,
+      "deficit": 80,
+      "municipalities_in_deficit": 25,
+      "doctors_needed": 129
+    }
+  ],
+  "icsap_risk_top20": [
+    {
+      "municipality": "352420",
+      "predicted_icsap_rate": 58.194499251137515,
+      "icsap_rate_lag1": 51.5625,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "352810",
+      "predicted_icsap_rate": 56.26222321893021,
+      "icsap_rate_lag1": 63.33333333333333,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "355680",
+      "predicted_icsap_rate": 55.16684269341528,
+      "icsap_rate_lag1": 65.11627906976744,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "354790",
+      "predicted_icsap_rate": 54.78219192130993,
+      "icsap_rate_lag1": 54.95495495495496,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "350710",
+      "predicted_icsap_rate": 53.986725148202694,
+      "icsap_rate_lag1": 53.11203319502075,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "354190",
+      "predicted_icsap_rate": 53.72259434722675,
+      "icsap_rate_lag1": 55.172413793103445,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "351900",
+      "predicted_icsap_rate": 52.432464318801436,
+      "icsap_rate_lag1": 63.667425968109335,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "353250",
+      "predicted_icsap_rate": 51.89560209745306,
+      "icsap_rate_lag1": 50.0,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "350110",
+      "predicted_icsap_rate": 51.475284382121025,
+      "icsap_rate_lag1": 45.16129032258064,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "355000",
+      "predicted_icsap_rate": 51.368391993599445,
+      "icsap_rate_lag1": 52.94117647058824,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "350970",
+      "predicted_icsap_rate": 51.21325598853123,
+      "icsap_rate_lag1": 51.270983213429254,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "350260",
+      "predicted_icsap_rate": 50.131053064265046,
+      "icsap_rate_lag1": 57.692307692307686,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "354770",
+      "predicted_icsap_rate": 49.14075087333173,
+      "icsap_rate_lag1": 44.814410480349345,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "351600",
+      "predicted_icsap_rate": 48.25863260599309,
+      "icsap_rate_lag1": 50.36144578313253,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "354240",
+      "predicted_icsap_rate": 47.71394747080536,
+      "icsap_rate_lag1": 50.188205771643666,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "351230",
+      "predicted_icsap_rate": 47.56753632165804,
+      "icsap_rate_lag1": 45.67567567567568,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "354120",
+      "predicted_icsap_rate": 47.53421195966107,
+      "icsap_rate_lag1": 47.3040977713875,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "350670",
+      "predicted_icsap_rate": 47.18473054970067,
+      "icsap_rate_lag1": 45.23809523809524,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "350130",
+      "predicted_icsap_rate": 47.16575945957904,
+      "icsap_rate_lag1": 43.9374185136897,
+      "risk_category": "critical"
+    },
+    {
+      "municipality": "353660",
+      "predicted_icsap_rate": 46.429037337518324,
+      "icsap_rate_lag1": 47.863247863247864,
+      "risk_category": "critical"
+    }
+  ],
+  "allocation": [
+    {
+      "municipality": "355030",
+      "beds_allocated": 5000,
+      "deficit_before": 7408,
+      "deficit_after": 2408,
+      "icsap_risk": 13.500696949482874,
+      "risk_category": "moderate",
+      "priority_score": 100013.16300176914
+    }
+  ]
+}
