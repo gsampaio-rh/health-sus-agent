@@ -1,0 +1,1224 @@
+{
+  "total_admissions": 206500,
+  "total_cost": 187823156.0,
+  "total_bed_days": 507465,
+  "period": "2015-2025",
+  "growth_pct": 4800.0,
+  "validation_passed": 9,
+  "validation_total": 9,
+  "sub_metrics": {
+    "diagnostic_problem": {
+      "diagnostic_admissions_2022_plus": 18078,
+      "pct_of_total": 16.6,
+      "total_bed_days": 48931,
+      "total_cost": 7108214.0,
+      "er_rate": 94.2,
+      "pct_stay_gt3d": 23.0,
+      "n_diagnostic_only_hospitals": 95
+    },
+    "hypothesis_tests": {
+      "H1_procedure_decomposition": {
+        "total_growth": 30722,
+        "new_proc_growth": 10907,
+        "pct_explained_by_new_proc": 35.5
+      },
+      "H2_access_gap": {
+        "migration_rate_no_access": 79.4,
+        "migration_rate_with_access": 15.8,
+        "adopter_cities_count": 112
+      },
+      "procedure_stay": {
+        "mean": {
+          "Lithotripsy": 0.8987068965517241,
+          "New (Ureterolithotripsy)": 1.858385239158538,
+          "Other": 2.6032001414427155
+        },
+        "median": {
+          "Lithotripsy": 0.0,
+          "New (Ureterolithotripsy)": 1.0,
+          "Other": 2.0
+        },
+        "count": {
+          "Lithotripsy": 2784,
+          "New (Ureterolithotripsy)": 34036,
+          "Other": 169680
+        }
+      }
+    },
+    "eda_metrics": {
+      "total_records": 206500,
+      "year_range": [
+        2015,
+        2025
+      ],
+      "yearly_counts": {
+        "2015": 640,
+        "2016": 14234,
+        "2017": 15002,
+        "2018": 16362,
+        "2019": 17757,
+        "2020": 16664,
+        "2021": 17144,
+        "2022": 20588,
+        "2023": 25762,
+        "2024": 30985,
+        "2025": 31362
+      },
+      "growth_pct": 4800.3,
+      "sex_distribution": {
+        "Female": 109038,
+        "Male": 97462
+      },
+      "avg_stay": 2.46,
+      "median_stay": 2.0,
+      "pct_emergency": 56.5,
+      "migration_rate_pct": 36.5,
+      "mortality_rate_pct": 0.346,
+      "unique_hospitals": 510,
+      "unique_treatment_cities": 307,
+      "unique_procedures": 193,
+      "top_5_procedures": {
+        "0409010170": 40973,
+        "0305020021": 40657,
+        "0409010596": 34036,
+        "0415010012": 23275,
+        "0415020034": 20597
+      },
+      "top_5_treatment_cities": {
+        "355030": 43995,
+        "354980": 9759,
+        "355220": 8030,
+        "354140": 7705,
+        "354340": 7576
+      },
+      "pct_stay_gt7": 4.5,
+      "pct_stay_gt14": 1.0
+    },
+    "hospital_variation": {
+      "hospital_effect_days": 2.66,
+      "procedure_effect_days": 1.24,
+      "ratio": 2.1,
+      "top_quartile_los": 1.78,
+      "bottom_quartile_los": 4.45,
+      "ureteroscopy_hospital_range": [
+        0.0,
+        6.7
+      ],
+      "n_hospitals_ureteroscopy": 99,
+      "sao_carlos_avg_los": 1.38
+    },
+    "geographic_access": {
+      "cities_no_surgery": 46,
+      "patients_no_surgery": 3417,
+      "piracicaba_growth_pct": 973.0,
+      "piracicaba_migrant_pct": 74.0
+    },
+    "bed_savings": {
+      "scenarios": {
+        "Hospital standardization": {
+          "bed_days_per_year": 8712.0,
+          "beds": 24.0
+        },
+        "Diagnostic outpatient shift": {
+          "bed_days_per_year": 6116.0,
+          "beds": 17.0
+        },
+        "Long-stay reduction": {
+          "bed_days_per_year": 3317.0,
+          "beds": 9.0
+        },
+        "ER-to-elective conversion": {
+          "bed_days_per_year": 5606.0,
+          "beds": 15.0
+        }
+      },
+      "total_savings_bed_days_per_year": 23752.0,
+      "total_beds": 65.0,
+      "total_pct_reduction": 38.6
+    },
+    "ml_model_metrics": {
+      "r2": 0.0961,
+      "mae": 1.6005,
+      "rmse": 2.924,
+      "n_train": 97803,
+      "n_test": 108697,
+      "n_features": 10,
+      "best_iteration": 217,
+      "baseline_mae": 1.5592,
+      "baseline_r2": -0.0072
+    },
+    "long_stay_pareto": {
+      "pct_patients_gt7d": 4.2,
+      "pct_bed_days_gt7d": 23.7,
+      "pct_cost_gt7d": 10.2,
+      "pct_deaths_gt7d": 50.1,
+      "n_extreme_gt30d": 143,
+      "worst_hospital_cnes": "2688689",
+      "worst_hospital_pct_longstay": 24.0
+    },
+    "executive_summary": {
+      "total_admissions": 206500,
+      "total_cost": 187823156.0,
+      "total_bed_days": 507465,
+      "period": "2015-2025",
+      "growth_pct": 4800.0,
+      "validation_passed": 9,
+      "validation_total": 9,
+      "sub_metrics": {
+        "diagnostic_problem": {
+          "diagnostic_admissions_2022_plus": 18078,
+          "pct_of_total": 16.6,
+          "total_bed_days": 48931,
+          "total_cost": 7108214.0,
+          "er_rate": 94.2,
+          "pct_stay_gt3d": 23.0,
+          "n_diagnostic_only_hospitals": 95
+        },
+        "hypothesis_tests": {
+          "H1_procedure_decomposition": {
+            "total_growth": 30722,
+            "new_proc_growth": 10907,
+            "pct_explained_by_new_proc": 35.5
+          },
+          "H2_access_gap": {
+            "migration_rate_no_access": 79.4,
+            "migration_rate_with_access": 15.8,
+            "adopter_cities_count": 112
+          },
+          "procedure_stay": {
+            "mean": {
+              "Lithotripsy": 0.8987068965517241,
+              "New (Ureterolithotripsy)": 1.858385239158538,
+              "Other": 2.6032001414427155
+            },
+            "median": {
+              "Lithotripsy": 0.0,
+              "New (Ureterolithotripsy)": 1.0,
+              "Other": 2.0
+            },
+            "count": {
+              "Lithotripsy": 2784,
+              "New (Ureterolithotripsy)": 34036,
+              "Other": 169680
+            }
+          }
+        },
+        "eda_metrics": {
+          "total_records": 206500,
+          "year_range": [
+            2015,
+            2025
+          ],
+          "yearly_counts": {
+            "2015": 640,
+            "2016": 14234,
+            "2017": 15002,
+            "2018": 16362,
+            "2019": 17757,
+            "2020": 16664,
+            "2021": 17144,
+            "2022": 20588,
+            "2023": 25762,
+            "2024": 30985,
+            "2025": 31362
+          },
+          "growth_pct": 4800.3,
+          "sex_distribution": {
+            "Female": 109038,
+            "Male": 97462
+          },
+          "avg_stay": 2.46,
+          "median_stay": 2.0,
+          "pct_emergency": 56.5,
+          "migration_rate_pct": 36.5,
+          "mortality_rate_pct": 0.346,
+          "unique_hospitals": 510,
+          "unique_treatment_cities": 307,
+          "unique_procedures": 193,
+          "top_5_procedures": {
+            "0409010170": 40973,
+            "0305020021": 40657,
+            "0409010596": 34036,
+            "0415010012": 23275,
+            "0415020034": 20597
+          },
+          "top_5_treatment_cities": {
+            "355030": 43995,
+            "354980": 9759,
+            "355220": 8030,
+            "354140": 7705,
+            "354340": 7576
+          },
+          "pct_stay_gt7": 4.5,
+          "pct_stay_gt14": 1.0
+        },
+        "hospital_variation": {
+          "hospital_effect_days": 2.66,
+          "procedure_effect_days": 1.24,
+          "ratio": 2.1,
+          "top_quartile_los": 1.78,
+          "bottom_quartile_los": 4.45,
+          "ureteroscopy_hospital_range": [
+            0.0,
+            6.7
+          ],
+          "n_hospitals_ureteroscopy": 99,
+          "sao_carlos_avg_los": 1.38
+        },
+        "geographic_access": {
+          "cities_no_surgery": 46,
+          "patients_no_surgery": 3417,
+          "piracicaba_growth_pct": 973.0,
+          "piracicaba_migrant_pct": 74.0
+        },
+        "bed_savings": {
+          "scenarios": {
+            "Hospital standardization": {
+              "bed_days_per_year": 8712.0,
+              "beds": 24.0
+            },
+            "Diagnostic outpatient shift": {
+              "bed_days_per_year": 6116.0,
+              "beds": 17.0
+            },
+            "Long-stay reduction": {
+              "bed_days_per_year": 3317.0,
+              "beds": 9.0
+            },
+            "ER-to-elective conversion": {
+              "bed_days_per_year": 5606.0,
+              "beds": 15.0
+            }
+          },
+          "total_savings_bed_days_per_year": 23752.0,
+          "total_beds": 65.0,
+          "total_pct_reduction": 38.6
+        },
+        "ml_model_metrics": {
+          "r2": 0.0961,
+          "mae": 1.6005,
+          "rmse": 2.924,
+          "n_train": 97803,
+          "n_test": 108697,
+          "n_features": 10,
+          "best_iteration": 217,
+          "baseline_mae": 1.5592,
+          "baseline_r2": -0.0072
+        },
+        "long_stay_pareto": {
+          "pct_patients_gt7d": 4.2,
+          "pct_bed_days_gt7d": 23.7,
+          "pct_cost_gt7d": 10.2,
+          "pct_deaths_gt7d": 50.1,
+          "n_extreme_gt30d": 143,
+          "worst_hospital_cnes": "2688689",
+          "worst_hospital_pct_longstay": 24.0
+        },
+        "executive_summary": {
+          "total_admissions": 206500,
+          "total_cost": 187823156.0,
+          "total_bed_days": 507465,
+          "period": "2015-2025",
+          "growth_pct": 4800.0,
+          "validation_passed": 9,
+          "validation_total": 9,
+          "sub_metrics": {
+            "diagnostic_problem": {
+              "diagnostic_admissions_2022_plus": 18078,
+              "pct_of_total": 16.6,
+              "total_bed_days": 48931,
+              "total_cost": 7108214.0,
+              "er_rate": 94.2,
+              "pct_stay_gt3d": 23.0,
+              "n_diagnostic_only_hospitals": 95
+            },
+            "hypothesis_tests": {
+              "H1_procedure_decomposition": {
+                "total_growth": 30722,
+                "new_proc_growth": 10907,
+                "pct_explained_by_new_proc": 35.5
+              },
+              "H2_access_gap": {
+                "migration_rate_no_access": 79.4,
+                "migration_rate_with_access": 15.8,
+                "adopter_cities_count": 112
+              },
+              "procedure_stay": {
+                "mean": {
+                  "Lithotripsy": 0.8987068965517241,
+                  "New (Ureterolithotripsy)": 1.858385239158538,
+                  "Other": 2.6032001414427155
+                },
+                "median": {
+                  "Lithotripsy": 0.0,
+                  "New (Ureterolithotripsy)": 1.0,
+                  "Other": 2.0
+                },
+                "count": {
+                  "Lithotripsy": 2784,
+                  "New (Ureterolithotripsy)": 34036,
+                  "Other": 169680
+                }
+              }
+            },
+            "eda_metrics": {
+              "total_records": 206500,
+              "year_range": [
+                2015,
+                2025
+              ],
+              "yearly_counts": {
+                "2015": 640,
+                "2016": 14234,
+                "2017": 15002,
+                "2018": 16362,
+                "2019": 17757,
+                "2020": 16664,
+                "2021": 17144,
+                "2022": 20588,
+                "2023": 25762,
+                "2024": 30985,
+                "2025": 31362
+              },
+              "growth_pct": 4800.3,
+              "sex_distribution": {
+                "Female": 109038,
+                "Male": 97462
+              },
+              "avg_stay": 2.46,
+              "median_stay": 2.0,
+              "pct_emergency": 56.5,
+              "migration_rate_pct": 36.5,
+              "mortality_rate_pct": 0.346,
+              "unique_hospitals": 510,
+              "unique_treatment_cities": 307,
+              "unique_procedures": 193,
+              "top_5_procedures": {
+                "0409010170": 40973,
+                "0305020021": 40657,
+                "0409010596": 34036,
+                "0415010012": 23275,
+                "0415020034": 20597
+              },
+              "top_5_treatment_cities": {
+                "355030": 43995,
+                "354980": 9759,
+                "355220": 8030,
+                "354140": 7705,
+                "354340": 7576
+              },
+              "pct_stay_gt7": 4.5,
+              "pct_stay_gt14": 1.0
+            },
+            "hospital_variation": {
+              "hospital_effect_days": 2.66,
+              "procedure_effect_days": 1.24,
+              "ratio": 2.1,
+              "top_quartile_los": 1.78,
+              "bottom_quartile_los": 4.45,
+              "ureteroscopy_hospital_range": [
+                0.0,
+                6.7
+              ],
+              "n_hospitals_ureteroscopy": 99,
+              "sao_carlos_avg_los": 1.38
+            },
+            "geographic_access": {
+              "cities_no_surgery": 46,
+              "patients_no_surgery": 3417,
+              "piracicaba_growth_pct": 973.0,
+              "piracicaba_migrant_pct": 74.0
+            },
+            "bed_savings": {
+              "scenarios": {
+                "Hospital standardization": {
+                  "bed_days_per_year": 8712.0,
+                  "beds": 24.0
+                },
+                "Diagnostic outpatient shift": {
+                  "bed_days_per_year": 6116.0,
+                  "beds": 17.0
+                },
+                "Long-stay reduction": {
+                  "bed_days_per_year": 3317.0,
+                  "beds": 9.0
+                },
+                "ER-to-elective conversion": {
+                  "bed_days_per_year": 5606.0,
+                  "beds": 15.0
+                }
+              },
+              "total_savings_bed_days_per_year": 23752.0,
+              "total_beds": 65.0,
+              "total_pct_reduction": 38.6
+            },
+            "ml_model_metrics": {
+              "r2": 0.0961,
+              "mae": 1.6005,
+              "rmse": 2.924,
+              "n_train": 97803,
+              "n_test": 108697,
+              "n_features": 10,
+              "best_iteration": 217,
+              "baseline_mae": 1.5592,
+              "baseline_r2": -0.0072
+            },
+            "long_stay_pareto": {
+              "pct_patients_gt7d": 4.2,
+              "pct_bed_days_gt7d": 23.7,
+              "pct_cost_gt7d": 10.2,
+              "pct_deaths_gt7d": 50.1,
+              "n_extreme_gt30d": 143,
+              "worst_hospital_cnes": "2688689",
+              "worst_hospital_pct_longstay": 24.0
+            },
+            "simulation_results": {
+              "intervention_1_elective": {
+                "patients_affected": 11318,
+                "bed_days_saved": 10011,
+                "beds_freed": 27.4
+              },
+              "intervention_2_protocol": {
+                "patients_affected": 75826,
+                "bed_days_saved": 4551,
+                "beds_freed": 12.5
+              },
+              "combined_impact": {
+                "total_bed_days_saved": 14562,
+                "total_beds_freed": 39.9,
+                "cost_saved_brl": 6785769,
+                "deaths_prevented": 13.9,
+                "long_stays_eliminated": 119
+              }
+            },
+            "deep_research_metrics": {
+              "financial_overview": {
+                "total_admissions": 206500,
+                "total_bed_days": 507465,
+                "total_cost_brl": 187823156,
+                "avg_cost_per_admission": 910,
+                "avg_cost_per_bed_day": 501
+              },
+              "cost_by_procedure": {
+                "n_admissions": {
+                  "Other/Conservative": 169680,
+                  "Ureteroscopy (modern)": 34036,
+                  "Ext. Lithotripsy": 2784
+                },
+                "avg_los": {
+                  "Other/Conservative": 2.6,
+                  "Ureteroscopy (modern)": 1.86,
+                  "Ext. Lithotripsy": 0.9
+                },
+                "avg_cost": {
+                  "Other/Conservative": 857.73,
+                  "Ureteroscopy (modern)": 1187.69,
+                  "Ext. Lithotripsy": 668.13
+                },
+                "pct_of_total_cost": {
+                  "Other/Conservative": 77.49,
+                  "Ureteroscopy (modern)": 21.52,
+                  "Ext. Lithotripsy": 0.99
+                }
+              },
+              "los_factors": [
+                {
+                  "factor": "Procedure: Ext. Lithotripsy",
+                  "diff_days": -1.58,
+                  "effect_direction": "shorter",
+                  "group_mean": 0.9,
+                  "n_group": 2784
+                },
+                {
+                  "factor": "Procedure: Ureteroscopy (modern)",
+                  "diff_days": -0.717,
+                  "effect_direction": "shorter",
+                  "group_mean": 1.86,
+                  "n_group": 34036
+                },
+                {
+                  "factor": "Age 30-50",
+                  "diff_days": -0.225,
+                  "effect_direction": "shorter",
+                  "group_mean": 2.33,
+                  "n_group": 87286
+                },
+                {
+                  "factor": "Male patient",
+                  "diff_days": -0.193,
+                  "effect_direction": "shorter",
+                  "group_mean": 2.36,
+                  "n_group": 97462
+                },
+                {
+                  "factor": "Age <30",
+                  "diff_days": -0.01,
+                  "effect_direction": "shorter",
+                  "group_mean": 2.45,
+                  "n_group": 30843
+                },
+                {
+                  "factor": "Age 50-70",
+                  "diff_days": 0.019,
+                  "effect_direction": "longer",
+                  "group_mean": 2.47,
+                  "n_group": 75275
+                },
+                {
+                  "factor": "Patient migrated",
+                  "diff_days": 0.066,
+                  "effect_direction": "longer",
+                  "group_mean": 2.5,
+                  "n_group": 75293
+                },
+                {
+                  "factor": "Age 70+",
+                  "diff_days": 0.873,
+                  "effect_direction": "longer",
+                  "group_mean": 3.28,
+                  "n_group": 13096
+                },
+                {
+                  "factor": "Emergency admission",
+                  "diff_days": 1.208,
+                  "effect_direction": "longer",
+                  "group_mean": 2.98,
+                  "n_group": 116672
+                },
+                {
+                  "factor": "Procedure: Percutaneous",
+                  "diff_days": NaN,
+                  "effect_direction": "longer",
+                  "group_mean": NaN,
+                  "n_group": 0
+                },
+                {
+                  "factor": "Procedure: Open/Lap",
+                  "diff_days": NaN,
+                  "effect_direction": "longer",
+                  "group_mean": NaN,
+                  "n_group": 0
+                }
+              ],
+              "long_stay_impact": {
+                "pct_patients_gt7d": 4.5,
+                "pct_bed_days_gt7d": 23.5,
+                "pct_cost_gt7d": 11.1
+              },
+              "hospital_variation": {
+                "n_hospitals_analyzed": 251,
+                "n_above_median": 183,
+                "total_excess_bed_days": 117218,
+                "total_excess_cost_brl": 33417445,
+                "los_range": [
+                  0.0,
+                  7.1
+                ]
+              },
+              "bed_savings_scenarios": {
+                "baseline_annual_admissions": 31174,
+                "baseline_annual_bed_days": 67066,
+                "baseline_annual_cost": 33616276,
+                "scenario1_standardize_hospitals": {
+                  "bed_days_saved": 35344,
+                  "beds_freed": 96.8,
+                  "cost_saved_brl": 17715636
+                },
+                "scenario2_reduce_long_stays": {
+                  "bed_days_saved": 2064,
+                  "beds_freed": 5.7,
+                  "cost_saved_brl": 1034563
+                },
+                "scenario3_er_to_elective": {
+                  "bed_days_saved": 4010,
+                  "beds_freed": 11.0,
+                  "cost_saved_brl": 2010041
+                },
+                "combined": {
+                  "bed_days_saved": 41418,
+                  "beds_freed": 113.5,
+                  "cost_saved_brl": 20760239
+                }
+              }
+            },
+            "procedure_taxonomy": {
+              "total_procedure_codes": 193,
+              "categories": {
+                "SURGICAL": {
+                  "n": 88681,
+                  "pct": 42.9,
+                  "avg_los": 2.6,
+                  "avg_cost": 983.0,
+                  "mortality": 0.46
+                },
+                "DIAGNOSTIC": {
+                  "n": 41487,
+                  "pct": 20.1,
+                  "avg_los": 2.7,
+                  "avg_cost": 369.0,
+                  "mortality": 0.19
+                },
+                "CLINICAL_MGMT": {
+                  "n": 23275,
+                  "pct": 11.3,
+                  "avg_los": 2.4,
+                  "avg_cost": 1508.0,
+                  "mortality": 0.33
+                },
+                "SURGICAL_MGMT": {
+                  "n": 20597,
+                  "pct": 10.0,
+                  "avg_los": 2.2,
+                  "avg_cost": 1244.0,
+                  "mortality": 0.21
+                },
+                "INTERVENTIONAL": {
+                  "n": 20113,
+                  "pct": 9.7,
+                  "avg_los": 2.1,
+                  "avg_cost": 977.0,
+                  "mortality": 0.17
+                },
+                "OBSERVATION": {
+                  "n": 8818,
+                  "pct": 4.3,
+                  "avg_los": 0.6,
+                  "avg_cost": 135.0,
+                  "mortality": 0.1
+                },
+                "OTHER": {
+                  "n": 3529,
+                  "pct": 1.7,
+                  "avg_los": 4.0,
+                  "avg_cost": 1074.0,
+                  "mortality": 1.79
+                }
+              },
+              "surgery_subtypes": {
+                "ESWL (lithotripsy)": {
+                  "n": 2784,
+                  "avg_los": 0.9,
+                  "median_los": 0.0,
+                  "avg_cost": 668.0,
+                  "mortality": 0.04
+                },
+                "Ureteroscopy (modern)": {
+                  "n": 34036,
+                  "avg_los": 1.9,
+                  "median_los": 1.0,
+                  "avg_cost": 1188.0,
+                  "mortality": 0.16
+                },
+                "Traditional (open)": {
+                  "n": 51861,
+                  "avg_los": 3.2,
+                  "median_los": 2.0,
+                  "avg_cost": 866.0,
+                  "mortality": 0.68
+                }
+              },
+              "cities_with_ureteroscopy": 109,
+              "cities_without_ureteroscopy": 171
+            }
+          }
+        },
+        "simulation_results": {
+          "intervention_1_elective": {
+            "patients_affected": 11318,
+            "bed_days_saved": 10011,
+            "beds_freed": 27.4
+          },
+          "intervention_2_protocol": {
+            "patients_affected": 75826,
+            "bed_days_saved": 4551,
+            "beds_freed": 12.5
+          },
+          "combined_impact": {
+            "total_bed_days_saved": 14562,
+            "total_beds_freed": 39.9,
+            "cost_saved_brl": 6785769,
+            "deaths_prevented": 13.9,
+            "long_stays_eliminated": 119
+          }
+        },
+        "deep_research_metrics": {
+          "financial_overview": {
+            "total_admissions": 206500,
+            "total_bed_days": 507465,
+            "total_cost_brl": 187823156,
+            "avg_cost_per_admission": 910,
+            "avg_cost_per_bed_day": 501
+          },
+          "cost_by_procedure": {
+            "n_admissions": {
+              "Other/Conservative": 169680,
+              "Ureteroscopy (modern)": 34036,
+              "Ext. Lithotripsy": 2784
+            },
+            "avg_los": {
+              "Other/Conservative": 2.6,
+              "Ureteroscopy (modern)": 1.86,
+              "Ext. Lithotripsy": 0.9
+            },
+            "avg_cost": {
+              "Other/Conservative": 857.73,
+              "Ureteroscopy (modern)": 1187.69,
+              "Ext. Lithotripsy": 668.13
+            },
+            "pct_of_total_cost": {
+              "Other/Conservative": 77.49,
+              "Ureteroscopy (modern)": 21.52,
+              "Ext. Lithotripsy": 0.99
+            }
+          },
+          "los_factors": [
+            {
+              "factor": "Procedure: Ext. Lithotripsy",
+              "diff_days": -1.58,
+              "effect_direction": "shorter",
+              "group_mean": 0.9,
+              "n_group": 2784
+            },
+            {
+              "factor": "Procedure: Ureteroscopy (modern)",
+              "diff_days": -0.717,
+              "effect_direction": "shorter",
+              "group_mean": 1.86,
+              "n_group": 34036
+            },
+            {
+              "factor": "Age 30-50",
+              "diff_days": -0.225,
+              "effect_direction": "shorter",
+              "group_mean": 2.33,
+              "n_group": 87286
+            },
+            {
+              "factor": "Male patient",
+              "diff_days": -0.193,
+              "effect_direction": "shorter",
+              "group_mean": 2.36,
+              "n_group": 97462
+            },
+            {
+              "factor": "Age <30",
+              "diff_days": -0.01,
+              "effect_direction": "shorter",
+              "group_mean": 2.45,
+              "n_group": 30843
+            },
+            {
+              "factor": "Age 50-70",
+              "diff_days": 0.019,
+              "effect_direction": "longer",
+              "group_mean": 2.47,
+              "n_group": 75275
+            },
+            {
+              "factor": "Patient migrated",
+              "diff_days": 0.066,
+              "effect_direction": "longer",
+              "group_mean": 2.5,
+              "n_group": 75293
+            },
+            {
+              "factor": "Age 70+",
+              "diff_days": 0.873,
+              "effect_direction": "longer",
+              "group_mean": 3.28,
+              "n_group": 13096
+            },
+            {
+              "factor": "Emergency admission",
+              "diff_days": 1.208,
+              "effect_direction": "longer",
+              "group_mean": 2.98,
+              "n_group": 116672
+            },
+            {
+              "factor": "Procedure: Percutaneous",
+              "diff_days": NaN,
+              "effect_direction": "longer",
+              "group_mean": NaN,
+              "n_group": 0
+            },
+            {
+              "factor": "Procedure: Open/Lap",
+              "diff_days": NaN,
+              "effect_direction": "longer",
+              "group_mean": NaN,
+              "n_group": 0
+            }
+          ],
+          "long_stay_impact": {
+            "pct_patients_gt7d": 4.5,
+            "pct_bed_days_gt7d": 23.5,
+            "pct_cost_gt7d": 11.1
+          },
+          "hospital_variation": {
+            "n_hospitals_analyzed": 251,
+            "n_above_median": 183,
+            "total_excess_bed_days": 117218,
+            "total_excess_cost_brl": 33417445,
+            "los_range": [
+              0.0,
+              7.1
+            ]
+          },
+          "bed_savings_scenarios": {
+            "baseline_annual_admissions": 31174,
+            "baseline_annual_bed_days": 67066,
+            "baseline_annual_cost": 33616276,
+            "scenario1_standardize_hospitals": {
+              "bed_days_saved": 35344,
+              "beds_freed": 96.8,
+              "cost_saved_brl": 17715636
+            },
+            "scenario2_reduce_long_stays": {
+              "bed_days_saved": 2064,
+              "beds_freed": 5.7,
+              "cost_saved_brl": 1034563
+            },
+            "scenario3_er_to_elective": {
+              "bed_days_saved": 4010,
+              "beds_freed": 11.0,
+              "cost_saved_brl": 2010041
+            },
+            "combined": {
+              "bed_days_saved": 41418,
+              "beds_freed": 113.5,
+              "cost_saved_brl": 20760239
+            }
+          }
+        },
+        "procedure_taxonomy": {
+          "total_procedure_codes": 193,
+          "categories": {
+            "SURGICAL": {
+              "n": 88681,
+              "pct": 42.9,
+              "avg_los": 2.6,
+              "avg_cost": 983.0,
+              "mortality": 0.46
+            },
+            "DIAGNOSTIC": {
+              "n": 41487,
+              "pct": 20.1,
+              "avg_los": 2.7,
+              "avg_cost": 369.0,
+              "mortality": 0.19
+            },
+            "CLINICAL_MGMT": {
+              "n": 23275,
+              "pct": 11.3,
+              "avg_los": 2.4,
+              "avg_cost": 1508.0,
+              "mortality": 0.33
+            },
+            "SURGICAL_MGMT": {
+              "n": 20597,
+              "pct": 10.0,
+              "avg_los": 2.2,
+              "avg_cost": 1244.0,
+              "mortality": 0.21
+            },
+            "INTERVENTIONAL": {
+              "n": 20113,
+              "pct": 9.7,
+              "avg_los": 2.1,
+              "avg_cost": 977.0,
+              "mortality": 0.17
+            },
+            "OBSERVATION": {
+              "n": 8818,
+              "pct": 4.3,
+              "avg_los": 0.6,
+              "avg_cost": 135.0,
+              "mortality": 0.1
+            },
+            "OTHER": {
+              "n": 3529,
+              "pct": 1.7,
+              "avg_los": 4.0,
+              "avg_cost": 1074.0,
+              "mortality": 1.79
+            }
+          },
+          "surgery_subtypes": {
+            "ESWL (lithotripsy)": {
+              "n": 2784,
+              "avg_los": 0.9,
+              "median_los": 0.0,
+              "avg_cost": 668.0,
+              "mortality": 0.04
+            },
+            "Ureteroscopy (modern)": {
+              "n": 34036,
+              "avg_los": 1.9,
+              "median_los": 1.0,
+              "avg_cost": 1188.0,
+              "mortality": 0.16
+            },
+            "Traditional (open)": {
+              "n": 51861,
+              "avg_los": 3.2,
+              "median_los": 2.0,
+              "avg_cost": 866.0,
+              "mortality": 0.68
+            }
+          },
+          "cities_with_ureteroscopy": 109,
+          "cities_without_ureteroscopy": 171
+        }
+      }
+    },
+    "simulation_results": {
+      "intervention_1_elective": {
+        "patients_affected": 11318,
+        "bed_days_saved": 10011,
+        "beds_freed": 27.4
+      },
+      "intervention_2_protocol": {
+        "patients_affected": 75826,
+        "bed_days_saved": 4551,
+        "beds_freed": 12.5
+      },
+      "combined_impact": {
+        "total_bed_days_saved": 14562,
+        "total_beds_freed": 39.9,
+        "cost_saved_brl": 6785769,
+        "deaths_prevented": 13.9,
+        "long_stays_eliminated": 119
+      }
+    },
+    "deep_research_metrics": {
+      "financial_overview": {
+        "total_admissions": 206500,
+        "total_bed_days": 507465,
+        "total_cost_brl": 187823156,
+        "avg_cost_per_admission": 910,
+        "avg_cost_per_bed_day": 501
+      },
+      "cost_by_procedure": {
+        "n_admissions": {
+          "Other/Conservative": 169680,
+          "Ureteroscopy (modern)": 34036,
+          "Ext. Lithotripsy": 2784
+        },
+        "avg_los": {
+          "Other/Conservative": 2.6,
+          "Ureteroscopy (modern)": 1.86,
+          "Ext. Lithotripsy": 0.9
+        },
+        "avg_cost": {
+          "Other/Conservative": 857.73,
+          "Ureteroscopy (modern)": 1187.69,
+          "Ext. Lithotripsy": 668.13
+        },
+        "pct_of_total_cost": {
+          "Other/Conservative": 77.49,
+          "Ureteroscopy (modern)": 21.52,
+          "Ext. Lithotripsy": 0.99
+        }
+      },
+      "los_factors": [
+        {
+          "factor": "Procedure: Ext. Lithotripsy",
+          "diff_days": -1.58,
+          "effect_direction": "shorter",
+          "group_mean": 0.9,
+          "n_group": 2784
+        },
+        {
+          "factor": "Procedure: Ureteroscopy (modern)",
+          "diff_days": -0.717,
+          "effect_direction": "shorter",
+          "group_mean": 1.86,
+          "n_group": 34036
+        },
+        {
+          "factor": "Age 30-50",
+          "diff_days": -0.225,
+          "effect_direction": "shorter",
+          "group_mean": 2.33,
+          "n_group": 87286
+        },
+        {
+          "factor": "Male patient",
+          "diff_days": -0.193,
+          "effect_direction": "shorter",
+          "group_mean": 2.36,
+          "n_group": 97462
+        },
+        {
+          "factor": "Age <30",
+          "diff_days": -0.01,
+          "effect_direction": "shorter",
+          "group_mean": 2.45,
+          "n_group": 30843
+        },
+        {
+          "factor": "Age 50-70",
+          "diff_days": 0.019,
+          "effect_direction": "longer",
+          "group_mean": 2.47,
+          "n_group": 75275
+        },
+        {
+          "factor": "Patient migrated",
+          "diff_days": 0.066,
+          "effect_direction": "longer",
+          "group_mean": 2.5,
+          "n_group": 75293
+        },
+        {
+          "factor": "Age 70+",
+          "diff_days": 0.873,
+          "effect_direction": "longer",
+          "group_mean": 3.28,
+          "n_group": 13096
+        },
+        {
+          "factor": "Emergency admission",
+          "diff_days": 1.208,
+          "effect_direction": "longer",
+          "group_mean": 2.98,
+          "n_group": 116672
+        },
+        {
+          "factor": "Procedure: Percutaneous",
+          "diff_days": NaN,
+          "effect_direction": "longer",
+          "group_mean": NaN,
+          "n_group": 0
+        },
+        {
+          "factor": "Procedure: Open/Lap",
+          "diff_days": NaN,
+          "effect_direction": "longer",
+          "group_mean": NaN,
+          "n_group": 0
+        }
+      ],
+      "long_stay_impact": {
+        "pct_patients_gt7d": 4.5,
+        "pct_bed_days_gt7d": 23.5,
+        "pct_cost_gt7d": 11.1
+      },
+      "hospital_variation": {
+        "n_hospitals_analyzed": 251,
+        "n_above_median": 183,
+        "total_excess_bed_days": 117218,
+        "total_excess_cost_brl": 33417445,
+        "los_range": [
+          0.0,
+          7.1
+        ]
+      },
+      "bed_savings_scenarios": {
+        "baseline_annual_admissions": 31174,
+        "baseline_annual_bed_days": 67066,
+        "baseline_annual_cost": 33616276,
+        "scenario1_standardize_hospitals": {
+          "bed_days_saved": 35344,
+          "beds_freed": 96.8,
+          "cost_saved_brl": 17715636
+        },
+        "scenario2_reduce_long_stays": {
+          "bed_days_saved": 2064,
+          "beds_freed": 5.7,
+          "cost_saved_brl": 1034563
+        },
+        "scenario3_er_to_elective": {
+          "bed_days_saved": 4010,
+          "beds_freed": 11.0,
+          "cost_saved_brl": 2010041
+        },
+        "combined": {
+          "bed_days_saved": 41418,
+          "beds_freed": 113.5,
+          "cost_saved_brl": 20760239
+        }
+      }
+    },
+    "procedure_taxonomy": {
+      "total_procedure_codes": 193,
+      "categories": {
+        "SURGICAL": {
+          "n": 88681,
+          "pct": 42.9,
+          "avg_los": 2.6,
+          "avg_cost": 983.0,
+          "mortality": 0.46
+        },
+        "DIAGNOSTIC": {
+          "n": 41487,
+          "pct": 20.1,
+          "avg_los": 2.7,
+          "avg_cost": 369.0,
+          "mortality": 0.19
+        },
+        "CLINICAL_MGMT": {
+          "n": 23275,
+          "pct": 11.3,
+          "avg_los": 2.4,
+          "avg_cost": 1508.0,
+          "mortality": 0.33
+        },
+        "SURGICAL_MGMT": {
+          "n": 20597,
+          "pct": 10.0,
+          "avg_los": 2.2,
+          "avg_cost": 1244.0,
+          "mortality": 0.21
+        },
+        "INTERVENTIONAL": {
+          "n": 20113,
+          "pct": 9.7,
+          "avg_los": 2.1,
+          "avg_cost": 977.0,
+          "mortality": 0.17
+        },
+        "OBSERVATION": {
+          "n": 8818,
+          "pct": 4.3,
+          "avg_los": 0.6,
+          "avg_cost": 135.0,
+          "mortality": 0.1
+        },
+        "OTHER": {
+          "n": 3529,
+          "pct": 1.7,
+          "avg_los": 4.0,
+          "avg_cost": 1074.0,
+          "mortality": 1.79
+        }
+      },
+      "surgery_subtypes": {
+        "ESWL (lithotripsy)": {
+          "n": 2784,
+          "avg_los": 0.9,
+          "median_los": 0.0,
+          "avg_cost": 668.0,
+          "mortality": 0.04
+        },
+        "Ureteroscopy (modern)": {
+          "n": 34036,
+          "avg_los": 1.9,
+          "median_los": 1.0,
+          "avg_cost": 1188.0,
+          "mortality": 0.16
+        },
+        "Traditional (open)": {
+          "n": 51861,
+          "avg_los": 3.2,
+          "median_los": 2.0,
+          "avg_cost": 866.0,
+          "mortality": 0.68
+        }
+      },
+      "cities_with_ureteroscopy": 109,
+      "cities_without_ureteroscopy": 171
+    }
+  }
+}

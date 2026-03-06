@@ -1,19 +1,49 @@
 {
-  "total_admissions": 206500,
+  "total_records": 206500,
   "year_range": [
     2015,
     2025
   ],
+  "yearly_counts": {
+    "2015": 640,
+    "2016": 14234,
+    "2017": 15002,
+    "2018": 16362,
+    "2019": 17757,
+    "2020": 16664,
+    "2021": 17144,
+    "2022": 20588,
+    "2023": 25762,
+    "2024": 30985,
+    "2025": 31362
+  },
   "growth_pct": 4800.3,
-  "avg_stay_first_year": 4.02,
-  "avg_stay_last_year": 2.13,
-  "pct_male": 0.0,
-  "pct_female": 0.0,
-  "top_5_municipalities": {
+  "sex_distribution": {
+    "Female": 109038,
+    "Male": 97462
+  },
+  "avg_stay": 2.46,
+  "median_stay": 2.0,
+  "pct_emergency": 56.5,
+  "migration_rate_pct": 36.5,
+  "mortality_rate_pct": 0.346,
+  "unique_hospitals": 510,
+  "unique_treatment_cities": 307,
+  "unique_procedures": 193,
+  "top_5_procedures": {
+    "0409010170": 40973,
+    "0305020021": 40657,
+    "0409010596": 34036,
+    "0415010012": 23275,
+    "0415020034": 20597
+  },
+  "top_5_treatment_cities": {
     "355030": 43995,
     "354980": 9759,
     "355220": 8030,
     "354140": 7705,
     "354340": 7576
-  }
+  },
+  "pct_stay_gt7": 4.5,
+  "pct_stay_gt14": 1.0
 }

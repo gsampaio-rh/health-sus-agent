@@ -1,0 +1,13 @@
+{
+  "hospital_effect_days": 2.66,
+  "procedure_effect_days": 1.24,
+  "ratio": 2.1,
+  "top_quartile_los": 1.78,
+  "bottom_quartile_los": 4.45,
+  "ureteroscopy_hospital_range": [
+    0.0,
+    6.7
+  ],
+  "n_hospitals_ureteroscopy": 99,
+  "sao_carlos_avg_los": 1.38
+}

@@ -1,0 +1,23 @@
+{
+  "scenarios": {
+    "Hospital standardization": {
+      "bed_days_per_year": 8712.0,
+      "beds": 24.0
+    },
+    "Diagnostic outpatient shift": {
+      "bed_days_per_year": 6116.0,
+      "beds": 17.0
+    },
+    "Long-stay reduction": {
+      "bed_days_per_year": 3317.0,
+      "beds": 9.0
+    },
+    "ER-to-elective conversion": {
+      "bed_days_per_year": 5606.0,
+      "beds": 15.0
+    }
+  },
+  "total_savings_bed_days_per_year": 23752.0,
+  "total_beds": 65.0,
+  "total_pct_reduction": 38.6
+}
