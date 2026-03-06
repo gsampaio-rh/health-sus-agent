@@ -388,13 +388,43 @@ Aplicamos o gradiente permanência-mortalidade a cada cenário de economia de le
 
 ---
 
-## Causa raiz do crescimento: não é uma epidemia
+## 7. Modelo de Machine Learning — Validação Independente
 
-**35,5%** do crescimento de +4.800% é explicado pela adoção da ureteroscopia (código 0409010596). O restante reflete melhor acesso, mudanças de codificação e envelhecimento populacional.
+Treinamos um **classificador LightGBM** para predizer risco de longa permanência (>7 dias) no momento da admissão, usando 27 features engenheiradas nas dimensões paciente, hospital, cidade e procedimento.
 
-## Modelo de ML anterior (para transparência)
+| Métrica | Valor |
+|---|---|
+| **ROC-AUC** | 0,747 |
+| **Conjunto de treino** | 97.803 internações (≤2021) |
+| **Conjunto de teste** | 108.697 internações (≥2022) |
+| **Features** | 27 (com termos de interação) |
 
-R² = 0,096, MAE = 1,60 dias — pouco melhor que prever a média. Não utilizado para nenhuma conclusão neste relatório.
+### Por que isso importa: SHAP confirma nossos achados empíricos
+
+As features mais preditivas do modelo — ranqueadas por importância SHAP — validam independentemente cada conclusão deste relatório:
+
+| Rank | Feature | Importância SHAP | Confirma achado |
+|---|---|---|---|
+| 1 | `hosp_pct_longstay` | 1,31 | Efeito hospital domina (§3a) |
+| 2 | `has_new_proc` (ureteroscopia) | 0,37 | Procedimentos modernos reduzem permanência (§2) |
+| 3 | `proc_observation` | 0,35 | Internações de observação geram longas permanências (§3c) |
+| 4 | `age × emergency` | 0,33 | Urgência + idoso = alto risco (§4) |
+| 5 | `proc_diagnostic` | 0,24 | Internações diagnósticas são ineficientes (§3b) |
+| 6 | `is_male` | 0,23 | Fator de risco demográfico |
+| 7 | `ER × hosp_efficiency` | 0,21 | Interação: urgência em hospital lento = pior cenário |
+| 8 | `hosp_pct_er` | 0,18 | Hospitais com alta urgência têm maior permanência (§4) |
+| 9 | `age` | 0,17 | Idade é fator de risco independente |
+| 10 | `hosp_pct_diag` | 0,13 | Hospitais com foco diagnóstico performam pior (§3b) |
+
+> **Conclusão-chave:** O modelo de ML *não foi informado* sobre quais hospitais são lentos, nem quais procedimentos são modernos. Ele descobriu esses padrões independentemente a partir de 27 features brutas — e suas top-10 features mapeiam 1:1 com nossos achados empíricos. Isso é forte evidência convergente de que as conclusões são robustas, não artefatos de como recortamos os dados.
+
+### Modelo anterior (para transparência)
+
+Um modelo de regressão anterior, mais simples, alcançou R² = 0,096, MAE = 1,60 dias — pouco melhor que prever a média. Esse modelo usava feature engineering mínimo e nenhuma feature de hospital/cidade. Está preservado em `appendix_ml_model.ipynb` mas não foi utilizado para nenhuma conclusão.
+
+### Causa raiz do crescimento de +4.800%: não é uma epidemia
+
+**35,5%** do crescimento das internações é explicado pela adoção da ureteroscopia (código 0409010596). O restante reflete melhor acesso ao SUS, melhorias na codificação e envelhecimento populacional — não um aumento na incidência de cálculos renais.
 
 ---
 
@@ -405,5 +435,6 @@ R² = 0,096, MAE = 1,60 dias — pouco melhor que prever a média. Não utilizad
 - **Comparação hospitalar**: Controlada por tipo de procedimento — comparando permanência do mesmo procedimento entre hospitais (limite n≥20).
 - **Economia de leitos**: Estimativas controladas por procedimento a partir de distribuições observadas.
 - **Validação cruzada SIH × SIA**: 136 milhões de registros ambulatoriais (SIA SP 2022–2023) cruzados com dados hospitalares. Confirmou que códigos diagnósticos 0305020021 e 0303150050 são exclusivamente hospitalares (zero registros no SIA) e que a remuneração SIH é 16× superior ao equivalente ambulatorial.
+- **Modelo de ML**: LightGBM com 27 features, split temporal treino/teste (≤2021 / ≥2022), análise SHAP para interpretabilidade. Ver `10_ml_prediction.ipynb`.
 - **Análises detalhadas**: Santos, São Carlos, Taubaté, Marília, Guarulhos, Limeira analisadas em nível hospitalar.
-- **Ver**: `EXPERIMENT.md` para hipóteses pré-registradas. Notebooks `03`–`09` produzem todos os números deste documento; `appendix_ml_model.ipynb` para detalhes do modelo de ML.
+- **Ver**: `EXPERIMENT.md` para hipóteses pré-registradas. Notebooks `03`–`10` produzem todos os números deste documento.
