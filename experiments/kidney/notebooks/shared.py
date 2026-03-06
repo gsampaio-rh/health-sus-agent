@@ -4,8 +4,11 @@ import numpy as np
 from pathlib import Path
 
 OUTPUT_DIR = Path("../outputs")
-PLOT_DIR = OUTPUT_DIR / "plots"
-METRICS_DIR = OUTPUT_DIR / "metrics"
+DATA_DIR = OUTPUT_DIR / "data"
+PLOT_DIR = OUTPUT_DIR / "notebook-plots"
+METRICS_DIR = DATA_DIR / "metrics"
+FINDINGS_DIR = OUTPUT_DIR / "findings"
+INVESTIGATION_DIR = OUTPUT_DIR / "admission-premium"
 
 CATEGORY_MAP = {
     "0409010170": "SURGICAL",
@@ -68,9 +71,9 @@ CITY_NAMES = {
 NEW_PROC = "0409010596"
 
 
-def load_kidney(output_dir=OUTPUT_DIR):
+def load_kidney(data_dir=DATA_DIR):
     """Load kidney dataset with all standard type conversions."""
-    kidney = pd.read_parquet(output_dir / "kidney_sih.parquet")
+    kidney = pd.read_parquet(data_dir / "kidney_sih.parquet")
     kidney["PROC_REA"] = kidney["PROC_REA"].astype(str).str.strip()
     kidney["MUNIC_RES"] = kidney["MUNIC_RES"].astype(str).str.strip()
     kidney["MUNIC_MOV"] = kidney["MUNIC_MOV"].astype(str).str.strip()

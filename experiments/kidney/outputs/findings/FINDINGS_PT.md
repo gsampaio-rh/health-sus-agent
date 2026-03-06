@@ -2,19 +2,19 @@
 
 > 206.500 internações. R$ 187,8M. 507.465 leitos-dia. Estado de São Paulo, 2015–2025.
 
-![Números gerais](plots/findings/00b_big_numbers.png)
+![Números gerais](plots/00b_big_numbers.png)
 
 Analisamos todas as internações por cálculo renal no estado de São Paulo na última década para responder três perguntas: O que determina uma resolução mais rápida? Onde estamos perdendo dinheiro? Quantos leitos podem ser liberados?
 
-![Panorama geral — evolução temporal](plots/findings/00a_overview_timeline.png)
+![Panorama geral — evolução temporal](plots/00a_overview_timeline.png)
 
-![Panorama financeiro](plots/findings/00d_financial_overview.png)
+![Panorama financeiro](plots/00d_financial_overview.png)
 
 A resposta esperada era "adotar procedimentos modernos". Os dados contaram uma história diferente. **O hospital em que você entra importa 2,1× mais do que o procedimento que recebe.** A mesma cirurgia leva 1,8 dias em um hospital e 6,4 dias em outro. 20% das internações são pacientes sendo hospitalizados apenas para um exame de imagem. Um hospital concentra os piores resultados em todas as categorias de procedimento. E quatro cidades tratam milhares de pacientes sem nenhuma capacidade cirúrgica definitiva.
 
 ---
 
-![Distribuição da permanência hospitalar](plots/findings/00c_los_distribution.png)
+![Distribuição da permanência hospitalar](plots/00c_los_distribution.png)
 
 ## 1. O que determina a resolução mais rápida do cálculo renal?
 
@@ -33,9 +33,9 @@ Efeito do procedimento (ureteroscopia vs cirurgia aberta): **1,24 dias economiza
 
 **O efeito hospital (2,7d) é 2,1× maior que o efeito do procedimento (1,2d).**
 
-![Efeito hospital vs procedimento](plots/findings/01_hospital_vs_procedure.png)
+![Efeito hospital vs procedimento](plots/01_hospital_vs_procedure.png)
 
-![Scatter: cada ponto é um hospital — volume vs permanência](plots/findings/13_scatter_volume_vs_los.png)
+![Scatter: cada ponto é um hospital — volume vs permanência](plots/13_scatter_volume_vs_los.png)
 
 ### Outros fatores de permanência (ordenados)
 
@@ -53,7 +53,7 @@ Efeito do procedimento (ureteroscopia vs cirurgia aberta): **1,24 dias economiza
 
 São Carlos (CNES 2080931) alcança **1,38d de permanência média com quase zero ureteroscopia** (0,2%). Realiza ureterolitotomia aberta em 1,85d — classificado em 14º de 105 hospitais nesse procedimento. Este hospital prova que excelência operacional supera adoção de tecnologia.
 
-![São Carlos vs sistema vs pior hospital](plots/findings/07_sao_carlos_comparison.png)
+![São Carlos vs sistema vs pior hospital](plots/07_sao_carlos_comparison.png)
 
 ---
 
@@ -70,7 +70,7 @@ A categoria anterior "Outros/Conservador" (82%) era enganosa. A distribuição r
 | Intervencionista (stents, cateteres) | 20.113 | 9,7% | 2,1d | R$ 977 | 42% | 0,17% |
 | Observação (curta permanência no PS) | 8.818 | 4,3% | 0,6d | R$ 135 | 57% | 0,10% |
 
-![Taxonomia de procedimentos](plots/findings/02_procedure_taxonomy.png)
+![Taxonomia de procedimentos](plots/02_procedure_taxonomy.png)
 
 **Correções principais:**
 - **42,9% das internações já são cirúrgicas** — não "conservadoras". Ureterolitotomia aberta sozinha representa 19,8%.
@@ -87,7 +87,7 @@ A categoria anterior "Outros/Conservador" (82%) era enganosa. A distribuição r
 
 A ureteroscopia moderna é mais rápida (1,9d vs 3,2d) e mais segura (0,16% vs 0,68% mortalidade), mas custa 37% mais por internação (R$ 1.188 vs R$ 866).
 
-![Comparação dentro da cirurgia](plots/findings/09_surgery_comparison.png)
+![Comparação dentro da cirurgia](plots/09_surgery_comparison.png)
 
 ---
 
@@ -120,9 +120,9 @@ Controlando por tipo de procedimento (mesmo procedimento, resultados diferentes)
 
 CNES 2688689 (São Paulo) é o pior hospital do estado: 5,3d para ureteroscopia, 6,4d para cirurgia aberta, 4,5d para tratamento clínico. Aparece entre os 10 piores em todas as categorias de procedimento.
 
-![CNES 2688689 — pior em todas as categorias](plots/findings/10_worst_hospital.png)
+![CNES 2688689 — pior em todas as categorias](plots/10_worst_hospital.png)
 
-![Scatter: permanência vs custo por hospital](plots/findings/21_scatter_los_vs_cost.png)
+![Scatter: permanência vs custo por hospital](plots/21_scatter_los_vs_cost.png)
 
 **Por que os piores hospitais são piores?**
 
@@ -137,11 +137,11 @@ Comparamos o quartil superior (27 hospitais mais rápidos) com o quartil inferio
 
 O padrão é claro: hospitais lentos recebem mais pacientes pelo pronto-socorro (sem planejamento cirúrgico prévio), misturam internações diagnósticas com cirúrgicas (congestionando leitos), e não possuem protocolos de alta eficientes — resultando em 5× mais longas permanências. Hospitais rápidos operam de forma eletiva, separando fluxo diagnóstico do cirúrgico.
 
-![Hospitais rápidos vs lentos](plots/findings/03_fast_vs_slow_hospitals.png)
+![Hospitais rápidos vs lentos](plots/03_fast_vs_slow_hospitals.png)
 
-![Scatter: mais urgência = mais permanência — mas não é destino](plots/findings/14_scatter_er_vs_los.png)
+![Scatter: mais urgência = mais permanência — mas não é destino](plots/14_scatter_er_vs_los.png)
 
-![Scatter: tecnologia ajuda — mas não salva hospital mal gerido](plots/findings/17_scatter_ureteroscopy_vs_los.png)
+![Scatter: tecnologia ajuda — mas não salva hospital mal gerido](plots/17_scatter_ureteroscopy_vs_los.png)
 
 **Por que São Carlos é tão eficiente?** O CNES 2080931 tem apenas 1,7% de longa permanência (vs 4,2% do sistema) com quase zero ureteroscopia. Mesmo com 57% de urgência (similar ao sistema), mantém permanência de 1,38d. Isso indica protocolos de alta bem definidos e gestão operacional eficiente — prova de que o problema não é tecnologia, é gestão.
 
@@ -163,7 +163,7 @@ O padrão é claro: hospitais lentos recebem mais pacientes pelo pronto-socorro 
 
 Esses hospitais internam pacientes com cálculo renal, mantêm por 2–4 dias para exame de imagem, e dão alta. Não operam. O paciente fica, tira uma foto, e sai sem tratamento.
 
-![Scatter: hospitais diagnósticos puros — internam sem operar](plots/findings/16_scatter_diagnostic_vs_los.png)
+![Scatter: hospitais diagnósticos puros — internam sem operar](plots/16_scatter_diagnostic_vs_los.png)
 
 **Por que isso importa:**
 - 94% chegam pela urgência → pacientes chegam com dor, são internados para exame de imagem em vez de encaminhados ao ambulatório
@@ -181,7 +181,7 @@ Cruzamos 136 milhões de registros ambulatoriais (SIA) com os dados hospitalares
 
 2. **Existe um incentivo financeiro perverso**: a urografia via SIH paga **R$ 391 por internação**. O equivalente ambulatorial mais próximo (0205020054) paga **R$ 24** — uma diferença de **16×**. O mesmo exame, 16 vezes mais caro quando feito com leito.
 
-![Incentivo financeiro de 16×](plots/findings/04_financial_incentive.png)
+![Incentivo financeiro de 16×](plots/04_financial_incentive.png)
 
 3. **Os hospitais TÊM infraestrutura ambulatorial** — eles já faturam dezenas de milhares de procedimentos via SIA, inclusive exames de imagem. Não é falta de capacidade. É que o sistema paga 16× mais para internar.
 
@@ -193,7 +193,7 @@ Cruzamos 136 milhões de registros ambulatoriais (SIA) com os dados hospitalares
 | CNES 2080028 (Cubatão) | 307 (R$ 121 mil) | 0 | **∞** |
 | CNES 2078562 (Guarulhos) | 233 (R$ 77 mil) | 278 (R$ 20 mil) | **4×** |
 
-![Faturamento SIH vs SIA por hospital](plots/findings/08_sih_vs_sia_billing.png)
+![Faturamento SIH vs SIA por hospital](plots/08_sih_vs_sia_billing.png)
 
 Dos 406 hospitais que internam para diagnóstico de cálculo renal, **213 (52%) não possuem nenhum registro ambulatorial para a mesma condição** — apesar de muitos terem SIA ativo para outros procedimentos. Os outros 193 fazem os dois, mas preferem a internação pela remuneração superior.
 
@@ -211,7 +211,7 @@ Dos 406 hospitais que internam para diagnóstico de cálculo renal, **213 (52%) 
 - **10,2% de todo o custo** (R$ 11,3M)
 - **50,1% de todos os óbitos** (176 de 351)
 
-![O problema de Pareto](plots/findings/05_long_stay_pareto.png)
+![O problema de Pareto](plots/05_long_stay_pareto.png)
 
 **Quem são eles?**
 - Mais velhos: idade média 51,4 vs 47,7 para permanências normais
@@ -231,11 +231,11 @@ Dos 406 hospitais que internam para diagnóstico de cálculo renal, **213 (52%) 
 
 CNES 2688689 novamente — **24% dos seus pacientes ficam >7 dias**. Este único hospital gera 323 casos de longa permanência. Algo está estruturalmente errado.
 
-![Mapa de risco: permanência vs mortalidade](plots/findings/15_scatter_longstay_vs_mortality.png)
+![Mapa de risco: permanência vs mortalidade](plots/15_scatter_longstay_vs_mortality.png)
 
 **Permanências extremas (>30 dias):** 143 pacientes, média 43 dias, máximo 97 dias, 11,9% mortalidade, consumindo 6.175 leitos-dia e R$ 1,4M.
 
-![Perfil dos pacientes de longa permanência](plots/findings/11_long_stay_profile.png)
+![Perfil dos pacientes de longa permanência](plots/11_long_stay_profile.png)
 
 **O que está acontecendo com esses pacientes?**
 
@@ -311,9 +311,9 @@ Três cenários geram economia financeira real (redução de pagamento SUS):
 
 O cenário de conversão urgência→eletiva **não gera economia direta** — na verdade custa mais por paciente (eletiva R$ 1.196 vs urgência R$ 848) porque pacientes eletivos recebem tratamento definitivo. Mas **libera leitos e salva vidas**.
 
-![Detalhamento financeiro por cenário](plots/findings/22_financial_savings_detail.png)
+![Detalhamento financeiro por cenário](plots/22_financial_savings_detail.png)
 
-![Análise detalhada: como cada cenário gera economia](plots/findings/23_financial_deep_dive.png)
+![Análise detalhada: como cada cenário gera economia](plots/23_financial_deep_dive.png)
 
 ### 5b. Leitos liberados (capacidade)
 
@@ -325,9 +325,9 @@ O cenário de conversão urgência→eletiva **não gera economia direta** — n
 | Conversão urgência-para-eletiva (30%) | 5.606 | 15 | 56.359 pacientes de urgência × 30% × 1,33d diferença |
 | **TOTAL** | **23.752** | **65** | **38,6% dos leitos-dia anuais** |
 
-![Economia de leitos — cascata](plots/findings/06_bed_savings_waterfall.png)
+![Economia de leitos — cascata](plots/06_bed_savings_waterfall.png)
 
-![O que significa economizar 23.752 leitos-dia](plots/findings/12_bed_days_explainer.png)
+![O que significa economizar 23.752 leitos-dia](plots/12_bed_days_explainer.png)
 
 > **Como ler esta tabela:** "leitos-dia" é a unidade de consumo (1 cama × 1 dia). "Leitos liberados" converte para capacidade permanente (leitos-dia ÷ 365). Economizar 23.752 leitos-dia/ano equivale a liberar 65 camas que estariam permanentemente ocupadas — ou **38,6% de toda a capacidade anual dedicada a cálculo renal** no estado de São Paulo (~61.453 leitos-dia/ano).
 
@@ -350,11 +350,11 @@ A mortalidade no cálculo renal é baixa (0,32%), mas segue um gradiente claro c
 | 15–30 dias | 872 | 75 | 8,60% |
 | >30 dias | 143 | 17 | 11,89% |
 
-![Gradiente permanência-mortalidade](plots/findings/18_los_mortality_gradient.png)
+![Gradiente permanência-mortalidade](plots/18_los_mortality_gradient.png)
 
 Cada dia a mais no hospital aumenta o risco de morte. Pacientes com >30 dias têm **149× mais mortalidade** que pacientes com 0–1 dia. Isso significa que **toda intervenção que reduz permanência também salva vidas.**
 
-![Scatter: hospital lento = hospital que mata mais](plots/findings/20_scatter_los_vs_mortality.png)
+![Scatter: hospital lento = hospital que mata mais](plots/20_scatter_los_vs_mortality.png)
 
 ### Estimativa de vidas salvas
 
@@ -368,7 +368,7 @@ Aplicamos o gradiente permanência-mortalidade a cada cenário de economia de le
 | **Soma bruta** | | **55** |
 | **Ajustado por sobreposição** | Cenários se sobrepõem parcialmente (~60%) | **25–41** |
 
-![Estimativa de vidas salvas](plots/findings/19_lives_saved_waterfall.png)
+![Estimativa de vidas salvas](plots/19_lives_saved_waterfall.png)
 
 **Estimativa central: 33 vidas salvas por ano** — uma redução de **37% na mortalidade** por cálculo renal no estado de São Paulo.
 
@@ -378,7 +378,7 @@ Aplicamos o gradiente permanência-mortalidade a cada cenário de economia de le
 
 ### 6b. Impacto total combinado
 
-![Impacto total: dinheiro + leitos + vidas](plots/findings/24_combined_impact.png)
+![Impacto total: dinheiro + leitos + vidas](plots/24_combined_impact.png)
 
 | Dimensão | Impacto anual |
 |---|---|

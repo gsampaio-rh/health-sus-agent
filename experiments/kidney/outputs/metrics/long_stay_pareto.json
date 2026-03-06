@@ -1,9 +1,0 @@
-{
-  "pct_patients_gt7d": 4.2,
-  "pct_bed_days_gt7d": 23.7,
-  "pct_cost_gt7d": 10.2,
-  "pct_deaths_gt7d": 50.1,
-  "n_extreme_gt30d": 143,
-  "worst_hospital_cnes": "2688689",
-  "worst_hospital_pct_longstay": 24.0
-}

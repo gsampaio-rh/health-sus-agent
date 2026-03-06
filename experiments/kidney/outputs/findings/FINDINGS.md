@@ -2,19 +2,19 @@
 
 > 206,500 admissions. R$ 187.8M. 507,465 bed-days. São Paulo state, 2015–2025.
 
-![Big numbers](plots/findings/00b_big_numbers.png)
+![Big numbers](plots/00b_big_numbers.png)
 
 We analyzed every kidney stone hospitalization in São Paulo over the last decade to answer three questions: What drives faster resolution? Where is the money being lost? How many beds can be freed?
 
-![Overview — timeline](plots/findings/00a_overview_timeline.png)
+![Overview — timeline](plots/00a_overview_timeline.png)
 
-![Financial overview](plots/findings/00d_financial_overview.png)
+![Financial overview](plots/00d_financial_overview.png)
 
 The expected answer was "adopt modern procedures." The data told a different story. **The hospital you walk into matters 2.1× more than the procedure you receive.** The same surgery takes 1.8 days at one hospital and 6.4 days at another. 20% of admissions are patients being hospitalized just for an imaging study. One hospital accounts for the worst outcomes across every procedure category. And four cities treat thousands of patients without any definitive surgical capability.
 
 ---
 
-![LOS distribution](plots/findings/00c_los_distribution.png)
+![LOS distribution](plots/00c_los_distribution.png)
 
 ## 1. What Determines Faster Kidney Stone Resolution?
 
@@ -33,9 +33,9 @@ Procedure effect (ureteroscopy vs open surgery): **1.24 days saved**.
 
 **Hospital effect (2.7d) is 2.1× larger than procedure effect (1.2d).**
 
-![Hospital effect vs procedure effect](plots/findings/01_hospital_vs_procedure.png)
+![Hospital effect vs procedure effect](plots/01_hospital_vs_procedure.png)
 
-![Scatter: each dot is a hospital — volume vs LOS](plots/findings/13_scatter_volume_vs_los.png)
+![Scatter: each dot is a hospital — volume vs LOS](plots/13_scatter_volume_vs_los.png)
 
 ### Other LOS drivers (ranked)
 
@@ -53,7 +53,7 @@ Procedure effect (ureteroscopy vs open surgery): **1.24 days saved**.
 
 São Carlos (CNES 2080931) achieves **1.38d avg LOS with almost zero ureteroscopy** (0.2%). It does open ureterolithotomy at 1.85d — ranked #14 of 105 hospitals for that procedure. This hospital proves that operational excellence trumps technology adoption.
 
-![São Carlos vs system vs worst hospital](plots/findings/07_sao_carlos_comparison.png)
+![São Carlos vs system vs worst hospital](plots/07_sao_carlos_comparison.png)
 
 ---
 
@@ -70,7 +70,7 @@ The previous "Other/Conservative" (82%) category was misleading. The actual brea
 | Interventional (stents, catheters) | 20,113 | 9.7% | 2.1d | R$ 977 | 42% | 0.17% |
 | Observation (short ER stay) | 8,818 | 4.3% | 0.6d | R$ 135 | 57% | 0.10% |
 
-![Procedure taxonomy](plots/findings/02_procedure_taxonomy.png)
+![Procedure taxonomy](plots/02_procedure_taxonomy.png)
 
 **Key corrections:**
 - **42.9% of admissions are already surgical** — not "conservative." Open ureterolithotomy alone is 19.8%.
@@ -87,7 +87,7 @@ The previous "Other/Conservative" (82%) category was misleading. The actual brea
 
 Modern ureteroscopy is faster (1.9d vs 3.2d) and safer (0.16% vs 0.68% mortality), but costs 37% more per admission (R$ 1,188 vs R$ 866).
 
-![Surgery comparison](plots/findings/09_surgery_comparison.png)
+![Surgery comparison](plots/09_surgery_comparison.png)
 
 ---
 
@@ -120,9 +120,9 @@ Controlling for procedure type (same procedure, different outcomes), these hospi
 
 CNES 2688689 (São Paulo) is the worst hospital in the state: 5.3d for ureteroscopy, 6.4d for open surgery, 4.5d for clinical management. It appears in the top-10 worst list for every procedure category.
 
-![Worst hospital across all categories](plots/findings/10_worst_hospital.png)
+![Worst hospital across all categories](plots/10_worst_hospital.png)
 
-![Scatter: LOS vs cost by hospital](plots/findings/21_scatter_los_vs_cost.png)
+![Scatter: LOS vs cost by hospital](plots/21_scatter_los_vs_cost.png)
 
 **Why are the worst hospitals worse?**
 
@@ -137,11 +137,11 @@ Top-quartile hospitals (fastest 27) vs bottom-quartile (slowest 27) for the same
 
 Slow hospitals take more ER patients (no surgical planning), mix diagnostic and surgical admissions (congesting beds), and lack efficient discharge protocols — resulting in 5× more long stays. Fast hospitals operate electively, separating diagnostic from surgical flow.
 
-![Fast vs slow hospitals](plots/findings/03_fast_vs_slow_hospitals.png)
+![Fast vs slow hospitals](plots/03_fast_vs_slow_hospitals.png)
 
-![Scatter: more ER = more LOS — but it's not destiny](plots/findings/14_scatter_er_vs_los.png)
+![Scatter: more ER = more LOS — but it's not destiny](plots/14_scatter_er_vs_los.png)
 
-![Scatter: technology helps — but can't save a poorly managed hospital](plots/findings/17_scatter_ureteroscopy_vs_los.png)
+![Scatter: technology helps — but can't save a poorly managed hospital](plots/17_scatter_ureteroscopy_vs_los.png)
 
 **Why is São Carlos so efficient?** CNES 2080931 has only 1.7% long-stay rate (vs 4.2% system) with nearly zero ureteroscopy. Even with 57% ER (similar to system), it maintains 1.38d LOS. This indicates well-defined discharge protocols and efficient operational management.
 
@@ -163,7 +163,7 @@ Slow hospitals take more ER patients (no surgical planning), mix diagnostic and 
 
 These hospitals admit kidney stone patients, keep them for 2–4 days for an imaging study, then discharge. They can't operate. The patient stays, gets a picture, and leaves without treatment.
 
-![Scatter: diagnostic-only hospitals — admitting without operating](plots/findings/16_scatter_diagnostic_vs_los.png)
+![Scatter: diagnostic-only hospitals — admitting without operating](plots/16_scatter_diagnostic_vs_los.png)
 
 **Why this matters:**
 - 94% arrive through ER → patients come in with pain, get admitted for imaging instead of being referred to outpatient
@@ -181,7 +181,7 @@ We cross-referenced 136 million outpatient records (SIA) with hospital admission
 
 2. **There is a perverse financial incentive**: SIH urography pays **R$ 391 per admission**. The closest SIA equivalent (0205020054) pays **R$ 24** — a **16× difference**. Same exam, 16 times more expensive when done with a bed.
 
-![16× financial incentive](plots/findings/04_financial_incentive.png)
+![16× financial incentive](plots/04_financial_incentive.png)
 
 3. **The hospitals DO have outpatient infrastructure** — they already bill tens of thousands of procedures via SIA, including imaging studies. It's not a lack of capability. The system pays 16× more to admit.
 
@@ -193,7 +193,7 @@ We cross-referenced 136 million outpatient records (SIA) with hospital admission
 | CNES 2080028 (Cubatão) | 307 (R$ 121K) | 0 | **∞** |
 | CNES 2078562 (Guarulhos) | 233 (R$ 77K) | 278 (R$ 20K) | **4×** |
 
-![SIH vs SIA billing by hospital](plots/findings/08_sih_vs_sia_billing.png)
+![SIH vs SIA billing by hospital](plots/08_sih_vs_sia_billing.png)
 
 Of 406 hospitals that admit for kidney stone diagnosis, **213 (52%) have zero outpatient records for the same condition** — despite many having active SIA billing for other procedures. The other 193 do both, but prefer admission due to higher reimbursement.
 
@@ -211,7 +211,7 @@ Of 406 hospitals that admit for kidney stone diagnosis, **213 (52%) have zero ou
 - **10.2% of all cost** (R$ 11.3M)
 - **50.1% of all deaths** (176 of 351)
 
-![Long-stay Pareto problem](plots/findings/05_long_stay_pareto.png)
+![Long-stay Pareto problem](plots/05_long_stay_pareto.png)
 
 **Who are they?**
 - Older: avg age 51.4 vs 47.7 for normal stays
@@ -231,9 +231,9 @@ Of 406 hospitals that admit for kidney stone diagnosis, **213 (52%) have zero ou
 
 CNES 2688689 again — **24% of its patients stay >7 days**. This single hospital generates 323 long-stay cases. Something is structurally wrong.
 
-![Risk map: LOS vs mortality](plots/findings/15_scatter_longstay_vs_mortality.png)
+![Risk map: LOS vs mortality](plots/15_scatter_longstay_vs_mortality.png)
 
-![Long-stay patient profile](plots/findings/11_long_stay_profile.png)
+![Long-stay patient profile](plots/11_long_stay_profile.png)
 
 **What is happening to these patients?**
 
@@ -311,9 +311,9 @@ Three scenarios generate real financial savings (reduced SUS payments):
 
 The ER-to-elective conversion **does not generate direct savings** — it actually costs more per patient (elective R$ 1,196 vs ER R$ 848) because elective patients receive definitive treatment. But it **frees beds and saves lives**.
 
-![Financial savings detail](plots/findings/22_financial_savings_detail.png)
+![Financial savings detail](plots/22_financial_savings_detail.png)
 
-![Deep dive: how each scenario generates savings](plots/findings/23_financial_deep_dive.png)
+![Deep dive: how each scenario generates savings](plots/23_financial_deep_dive.png)
 
 ### 5b. Beds freed (capacity)
 
@@ -325,9 +325,9 @@ The ER-to-elective conversion **does not generate direct savings** — it actual
 | ER-to-elective conversion (30%) | 5,606 | 15 | 56,359 ER patients × 30% × 1.33d LOS difference |
 | **TOTAL** | **23,752** | **65** | **38.6% of annual bed-days** |
 
-![Bed savings waterfall](plots/findings/06_bed_savings_waterfall.png)
+![Bed savings waterfall](plots/06_bed_savings_waterfall.png)
 
-![What does saving 23,752 bed-days mean](plots/findings/12_bed_days_explainer.png)
+![What does saving 23,752 bed-days mean](plots/12_bed_days_explainer.png)
 
 > **How to read this table:** "bed-days" is the consumption unit (1 bed × 1 day). "Beds freed" converts to permanent capacity (bed-days ÷ 365). Saving 23,752 bed-days/year is equivalent to freeing 65 beds that would otherwise be permanently occupied — or **38.6% of all annual capacity dedicated to kidney stones** in São Paulo state (~61,453 bed-days/year).
 
@@ -350,11 +350,11 @@ Kidney stone mortality is low (0.32%), but follows a clear gradient with hospita
 | 15–30 days | 872 | 75 | 8.60% |
 | >30 days | 143 | 17 | 11.89% |
 
-![LOS-mortality gradient](plots/findings/18_los_mortality_gradient.png)
+![LOS-mortality gradient](plots/18_los_mortality_gradient.png)
 
 Every extra day in hospital increases death risk. Patients staying >30 days have **149× higher mortality** than those staying 0–1 day. This means **every intervention that reduces LOS also saves lives.**
 
-![Scatter: slower hospital = deadlier hospital](plots/findings/20_scatter_los_vs_mortality.png)
+![Scatter: slower hospital = deadlier hospital](plots/20_scatter_los_vs_mortality.png)
 
 ### Lives saved estimate
 
@@ -368,7 +368,7 @@ We applied the LOS-mortality gradient to each bed-saving scenario:
 | **Raw sum** | | **55** |
 | **Adjusted for overlap** | Scenarios partially overlap (~60%) | **25–41** |
 
-![Lives saved estimate](plots/findings/19_lives_saved_waterfall.png)
+![Lives saved estimate](plots/19_lives_saved_waterfall.png)
 
 **Central estimate: 33 lives saved per year** — a **37% reduction in kidney stone mortality** across São Paulo state.
 
@@ -378,7 +378,7 @@ We applied the LOS-mortality gradient to each bed-saving scenario:
 
 ### 6b. Combined total impact
 
-![Total impact: money + beds + lives](plots/findings/24_combined_impact.png)
+![Total impact: money + beds + lives](plots/24_combined_impact.png)
 
 | Dimension | Annual impact |
 |---|---|
