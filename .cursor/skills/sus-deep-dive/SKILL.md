@@ -44,12 +44,12 @@ sih = pd.concat(frames, ignore_index=True)
 | `DIAS_PERM` | int | Length of stay in days |
 | `MUNIC_RES` | str | Municipality of patient residence (6-digit IBGE code) |
 | `MUNIC_MOV` | str | Municipality of treatment (6-digit IBGE code) |
-| `CAR_INT` | str | Admission type: 1=Elective, 2=Emergency, 5=Other |
+| `CAR_INT` | str | Admission type: "01"=Elective, "02"=Emergency, "05"=Other (zero-padded strings) |
 | `ESPEC` | str | Bed specialty: 01=Surgery, 02=OB, 03=Clinical, 04=Chronic, 05=Psych |
 | `CNES` | str | Facility ID (7-digit), links to CNES data |
 | `IDADE` | int | Patient age (see COD_IDADE for unit) |
 | `COD_IDADE` | str | Age unit: 2=days, 3=months, 4=years |
-| `SEXO` | int | 1=Male, 3=Female |
+| `SEXO` | str | "1"=Male, "3"=Female (stored as string, NOT int) |
 | `VAL_TOT` | float | Total cost in BRL |
 | `MORTE` | int | Death indicator (0/1) |
 | `DT_INTER` | str | Admission date (YYYYMMDD format) |
@@ -60,6 +60,7 @@ sih = pd.concat(frames, ignore_index=True)
 | `UF_ZI` | str | State code (35 = São Paulo) |
 
 **Gotchas:**
+- **CRITICAL: Most categorical columns are stored as STRINGS, not integers.** `SEXO` is `"1"`/`"3"`, `CAR_INT` is `"01"`/`"02"`. Always compare with string values or use `.astype(str)` before mapping. `kidney["SEXO"] == 1` silently returns all False.
 - `DT_INTER` is string format YYYYMMDD, must parse: `pd.to_datetime(col, format="%Y%m%d", errors="coerce")`
 - `COD_IDADE` = 4 means age in years. If COD_IDADE = 2 or 3, patient is an infant (days/months)
 - `MUNIC_RES` and `MUNIC_MOV` are 6-digit IBGE codes. When they differ, patient migrated for treatment
@@ -124,9 +125,9 @@ Build a patient-level model to understand drivers of the key outcome variable (u
 
 ```python
 # Patient-level features (from SIH record)
-"is_emergency"  # CAR_INT == 2
-"is_male"       # SEXO == 1
-"age"           # IDADE (when COD_IDADE == 4)
+"is_emergency"  # CAR_INT.astype(str) == "02" (string comparison!)
+"is_male"       # SEXO.astype(str) == "1" (string comparison!)
+"age"           # IDADE (when COD_IDADE == "4")
 "has_proc_X"    # binary for key procedure codes
 
 # Hospital-level features (aggregated per CNES from full dataset)
