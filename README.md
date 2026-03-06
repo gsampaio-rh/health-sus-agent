@@ -80,12 +80,14 @@ To investigate a different health condition:
 
 ## Data Dictionary
 
-See `.cursor/skills/sus-deep-dive/reference.md` for:
-- SIH column definitions and code tables
-- ICD-10 codes for common conditions
-- IBGE municipality codes
-- SUS procedure code structure
-- CNES file naming conventions
+See `docs/DATA_DICTIONARY.md` for complete documentation of all five data systems:
+- **SIH** — Hospital admissions: 113 columns, gotchas, loading patterns
+- **CNES** — Facility registry: 208 columns, linking to SIH
+- **SIM** — Mortality records: cause of death, demographics
+- **SINAN** — 10 notifiable diseases: dengue, tuberculosis, syphilis, etc.
+- **SINASC** — Live births: maternal/neonatal characteristics
+
+Also see `.cursor/skills/sus-deep-dive/reference.md` for quick-reference code tables (sex, admission type, procedure codes, municipality codes).
 
 ## Agent Skill
 
