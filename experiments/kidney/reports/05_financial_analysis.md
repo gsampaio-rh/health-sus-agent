@@ -324,6 +324,21 @@ O achado mais revelador é o perfil dos hospitais ineficientes: **90,6% de admis
 
 ---
 
+## Resumo de Resultados — RQ3
+
+| Pergunta | Resultado | Evidência |
+|---|---|---|
+| Qual o custo excedente de longas permanências? | **R$15-27M** (estimativa conservadora) | Cenário P75: R$27,4M (14,6%). Custo linear por dia superestima → real entre R$15-27M |
+| Existe incentivo financeiro para internar? | **Sim** — até 22x mais caro | 13 procedimentos comparados SIH vs SIA. Manejo Clínico: 22x. Urografia: 5,5x |
+| Como varia o custo entre hospitais? | **3x de variação** (IQR R$288-R$874) | 313 hospitais com ≥20 internações, custo médio de R$118 a R$1.758 |
+| Custo alto = qualidade alta? | **Não** — relação inversa | 46% dos hospitais são caros E ineficientes. ρ custo×eficiência = −0,564 (p < 10⁻²⁴) |
+| Qual o perfil dos hospitais ineficientes? | **Urgência + diagnóstico** | 90,6% emergências, 63% diagnósticos, resolvem 26,6% dos casos (vs 85,6% dos eficientes) |
+| Internações desnecessárias têm grande impacto? | **Financeiro pequeno, operacional relevante** | 4,5% score ≥3: R$2M (1,1%). Mas 26.023 admissões D0 consomem recursos administrativos |
+
+**Conclusão:** O sistema perde dinheiro em quatro frentes: longas permanências (R$15-27M), incentivos de faturamento (prêmio até 22x), ineficiência hospitalar real (26,6% de resolução nos piores vs 85,6% nos melhores), e internações desnecessárias (impacto operacional > financeiro). Os hospitais ineficientes usam a internação como ferramenta diagnóstica em vez de resolver o problema.
+
+---
+
 ## Glossário
 
 | Sigla | Significado |

@@ -1,10 +1,10 @@
-# Relatório 10 — Resumo Executivo
+# Relatório 13 — Resumo Executivo
 
-> **Propósito:** Síntese visual e narrativa para tomadores de decisão. Um gráfico por achado-chave, conectando a história de RQ1 a RQ8.
+> **Propósito:** Síntese visual e narrativa para tomadores de decisão. Um gráfico por achado-chave, conectando a história de RQ1 a RQ6.
 
-**Notebook:** `notebooks/10_executive_summary.ipynb`
+**Notebook:** `notebooks/13_executive_summary.ipynb`
 **Tipo:** Síntese — não análise nova
-**Escopo:** Consolidação dos achados de 10 notebooks de pesquisa
+**Escopo:** Consolidação dos achados de 11 notebooks de pesquisa
 
 ---
 
@@ -20,7 +20,7 @@
 | Vidas potencialmente salvávies | **340** |
 | Leitos-dia economizáveis (conservador) | **268.608** |
 
-![Números-Chave](../outputs/notebook-plots/10_big_numbers.png)
+![Números-Chave](../outputs/notebook-plots/13_big_numbers.png)
 
 ---
 
@@ -30,7 +30,7 @@
 
 A variação de LOS entre hospitais é **1,9x maior** que entre categorias de procedimento. Dois hospitais realizando a mesma cirurgia podem diferir mais em tempo de internação do que a diferença entre uma cirurgia e um exame. Padronizar práticas entre hospitais do mesmo perfil é a alavanca mais impactante.
 
-![Hospital vs Procedimento](../outputs/notebook-plots/10_hospital_vs_procedure.png)
+![Hospital vs Procedimento](../outputs/notebook-plots/13_hospital_vs_procedure.png)
 
 ### 2. Três Alavancas para Liberar Leitos (RQ4)
 
@@ -41,29 +41,19 @@ A variação de LOS entre hospitais é **1,9x maior** que entre categorias de pr
 | Redução de longas permanências | 53.988 | 10,6% |
 | **Cenário conservador combinado** | **268.608** | **52,9%** |
 
-![Três Alavancas](../outputs/notebook-plots/10_three_levers.png)
+![Três Alavancas](../outputs/notebook-plots/13_three_levers.png)
 
 ### 3. Mortalidade Escala com o Tempo de Internação (RQ5)
 
 Pacientes com >7 dias de internação têm mortalidade **21x maior** que pacientes com ≤7 dias (3,83% vs 0,18%). A cauda de 4,5% de longa permanência concentra 50% de todos os óbitos.
 
-![Gradiente de Mortalidade](../outputs/notebook-plots/10_mortality_gradient.png)
+![Gradiente de Mortalidade](../outputs/notebook-plots/13_mortality_gradient.png)
 
 ### 4. Volume Impulsionado por Política Pública, Não Epidemia (RQ1)
 
 A Portaria SAES/MS nº 1.127/2020 introduziu a ureteroscopia no SIGTAP. Esse procedimento responde por **63,7%** de todo o crescimento de volume. O crescimento foi **aditivo** — reflete demanda reprimida sendo atendida, não aumento de incidência.
 
-![Decomposição do Volume](../outputs/notebook-plots/10_volume_decomposition.png)
-
-### 5. Urgência como Falha do Sistema (RQ7)
-
-Todos os 20 procedimentos comparáveis mostram penalidade de urgência estatisticamente significativa. Cidades sem capacidade cirúrgica têm **96,6%** de taxa de urgência. O sistema perde **114.811 leitos-dia** e potencialmente **375 vidas** por forçar pacientes para a via de urgência.
-
-### 6. Incentivos Desalinhados Degradam Qualidade (RQ8)
-
-Hospitais com alto índice de desperdício (quartil Q4) têm LOS **75% maior** que hospitais eficientes (Q1). 12 hospitais com >50% de internações diagnósticas também apresentam desempenho cirúrgico **64% pior** — sugerindo problemas institucionais sistêmicos.
-
-![Gargalos](../outputs/notebook-plots/10_bottlenecks.png)
+![Decomposição do Volume](../outputs/notebook-plots/13_volume_decomposition.png)
 
 ---
 
@@ -71,18 +61,18 @@ Hospitais com alto índice de desperdício (quartil Q4) têm LOS **75% maior** q
 
 ### Curto Prazo (0–6 meses)
 1. **Auditar os 10 hospitais com pior sobre-desempenho** (LOS 4,75d vs esperado 3,70d) — candidatos imediatos para melhoria operacional
-2. **Auditar os 12 hospitais com >50% diagnósticos E mau desempenho cirúrgico** — possível problema de qualidade assistencial
-3. **Monitorar a taxa de urgência por cidade** — 54 cidades com >96% urgência precisam de acesso a agendamento eletivo
+2. **Expandir capacidade de ureteroscopia** — 139 hospitais adotaram em 5 anos, mas a demanda continua crescendo
 
 ### Médio Prazo (6–18 meses)
-4. **Expandir capacidade de ureteroscopia** — 139 hospitais adotaram em 5 anos, mas a demanda continua crescendo
-5. **Criar protocolos de fast-track** para procedimentos com LOS esperado ≤1 dia (ureteroscopia, ESWL, observação)
-6. **Revisar a tabela SIGTAP** — reduzir o prêmio de internação para procedimentos diagnósticos (5,5x–22x mais caro que ambulatorial)
+3. **Criar protocolos de fast-track** para procedimentos com LOS esperado ≤1 dia (ureteroscopia, ESWL, observação)
+4. **Revisar a tabela SIGTAP** — reduzir o prêmio de internação para procedimentos diagnósticos (5,5x–22x mais caro que ambulatorial)
+5. **Investir em capacidade ambulatorial diagnóstica** — reduzir as 41.487 internações diagnósticas/ano
 
 ### Longo Prazo (18+ meses)
-7. **Descentralizar capacidade cirúrgica** — 167 cidades sem cirurgia forçam migração e urgência
-8. **Investir em capacidade ambulatorial diagnóstica** — reduzir as 41.487 internações diagnósticas/ano
-9. **Sistema de triagem baseado em risco** — modelo preditivo (AUC 0,78) pode sinalizar pacientes em risco de longa permanência no momento da internação
+6. **Descentralizar capacidade cirúrgica** — 167 cidades sem cirurgia forçam migração e urgência
+7. **Identificar e redirecionar internações desnecessárias** — 3,2% de internações com alta suspeita de desnecessidade (R$937k)
+8. **Otimizar realocação de pacientes** — migração para hospitais eficientes reduz LOS em 0,7 dia e mortalidade em 0,24pp
+9. **Priorizar municípios com pior gap de risco ajustado** — modelo geográfico (R²=0,243, AUC mortalidade=0,743) identifica 15 municípios onde o sistema entrega resultados significativamente piores do que o esperado para o perfil de pacientes. Fragmentação do cuidado (ρ=+0,45) é o principal fator associado
 
 ---
 

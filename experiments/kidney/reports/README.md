@@ -15,18 +15,19 @@ Série de relatórios baseados na análise de 206.500 internações por cálculo
 | 06 | [Economia de Leitos](06_bed_savings.md) | Quantos leitos se libera? | 268.608 leitos-dia (cenário conservador, 52,9%) |
 | 07 | [Mortalidade](07_mortality_outcomes.md) | Podemos reduzir mortes? | LOS >7d = mortalidade 21x maior, ~340 vidas salvávies |
 | 08 | [Velocidade de Resolução](08_resolution_speed.md) | O que torna o tratamento mais rápido? | Eletiva + cirúrgica + hospital com capacidade |
-| 09 | [Modelos ML](09_ml_models.md) | O que os modelos predizem? | AUC 0,78 para longa permanência, idade é principal fator |
-| 10 | [Resumo Executivo](10_executive_summary.md) | Síntese para decisores | 9 recomendações em 3 horizontes temporais |
-| 11 | [Penalidade de Urgência](11_emergency_penalty.md) | Urgência é falha do sistema? | Todas as 20 comparações significativas, 114K leitos-dia excedentes |
-| 12 | [Incentivo vs Qualidade](12_incentive_quality.md) | Incentivos desalinhados degradam? | Q4 desperdício = LOS 75% maior, diagnóstico-heavy = cirurgia 64% pior |
+| 09 | [Internações Desnecessárias](09_unnecessary_admissions.md) | Como identificar internações desnecessárias? | 3,2% alta suspeita (R$937k), infraestrutura é o driver |
+| 10 | [Realocação de Pacientes](10_patient_reallocation.md) | Como realocar pacientes? | Migrou→eficiente: −0,7d LOS, capacidade limita impacto |
+| 11 | [Modelo de Risco Geográfico](11_city_risk_model.md) | Quais municípios falham? | 6/6 validação. 227/489 municípios com gap significativo |
+| 12 | [Hospital Report Card](12_hospital_report_card.md) | Quais hospitais falham? | 49 para revisão, 66 referências. ρ=−0,836 vs eficiência simples |
+| 13 | [Resumo Executivo](13_executive_summary.md) | Síntese para decisores | Recomendações em 3 horizontes temporais |
 
 ---
 
 ## Como Ler
 
-1. **Comece pelo [Resumo Executivo](10_executive_summary.md)** — visão em 5 minutos
+1. **Comece pelo [Resumo Executivo](13_executive_summary.md)** — visão em 5 minutos
 2. Para entender o contexto, leia a [Visão Geral](02_general_overview.md) e os [Drivers de Volume](03_volume_drivers.md)
-3. Para recomendações de política pública, foque nos relatórios 11 e 12 (novas perguntas de pesquisa)
+3. Para recomendações de política pública, foque nos relatórios 09 e 10 (internações desnecessárias e realocação)
 4. Para detalhes técnicos, consulte cada relatório individual
 
 ## Reprodutibilidade

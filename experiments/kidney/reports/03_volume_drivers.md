@@ -145,6 +145,19 @@ Não é possível descartar completamente um aumento real na incidência de cál
 
 ---
 
+## Resumo de Resultados — RQ1
+
+| Pergunta | Resultado | Evidência |
+|---|---|---|
+| Há aumento real de incidência? | **Não** — crescimento é expansão de acesso | Crescimento concentrado em cirúrgicos (CAGR 17,1%), diagnósticos estáveis (p = 0,108), intervencionistas em declínio (−9,9%) |
+| Novos códigos criaram novas vias de faturamento? | **Sim** — ureteroscopia (Portaria 1.127/2020) | 0 → 10.907 casos, 139 hospitais em 5 anos, **63,7% do crescimento total** |
+| O crescimento substituiu procedimentos antigos? | **Não** — foi aditivo | Ureterolitotomia aberta continuou crescendo (+2.593). Apenas intervenções paliativas caíram (−9,9%) |
+| Pacientes são internados para procedimentos ambulatoriais? | **Sim, mas estável** | 20,1% do volume são diagnósticos, com prêmio de internação de até 22x. Volume diagnóstico não está crescendo |
+
+**Conclusão:** O crescimento de volume é primariamente uma **expansão de opções de tratamento impulsionada por política pública**, não epidemia nem abuso de faturamento. A Portaria 1.127/2020 criou capacidade genuinamente nova. O crescimento foi aditivo — demanda reprimida sendo atendida.
+
+---
+
 ## Glossário
 
 | Sigla | Significado |

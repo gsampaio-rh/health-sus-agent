@@ -473,6 +473,21 @@ O efeito da natureza jurídica é robusto: Santa Casas superam hospitais públic
 
 ---
 
+## Resumo de Resultados — RQ2
+
+| Pergunta | Resultado | Evidência |
+|---|---|---|
+| Qual a variação de LOS entre hospitais? | **1,9x maior que entre procedimentos** | DP entre hospitais: 1,90d vs DP entre categorias: 1,02d |
+| A diferença é explicada pelo perfil do paciente? | **Não** | Idade, sexo e sub-diagnóstico similares entre top e bottom (Mann-Whitney U, p > 0,05 em todos os grupos) |
+| O que diferencia hospitais eficientes? | **Processos operacionais** | Alta D0: 15-51% (top) vs 1-5% (bottom). Longa permanência >7d: 0,4-3% (top) vs 7-28% (bottom). ρ = 0,84-0,90 |
+| Tamanho e recursos importam? | **Sim, inversamente** | Hospitais menores e com menos infraestrutura têm LOS mais curto. Complexidade institucional cria inércia |
+| Natureza jurídica faz diferença? | **Sim** — Santa Casas melhores | Resíduo −0,17d (Santa Casas) vs +0,25d (públicos), p < 0,0001, consistente em todos os 7 grupos |
+| Modelo estrutural funciona? | **Sim** — R² = 0,944 | Top 10 sobre-desempenho: LOS 1,77d. Bottom 10: LOS 4,75d (p < 0,0001) |
+
+**Conclusão:** Um hospital eficiente se caracteriza por **alta capacidade de resolução rápida** (D0), **gestão eficaz da cauda de longa permanência**, e **foco operacional** (especialização). A eficiência não depende do tipo de paciente — depende de como o hospital se organiza. Santa Casas superam hospitais públicos em todos os grupos de comparabilidade.
+
+---
+
 ## Glossário
 
 | Sigla | Significado |

@@ -99,6 +99,20 @@ O padrão é claro: **resolução rápida = eletiva + cirúrgica + hospital com 
 
 ---
 
+## Resumo de Resultados — RQ6
+
+| Pergunta | Resultado | Evidência |
+|---|---|---|
+| Quais procedimentos resolvem mais rápido? | **Ureteroscopia eletiva** (LOS mediano 1d) | Combinação de técnica minimamente invasiva + admissão eletiva |
+| Qual o papel do tipo de admissão? | **Eletiva 40% mais rápida, 4x mais segura** | LOS: 1,78d (eletiva) vs 2,98d (urgência). Mortalidade: 0,13% vs 0,51% |
+| Existe um "problema diagnóstico"? | **Sim** — 143 hospitais com >50% diagnóstico | 76 hospitais >90% diagnóstico. Internam para exame (LOS 2,69d) sem resolver o caso |
+| Como o acesso geográfico afeta? | **167 cidades sem cirurgia, 36,5% migram** | 54,8% das cidades sem capacidade cirúrgica. Pacientes migram ou vão à urgência |
+| Qual o perfil de longa permanência? | **4,5% dos pacientes, 23,5% dos leitos-dia** | Mais velhos (+4 anos), 79,5% urgência, 21x mais mortalidade, 2,6x mais caros |
+
+**Conclusão:** Resolução rápida = **eletiva + cirúrgica + hospital com capacidade**. Toda barreira a esse caminho (falta de vaga eletiva, falta de cirurgião, falta de acesso geográfico) gera internações mais longas, mais caras e mais perigosas. O gargalo principal são os 143 hospitais que usam internação como substituto de ambulatório.
+
+---
+
 ## Glossário
 
 | Sigla | Significado |

@@ -70,6 +70,19 @@ A migração diagnóstica (Alavanca 2) tem o segundo maior impacto (22%), mas re
 
 ---
 
+## Resumo de Resultados — RQ4
+
+| Pergunta | Resultado | Evidência |
+|---|---|---|
+| Se os piores igualassem a mediana, quanto se salva? | **218.232 leitos-dia (43%)** | Alavanca 3: padronização hospitalar dentro de grupos de comparabilidade |
+| Quais são as três maiores alavancas? | **Padronização > Diagnóstico > Longa permanência** | Alavanca 1: 53.988 (10,6%). Alavanca 2: 111.506 (22,0%). Alavanca 3: 218.232 (43,0%) |
+| As economias são realistas? | **São limites superiores** | Cenário conservador combinado: 268.608 (52,9%). Restrições operacionais e justificativas clínicas reduzem a economia real |
+| Qual alavanca é mais viável politicamente? | **Padronização hospitalar** | Não requer novos investimentos nem mudanças no SIGTAP — apenas disseminação de melhores práticas |
+
+**Conclusão:** O sistema poderia liberar entre 52,9% e 75,6% dos leitos-dia com três intervenções. A padronização hospitalar é a mais impactante (43%) e viável. A migração diagnóstica para ambulatorial tem alto potencial (22%) mas requer investimento. Todas são limites superiores teóricos.
+
+---
+
 ## Glossário
 
 | Sigla | Significado |

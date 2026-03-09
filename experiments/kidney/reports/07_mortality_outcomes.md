@@ -108,6 +108,20 @@ O achado sobre UTI (2,5% dos pacientes, 8,21% de mortalidade) sugere que o siste
 
 ---
 
+## Resumo de Resultados — RQ5
+
+| Pergunta | Resultado | Evidência |
+|---|---|---|
+| Qual a relação entre LOS e mortalidade? | **21,1x maior para >7d vs ≤7d** | 3,83% mortalidade (>7d) vs 0,18% (≤7d). Gradiente monotônico até 11,29% (>21d) |
+| Quantas mortes poderiam ser evitadas? | **~340** (limite superior teórico) | Contrafactual: se 9.330 pacientes >7d tivessem mortalidade de ≤7d. Confundimento por gravidade não é separável |
+| Quais subgrupos estão em maior risco? | **Idosos >70 e pacientes com UTI** | 80+: mortalidade 4,62% (95x vs <30). UTI: 8,21% mortalidade, 82x mais que sem UTI |
+| A mortalidade varia por procedimento? | **Sim** — cirúrgicos concentram 57% dos óbitos | 408 de 714 óbitos são em procedimentos cirúrgicos (0,46%). "OUTROS" = 1,79% (casos complexos raros) |
+| Qual faixa etária concentra mais mortes? | **60-69 anos** (195 óbitos, 49% com 60-79) | Volume alto + mortalidade crescente. Faixa com maior impacto absoluto |
+
+**Conclusão:** A mortalidade escala dramaticamente com LOS e idade. A cauda de 4,5% de longa permanência concentra metade dos óbitos. A estimativa de 340 vidas salvávies é um limite superior — o gradiente LOS-mortalidade reflete confundimento por gravidade. Intervenções devem focar em identificação precoce de pacientes de alto risco (idosos >70, uso de UTI) e resolução cirúrgica rápida.
+
+---
+
 ## Glossário
 
 | Sigla | Significado |

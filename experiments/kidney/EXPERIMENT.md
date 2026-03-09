@@ -63,30 +63,6 @@ The ultimate question: what operational and clinical decisions lead to faster, s
 - Is there a "diagnostic admission" problem where patients are admitted for imaging that could be done outpatient?
 - What hospital-level factors (staffing ratios, equipment, governance model, legal nature) predict efficiency?
 
-### 7. Is emergency presentation a signal of upstream system failure?
-
-When the same procedure is performed as emergency instead of scheduled (elective), the outcome penalty (longer LOS, higher mortality, higher cost) may quantify a preventable system failure — patients arriving at the ER because the referral, diagnostic, or scheduling pathway broke.
-
-- For the same procedure code, what is the LOS / mortality / cost delta between emergency and elective admission?
-- Which patient subgroups (age, geography, sub-diagnosis) are most likely to present as emergency for a schedulable procedure?
-- Do hospitals in cities without outpatient diagnostic capacity have higher emergency rates?
-- Do migrated patients (treated outside home city) have higher emergency rates — suggesting delayed access?
-- Counterfactual estimate: if avoidable emergencies had been elective, how many bed-days and deaths would be saved?
-
-**Causal rigor notes:** Emergency patients may be genuinely sicker (confounding by severity). `CAR_INT` is a billing code, not a clinical acuity score (proxy variable risk). Emergency LOS includes ER wait time (tautology risk — must separate mechanical delay from clinical penalty). All comparisons must be stratified by procedure code and age group.
-
-### 8. Does financial incentive misalignment degrade service quality?
-
-Hospitals that extract more revenue from unnecessary or inflated billing (high diagnostic admission rates, high admission premium exploitation) may show worse quality outcomes. The financial incentive to admit unnecessarily may be associated with quality degradation.
-
-- Construct a waste index per hospital: composite of (a) diagnostic admission rate, (b) excess LOS vs peer-group median, (c) share of procedures with high SIH/SIA admission premium
-- Correlate waste index with quality metrics: mortality rate, long-stay rate, complication proxy
-- Does higher mean cost per admission predict better or worse outcomes within peer groups?
-- Are hospitals with >50% diagnostic admission rates also worse at performing surgery (higher surgical mortality, longer surgical LOS)?
-- Stratify by hospital comparability group — does the pattern hold within fair comparison groups?
-
-**Causal rigor notes:** Hospitals with high waste may serve harder populations (confounding by case-mix). Reverse causation is possible — worse outcomes may cause more diagnostics, not the other way around. "Waste" is our interpretation; high diagnostic rates might reflect appropriate clinical caution (proxy variable risk). All analysis must be within comparability groups (fair comparison test).
-
 ### 9. How can we identify and quantify unnecessary hospitalizations?
 
 Some kidney stone admissions may not require hospitalization at all — the patient could have been diagnosed, treated, or observed in an outpatient setting. Identifying these cases and understanding who produces them is essential for rationalizing bed use.
@@ -105,6 +81,57 @@ Some kidney stone admissions may not require hospitalization at all — the pati
 - H9.4: Legal nature predicts unnecessary admission rate: AMEs and hospital-dia have structurally different patterns than general hospitals
 
 **Causal rigor notes:** "Unnecessary" is a judgment, not a clinical fact. A D0 diagnostic admission may be clinically appropriate (patient arrived at night, needed observation). Low cost ≠ unnecessary (some real procedures are cheap). SIA availability doesn't prove the case could have been outpatient (severity within the same procedure varies). All findings should be presented as "potentially unnecessary" with explicit caveats.
+
+### 10. How can we optimally reallocate patients to more efficient centers without exceeding capacity?
+
+36.5% of kidney stone patients already migrate between municipalities for treatment. Some travel to efficient hubs and get better outcomes; others stay at inefficient local hospitals. This RQ investigates whether systematic reallocation — respecting capacity constraints — could improve system-wide outcomes.
+
+- **Origin-destination matrix:** Where do patients currently flow? Which cities are natural hubs? Which routes are most common?
+- **Capacity analysis:** Which efficient hospitals have spare capacity to absorb more patients? Which inefficient hospitals are overcrowded?
+- **Existing evidence:** Do patients who already migrate to efficient hospitals get better outcomes than those who stay at inefficient local ones?
+- **Reallocation simulation:** If we redirect surgical patients from below-median efficiency hospitals to nearby efficient hubs (respecting capacity limits), what is the potential impact on LOS, cost, and mortality?
+
+**Core hypotheses:**
+- H10.1: Patients who migrate to efficient hospitals have lower LOS and mortality than patients at inefficient local hospitals (observational evidence)
+- H10.2: Significant spare capacity exists at the most efficient hospitals (estimated occupancy < 80%)
+- H10.3: A conservative reallocation (respecting capacity limits) would save at least 5% of total bed-days
+- H10.4: Natural migration flows already point toward more efficient hospitals (positive correlation between migrant volume received and efficiency score)
+
+**Causal rigor notes:** This is a simulation, not a randomized trial. Patients who migrate may differ systematically from those who stay (selection bias). The capacity model estimates occupancy from kidney stone admissions only, not total hospital utilization. Reallocation does not account for patient preferences, travel cost, or social factors. All projections are upper bounds under ideal conditions.
+
+### 11. Which municipalities have worse outcomes than expected for their patient risk profile?
+
+A geographic risk model that separates patient-inherent risk from system performance. Trained on patient-only features (no hospital information), the model predicts expected outcomes for each patient. Aggregating predictions by municipality of residence and comparing with actual outcomes reveals where the system underperforms relative to what would be expected given the local population's risk profile.
+
+- **Patient risk model:** What combination of patient characteristics (age, sex, admission type, sub-diagnosis, comorbidity, bed specialty, year, month) best predicts LOS, long stay, and mortality?
+- **City aggregation:** How do predicted outcomes compare with actual outcomes across municipalities?
+- **Gap analysis:** Which municipalities deliver results significantly worse (or better) than expected for their patient profile?
+- **Correlates:** Is the performance gap associated with infrastructure quality, care fragmentation, migration patterns, or patient demographics?
+
+**Core hypotheses:**
+- H11.1: The patient risk model (patient-only features) can predict LOS with R² > 0.05 and long-stay with AUC > 0.65
+- H11.2: There is significant between-city variation in risk-adjusted outcomes (gap std > 0)
+- H11.3: Municipalities with higher migration rates have smaller performance gaps (patients who migrate get better care)
+- H11.4: Municipalities whose patients are treated at lower-quality hospitals have larger performance gaps
+
+**Causal rigor notes:** The model captures ~8% of LOS variance with patient features alone — by design. The residual captures hospital quality, protocol, and infrastructure effects. Gap analysis is observational: municipalities with high gaps may differ in unmeasured confounders (socioeconomic factors, disease severity beyond sub-diagnosis). The composite gap weights (40% LOS, 30% long stay, 30% mortality) are arbitrary. City-level aggregation smooths individual-level variation.
+
+### 12. Which hospitals deliver outcomes worse (or better) than expected for their patient case-mix?
+
+A hospital report card that uses a patient-only risk model to control for case-mix severity, then ranks hospitals by the gap between actual and predicted outcomes. Unlike simple statistical comparisons (nb04), this approach adjusts for patient characteristics before judging hospital quality.
+
+- **Case-mix adjusted ranking:** Using patient-only predictions (same model architecture as RQ11), aggregate by hospital (CNES) instead of municipality. Hospitals with positive gaps (actual > predicted) are underperforming; negative gaps mean overperformance.
+- **Statistical significance:** Bootstrap confidence intervals to distinguish real differences from noise (small-volume hospitals).
+- **What makes a good hospital?** Merge hospital-level gaps with CNES characteristics (volume, equipment, governance, type) and use a second-stage model to identify which hospital features predict better risk-adjusted outcomes.
+- **Cross-reference:** Validate against the statistical efficiency scores from RQ2 (nb04). If ML-based gaps agree with simple efficiency scores, both approaches are consistent.
+
+**Core hypotheses:**
+- H12.1: At least 20% of hospitals have statistically significant case-mix adjusted gaps (bootstrap 95% CI excludes zero)
+- H12.2: Hospital case-mix adjusted gaps correlate with the efficiency scores from nb04 (Spearman |ρ| > 0.3)
+- H12.3: Hospital characteristics (volume, equipment count, governance committees) explain at least 15% of the variance in case-mix adjusted gaps
+- H12.4: The top-10 overperforming hospitals share identifiable characteristics (via SHAP) that distinguish them from underperformers
+
+**Causal rigor notes:** Case-mix adjustment removes patient-level confounding but cannot address unmeasured severity (e.g., stone size, exact anatomical location). Hospital volume is both a feature and a potential confounder (high-volume → better outcomes via practice effect, or high-volume → receives sicker patients). The second-stage model (gap ~ hospital characteristics) is observational and associational. Hospital rankings should be used for prioritization, not for definitive quality judgments.
 
 ---
 
@@ -410,56 +437,57 @@ This taxonomy is critical for analysis. A hospital's procedure mix determines it
 |---|---|---|---|
 | 08 | `08_resolution_speed` | Investigate the three main bottlenecks: (a) diagnostic admissions — why are patients admitted for imaging that could be outpatient? (b) long-stay Pareto — who are the patients staying >7 days and what's different about them? (c) procedure choice — which procedures resolve fastest with best outcomes? Geographic access as a barrier to timely treatment. | **Done** — merged diagnostic_problem + long_stay_pareto + geographic_access into unified investigation |
 
-### ML & Modeling
-
-| # | Notebook | Purpose | Status |
-|---|---|---|---|
-| 09 | `09_ml_models` | Predictive models supporting the RQs: LOS regression, long-stay classification, overperformance prediction. Feature engineering, cross-validation, SHAP interpretation. Not an investigation itself — a tool that feeds into RQ notebooks. | **Done** — LightGBM + SHAP with enriched CNES features, linked to RQs |
-
-### RQ7 — Is emergency presentation a system failure signal?
-
-| # | Notebook | Purpose | Status |
-|---|---|---|---|
-| 11 | `11_emergency_penalty` | Same-procedure emergency vs elective comparison: LOS/mortality/cost delta, patient subgroup analysis, geographic access correlation, counterfactual savings estimate. Controls for age, sub-diagnosis, and procedure type. | **Done** — 20 procedures compared, all significant emergency penalties, 114K excess bed-days estimated |
-
-### RQ8 — Does financial incentive misalignment degrade quality?
-
-| # | Notebook | Purpose | Status |
-|---|---|---|---|
-| 12 | `12_incentive_quality` | Waste index construction (diagnostic rate + excess LOS + admission premium), correlation with quality metrics within peer groups, cost-outcome analysis, diagnostic-heavy hospital surgical performance. | **Done** — 283 hospitals scored, Q4 waste has 75% longer LOS, diagnostic-heavy hospitals show 64% worse surgical LOS |
-
 ### RQ9 — How can we identify unnecessary hospitalizations?
 
 | # | Notebook | Purpose | Status |
 |---|---|---|---|
-| 13 | `13_unnecessary_admissions` | Composite score definition, hospital ranking by unnecessary rate, institution type analysis, financial incentive correlation, bed-day impact quantification. Cross-references efficiency (RQ3/5) and waste index (RQ8). | Planned |
+| 09 | `09_unnecessary_admissions` | Score corrigido (D0/baixo custo condicionados a não-terapêutico), hospital ranking, institution type analysis, infrastructure gap, cross-reference with efficiency. | **Done** — 3,2% alta suspeita (R$937k, 0,5% custo), 0% terapêutico. Santa Casas 4,0% vs públicos 2,8%. Infraestrutura ambulatorial é o driver (p=0,031), não incentivo financeiro |
 
-### Deliverables
+### RQ10 — How can we optimally reallocate patients?
 
 | # | Notebook | Purpose | Status |
 |---|---|---|---|
-| 10 | `10_executive_summary` | Visual narrative for decision-makers. One chart per key finding, connecting the story from RQ1 → RQ6. Not analysis — synthesis. | **Done** — 6 executive charts synthesizing all RQ findings |
+| 10 | `10_patient_reallocation` | Origin-destination flow matrix, capacity analysis (volume vs beds), migration outcome evidence, reallocation simulation with capacity constraints (3 scenarios), hub prioritization. | **Done** — 36,5% migram, migrou→eficiente: −0,7d LOS −0,24pp mort (sig.), mas migrantes buscam tamanho não eficiência (ρ=−0,37). Realocação agressiva: 1.601 pacientes, R$410k economia — impacto limitado pela capacidade. Gargalo é escala, não redistribuição |
+
+### RQ11 — Which municipalities have worse outcomes than expected?
+
+| # | Notebook | Purpose | Status |
+|---|---|---|---|
+| 11 | `11_city_risk_model` | Geographic risk model: patient-only LightGBM predicts expected outcomes, aggregated by municipality. Gap analysis reveals where system underperforms relative to patient risk profile. | **Done** — R²=0,077 (by design), AUC long stay=0,704, AUC mort=0,725. 6/6 validação. 227/489 municípios com gap significativo |
+
+### RQ12 — Which hospitals deliver outcomes worse than expected?
+
+| # | Notebook | Purpose | Status |
+|---|---|---|---|
+| 12 | `12_hospital_report_card` | Hospital report card: patient-only model controls for case-mix, aggregates by CNES to rank hospitals. Second-stage model identifies hospital characteristics that predict better risk-adjusted outcomes. | Planned |
+
+### Resumo Executivo (sempre o último notebook)
+
+| # | Notebook | Purpose | Status |
+|---|---|---|---|
+| 13 | `13_executive_summary` | Visual narrative for decision-makers. One chart per key finding, connecting the story from RQ1 → RQ6. Not analysis — synthesis. | **Done** — executive charts synthesizing RQ findings |
 
 ### Summary of changes
 
 All changes below have been completed. Old notebooks are archived in `notebooks/archive/`.
 
-| Current Notebook | Action | Destination | Status |
-|---|---|---|---|
-| `01_data_loading` | **Redo** | → `01_data_loading` (add enrichment pipeline) | Done |
-| `02_exploratory` | **Redo** | → `02_general_overview` (slim down) | Done |
-| `03_procedure_taxonomy` | **Archive** | → folds into `03_volume_drivers` | Done |
-| `04_hospital_variation` | **Archive** | → folds into `04_hospital_efficiency` | Done |
-| `05_diagnostic_problem` | **Archive** | → folds into `08_resolution_speed` | Done |
-| `06_long_stay_pareto` | **Archive** | → folds into `08_resolution_speed` | Done |
-| `07_geographic_access` | **Archive** | → folds into `08_resolution_speed` | Done |
-| `08_bed_savings` | **Redo** | → `06_bed_savings` (renumbered) | Done |
-| `09_executive_summary` | **Redo** | → `10_executive_summary` (rebuild after RQs) | Done |
-| `10_ml_prediction` | **Redo** | → `09_ml_models` (renumbered, link to RQs) | Done |
-| `11_overperformance_model` | **Archive** | → folds into `04_hospital_efficiency` | Done |
-| — | **New** | `03_volume_drivers` | Done |
-| — | **New** | `05_financial_analysis` | Done |
-| — | **New** | `07_mortality_outcomes` | Done |
+| Notebook | Status |
+|---|---|
+| `01_data_loading` | Done — enrichment pipeline |
+| `02_general_overview` | Done — EDA overview |
+| `03_volume_drivers` | Done — RQ1 |
+| `04_hospital_efficiency` | Done — RQ2 |
+| `05_financial_analysis` | Done — RQ3 |
+| `06_bed_savings` | Done — RQ4 |
+| `07_mortality_outcomes` | Done — RQ5 |
+| `08_resolution_speed` | Done — RQ6 |
+| `09_unnecessary_admissions` | Done — RQ9 |
+| `10_patient_reallocation` | Done — RQ10 |
+| `11_city_risk_model` | Done — RQ11 |
+| `12_hospital_report_card` | Planned — RQ12 |
+| `13_executive_summary` | Done — síntese (sempre último) |
+
+Archived (in `notebooks/archive/`): `09_ml_models`, `11_emergency_penalty`, `12_incentive_quality`, and earlier versions.
 
 Shared constants and helpers live in `notebooks/shared.py`.
 
