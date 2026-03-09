@@ -87,6 +87,25 @@ Hospitals that extract more revenue from unnecessary or inflated billing (high d
 
 **Causal rigor notes:** Hospitals with high waste may serve harder populations (confounding by case-mix). Reverse causation is possible — worse outcomes may cause more diagnostics, not the other way around. "Waste" is our interpretation; high diagnostic rates might reflect appropriate clinical caution (proxy variable risk). All analysis must be within comparability groups (fair comparison test).
 
+### 9. How can we identify and quantify unnecessary hospitalizations?
+
+Some kidney stone admissions may not require hospitalization at all — the patient could have been diagnosed, treated, or observed in an outpatient setting. Identifying these cases and understanding who produces them is essential for rationalizing bed use.
+
+- **Definition:** What combination of indicators flags a hospitalization as potentially unnecessary? Candidates: (a) diagnostic-only admission (imaging with no treatment), (b) same-day discharge (D0), (c) observation stay, (d) procedure available in SIA (ambulatorial), (e) low total cost (<P25)
+- **Who does more?** Which hospitals have the highest rate of suspect admissions? What volume do they represent?
+- **Who does fewer?** Are the most efficient hospitals (by efficiency score) also the ones with fewest unnecessary admissions — or is there a trade-off?
+- **What type of institution does more?** Does legal nature (Santa Casa, public, private, university) predict unnecessary admission rate? Do AMEs and hospital-dia units inflate the SIH with ambulatorial cases?
+- **Why does it happen?** Is it a financial incentive (SIH pays more than SIA for the same procedure)? A lack of ambulatorial infrastructure? A clinical caution pattern (admit to observe)?
+- **What is the real impact?** Financial cost of unnecessary admissions vs bed-day cost vs opportunity cost of displaced patients
+
+**Core hypotheses:**
+- H9.1: Hospitals with higher SIH/SIA admission premium utilization have higher unnecessary admission rates
+- H9.2: Hospitals in municipalities without AME or outpatient imaging infrastructure have higher diagnostic admission rates
+- H9.3: The financial impact of unnecessary admissions is small (<5% of total cost) but the bed-day impact is disproportionately large
+- H9.4: Legal nature predicts unnecessary admission rate: AMEs and hospital-dia have structurally different patterns than general hospitals
+
+**Causal rigor notes:** "Unnecessary" is a judgment, not a clinical fact. A D0 diagnostic admission may be clinically appropriate (patient arrived at night, needed observation). Low cost ≠ unnecessary (some real procedures are cheap). SIA availability doesn't prove the case could have been outpatient (severity within the same procedure varies). All findings should be presented as "potentially unnecessary" with explicit caveats.
+
 ---
 
 ## Data Sources
@@ -408,6 +427,12 @@ This taxonomy is critical for analysis. A hospital's procedure mix determines it
 | # | Notebook | Purpose | Status |
 |---|---|---|---|
 | 12 | `12_incentive_quality` | Waste index construction (diagnostic rate + excess LOS + admission premium), correlation with quality metrics within peer groups, cost-outcome analysis, diagnostic-heavy hospital surgical performance. | **Done** — 283 hospitals scored, Q4 waste has 75% longer LOS, diagnostic-heavy hospitals show 64% worse surgical LOS |
+
+### RQ9 — How can we identify unnecessary hospitalizations?
+
+| # | Notebook | Purpose | Status |
+|---|---|---|---|
+| 13 | `13_unnecessary_admissions` | Composite score definition, hospital ranking by unnecessary rate, institution type analysis, financial incentive correlation, bed-day impact quantification. Cross-references efficiency (RQ3/5) and waste index (RQ8). | Planned |
 
 ### Deliverables
 
