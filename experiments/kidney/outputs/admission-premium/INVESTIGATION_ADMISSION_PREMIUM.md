@@ -881,6 +881,8 @@ O volume **quintuplicou** (97→481/ano) enquanto o LOS **caiu pela metade** (2,
 
 ![São Carlos: o modelo que combina eficiência com diversidade](plots/22_sao_carlos_model.png)
 
+> **Nota de classificação hospitalar:** Uma análise posterior (notebook 02) classificou todos os hospitais por tipo de estabelecimento (CNES TP_UNID), perfil de admissão e case-mix. CNES 2080931 é classificado como `hospital_geral__mixed__mixed_procedures`. Quando comparado dentro deste grupo de pares (73 hospitais similares), sua posição é 30º/73 (59º percentile) — acima da mediana mas não o top absoluto. O ranking global anterior era inflado por comparação com hospitais-dia e UPAs. Ver `overperformance-model/OVERPERFORMANCE_MODEL.md` para o ranking justo.
+
 > **Fonte:** SIH AIH Reduzida, SP 2022–2025. CNES 2080931, n=1.650 internações.
 
 ### 7.6 Validação por Machine Learning: o que prediz eficiência?

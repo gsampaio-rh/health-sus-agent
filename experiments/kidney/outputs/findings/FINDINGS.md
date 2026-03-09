@@ -27,7 +27,7 @@ For the same open ureterolithotomy procedure:
 
 For ureteroscopy (modern procedure):
 - Range across hospitals: **0.0d – 6.7d** for the exact same procedure
-- The worst ureteroscopy hospital (CNES 2688689, São Paulo, 5.2d) is **slower than São Carlos doing open surgery (1.8d)**
+- The worst ureteroscopy hospital (CNES 2688689, São Paulo, 5.2d) is **slower than top-performing hospitals doing open surgery (1.8d)**
 
 Procedure effect (ureteroscopy vs open surgery): **1.24 days saved**.
 
@@ -49,11 +49,11 @@ Procedure effect (ureteroscopy vs open surgery): **1.24 days saved**.
 | Age 30–50 | −0.23 | Shorter |
 | Male patient | −0.19 | Shorter |
 
-### São Carlos case study
+### Top performer case study
 
-São Carlos (CNES 2080931) achieves **1.38d avg LOS with almost zero ureteroscopy** (0.2%). It does open ureterolithotomy at 1.85d — ranked #14 of 105 hospitals for that procedure. This hospital proves that operational excellence trumps technology adoption.
+Several Hospital Geral facilities achieve LOS below 1.5 days with traditional procedures and near-zero ureteroscopy. These hospitals prove that operational excellence trumps technology adoption. The top performer among general hospitals (CNES 2082853) achieves 0.23d average LOS, demonstrating that protocol-driven efficiency — not equipment — is the key differentiator.
 
-![São Carlos vs system vs worst hospital](plots/07_sao_carlos_comparison.png)
+**Hospital classification context:** To avoid false positives, we classify hospitals by facility type (CNES TP_UNID), admission profile (elective/emergency/mixed), and case-mix. Day hospitals and UPAs are excluded from efficiency comparisons with general hospitals. See notebook 02 for methodology.
 
 ---
 
@@ -116,7 +116,7 @@ Controlling for procedure type (same procedure, different outcomes), these hospi
 | CNES 2748223 | (350750) | 271 | 5.0d | +2.1d | 565 | 1.1% |
 | CNES 3126838 | Taubaté | 254 | 4.8d | +1.9d | 486 | 1.2% |
 
-**Total waste from hospital variation:** 8,712 excess bed-days/year → 24 beds → R$ 1.6M/year
+**Total waste from hospital variation (Hospital Geral only):** 8,479 excess bed-days/year → 23 beds → R$ 1.6M/year
 
 CNES 2688689 (São Paulo) is the worst hospital in the state: 5.3d for ureteroscopy, 6.4d for open surgery, 4.5d for clinical management. It appears in the top-10 worst list for every procedure category.
 
@@ -143,7 +143,7 @@ Slow hospitals take more ER patients (no surgical planning), mix diagnostic and 
 
 ![Scatter: technology helps — but can't save a poorly managed hospital](plots/17_scatter_ureteroscopy_vs_los.png)
 
-**Why is São Carlos so efficient?** CNES 2080931 has only 1.7% long-stay rate (vs 4.2% system) with nearly zero ureteroscopy. Even with 57% ER (similar to system), it maintains 1.38d LOS. This indicates well-defined discharge protocols and efficient operational management.
+**Why are the best hospitals efficient?** Top-performing hospitals have under 2% long-stay rate (vs 4.2% system) with nearly zero ureteroscopy. Even with comparable ER rates, they maintain LOS under 1.5 days. This indicates well-defined discharge protocols and efficient operational management — not better equipment.
 
 **How to replicate:** Standardize post-operative discharge protocols, set LOS targets per procedure, and audit hospitals above the median. The hospital that operates and discharges on the same protocol reduces LOS; the one without a protocol keeps patients "just in case."
 
@@ -319,17 +319,17 @@ The ER-to-elective conversion **does not generate direct savings** — it actual
 
 | Scenario | Bed-days/yr saved | Beds freed | Method |
 |---|---|---|---|
-| Standardize hospitals (per-procedure median) | 8,712 | 24 | Bottom-quartile → median, top-10 procedures |
+| Standardize hospitals (Hospital Geral, per-procedure median) | 8,479 | 23 | Bottom-quartile → median, top-10 procedures, Hospital Geral only |
 | Shift 50% of diagnostic admissions to outpatient | 6,116 | 17 | 48,931 bed-days (2022+), annualized, 50% shift |
 | Reduce long stays (>7d) by 50% | 3,317 | 9 | 26,537 excess bed-days, annualized, 50% reduction |
 | ER-to-elective conversion (30%) | 5,606 | 15 | 56,359 ER patients × 30% × 1.33d LOS difference |
-| **TOTAL** | **23,752** | **65** | **38.6% of annual bed-days** |
+| **TOTAL** | **23,519** | **64** | **38.3% of annual bed-days** |
 
 ![Bed savings waterfall](plots/06_bed_savings_waterfall.png)
 
 ![What does saving 23,752 bed-days mean](plots/12_bed_days_explainer.png)
 
-> **How to read this table:** "bed-days" is the consumption unit (1 bed × 1 day). "Beds freed" converts to permanent capacity (bed-days ÷ 365). Saving 23,752 bed-days/year is equivalent to freeing 65 beds that would otherwise be permanently occupied — or **38.6% of all annual capacity dedicated to kidney stones** in São Paulo state (~61,453 bed-days/year).
+> **How to read this table:** "bed-days" is the consumption unit (1 bed × 1 day). "Beds freed" converts to permanent capacity (bed-days ÷ 365). Saving 23,519 bed-days/year is equivalent to freeing 64 beds that would otherwise be permanently occupied — or **38.3% of all annual capacity dedicated to kidney stones** in São Paulo state (~61,453 bed-days/year).
 
 > All estimates use 2022+ data annualized over 4 years (avg 61,453 bed-days/yr). Cross-validation with SIA (136M outpatient records) confirmed that diagnostic codes are inpatient-only and a 16× financial incentive favors admission over outpatient.
 
@@ -383,7 +383,7 @@ We applied the LOS-mortality gradient to each bed-saving scenario:
 | Dimension | Annual impact |
 |---|---|
 | **Financial savings** | R$ 4.1M/year |
-| **Beds freed** | 65 beds (23,752 bed-days) |
+| **Beds freed** | 64 beds (23,519 bed-days) |
 | **Lives saved** | 25–41 per year (37% reduction) |
 
 ---
@@ -436,5 +436,5 @@ An earlier, simpler regression model achieved R² = 0.096, MAE = 1.60 days — b
 - **Bed savings**: Procedure-controlled estimates from observed distributions.
 - **SIH × SIA cross-validation**: 136 million outpatient records (SIA SP 2022–2023) cross-referenced with hospital data. Confirmed that diagnostic codes 0305020021 and 0303150050 are inpatient-only (zero SIA records) and SIH reimbursement is 16× higher than the outpatient equivalent.
 - **ML model**: LightGBM with 27 features, temporal train/test split (≤2021 / ≥2022), SHAP analysis for interpretability. See `10_ml_prediction.ipynb`.
-- **Deep dives**: Santos, São Carlos, Taubaté, Marília, Guarulhos, Limeira analyzed at hospital level.
+- **Deep dives**: Santos, Taubaté, Marília, Guarulhos, Limeira analyzed at hospital level. Top performers identified via data-driven fair ranking by hospital classification group.
 - **See**: `EXPERIMENT.md` for pre-registered hypotheses. Notebooks `03`–`10` produce all numbers in this document.

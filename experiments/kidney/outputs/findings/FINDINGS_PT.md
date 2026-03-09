@@ -27,7 +27,7 @@ Para o mesmo procedimento de ureterolitotomia aberta:
 
 Para ureteroscopia (procedimento moderno):
 - Variação entre hospitais: **0,0d – 6,7d** para o exato mesmo procedimento
-- O pior hospital de ureteroscopia (CNES 2688689, São Paulo, 5,2d) é **mais lento que São Carlos fazendo cirurgia aberta (1,8d)**
+- O pior hospital de ureteroscopia (CNES 2688689, São Paulo, 5,2d) é **mais lento que os melhores hospitais fazendo cirurgia aberta (1,8d)**
 
 Efeito do procedimento (ureteroscopia vs cirurgia aberta): **1,24 dias economizados**.
 
@@ -49,11 +49,11 @@ Efeito do procedimento (ureteroscopia vs cirurgia aberta): **1,24 dias economiza
 | Idade 30–50 | −0,23 | Menor |
 | Paciente masculino | −0,19 | Menor |
 
-### Estudo de caso: São Carlos
+### Estudo de caso: hospitais de alta performance
 
-São Carlos (CNES 2080931) alcança **1,38d de permanência média com quase zero ureteroscopia** (0,2%). Realiza ureterolitotomia aberta em 1,85d — classificado em 14º de 105 hospitais nesse procedimento. Este hospital prova que excelência operacional supera adoção de tecnologia.
+Diversos hospitais gerais alcançam permanência média abaixo de 1,5 dias com procedimentos tradicionais e quase zero ureteroscopia. O melhor hospital geral (CNES 2082853) alcança permanência de 0,23 dias. Esses hospitais provam que excelência operacional supera adoção de tecnologia.
 
-![São Carlos vs sistema vs pior hospital](plots/07_sao_carlos_comparison.png)
+**Contexto de classificação hospitalar:** Para evitar falsos positivos, classificamos hospitais por tipo de estabelecimento (CNES TP_UNID), perfil de admissão (eletivo/urgência/misto) e case-mix. Hospitais-dia e UPAs são excluídos das comparações de eficiência com hospitais gerais. Ver notebook 02 para a metodologia.
 
 ---
 
@@ -116,7 +116,7 @@ Controlando por tipo de procedimento (mesmo procedimento, resultados diferentes)
 | CNES 2748223 | (350750) | 271 | 5,0d | +2,1d | 565 | 1,1% |
 | CNES 3126838 | Taubaté | 254 | 4,8d | +1,9d | 486 | 1,2% |
 
-**Desperdício total por variação hospitalar:** 8.712 leitos-dia excedentes/ano → 24 leitos → R$ 1,6M/ano
+**Desperdício total por variação hospitalar (somente Hospital Geral):** 8.479 leitos-dia excedentes/ano → 23 leitos → R$ 1,6M/ano
 
 CNES 2688689 (São Paulo) é o pior hospital do estado: 5,3d para ureteroscopia, 6,4d para cirurgia aberta, 4,5d para tratamento clínico. Aparece entre os 10 piores em todas as categorias de procedimento.
 
@@ -143,7 +143,7 @@ O padrão é claro: hospitais lentos recebem mais pacientes pelo pronto-socorro 
 
 ![Scatter: tecnologia ajuda — mas não salva hospital mal gerido](plots/17_scatter_ureteroscopy_vs_los.png)
 
-**Por que São Carlos é tão eficiente?** O CNES 2080931 tem apenas 1,7% de longa permanência (vs 4,2% do sistema) com quase zero ureteroscopia. Mesmo com 57% de urgência (similar ao sistema), mantém permanência de 1,38d. Isso indica protocolos de alta bem definidos e gestão operacional eficiente — prova de que o problema não é tecnologia, é gestão.
+**Por que os melhores hospitais são tão eficientes?** Os top performers entre hospitais gerais têm menos de 2% de longa permanência (vs 4,2% do sistema) com quase zero ureteroscopia. Mesmo com taxas de urgência comparáveis ao sistema, mantêm permanência abaixo de 1,5 dias. Isso indica protocolos de alta bem definidos e gestão operacional eficiente — prova de que o problema não é tecnologia, é gestão.
 
 **Como replicar?** Padronizar protocolos de alta pós-operatória, estabelecer metas de permanência por procedimento, e auditar hospitais com permanência acima da mediana. O hospital que opera e dá alta no mesmo protocolo reduz permanência; o que não tem protocolo mantém o paciente "por segurança".
 
@@ -319,17 +319,17 @@ O cenário de conversão urgência→eletiva **não gera economia direta** — n
 
 | Cenário | Leitos-dia/ano economizados | Leitos liberados | Método |
 |---|---|---|---|
-| Padronizar hospitais (mediana por procedimento) | 8.712 | 24 | 4º quartil → mediana, 10 maiores procedimentos |
+| Padronizar hospitais (Hospital Geral, mediana por procedimento) | 8.479 | 23 | 4º quartil → mediana, 10 maiores procedimentos, somente Hospital Geral |
 | Migrar 50% das internações diagnósticas para ambulatório | 6.116 | 17 | 48.931 leitos-dia (2022+), anualizado, 50% migração |
 | Reduzir longas permanências (>7d) em 50% | 3.317 | 9 | 26.537 leitos-dia excedentes, anualizado, 50% redução |
 | Conversão urgência-para-eletiva (30%) | 5.606 | 15 | 56.359 pacientes de urgência × 30% × 1,33d diferença |
-| **TOTAL** | **23.752** | **65** | **38,6% dos leitos-dia anuais** |
+| **TOTAL** | **23.519** | **64** | **38,3% dos leitos-dia anuais** |
 
 ![Economia de leitos — cascata](plots/06_bed_savings_waterfall.png)
 
 ![O que significa economizar 23.752 leitos-dia](plots/12_bed_days_explainer.png)
 
-> **Como ler esta tabela:** "leitos-dia" é a unidade de consumo (1 cama × 1 dia). "Leitos liberados" converte para capacidade permanente (leitos-dia ÷ 365). Economizar 23.752 leitos-dia/ano equivale a liberar 65 camas que estariam permanentemente ocupadas — ou **38,6% de toda a capacidade anual dedicada a cálculo renal** no estado de São Paulo (~61.453 leitos-dia/ano).
+> **Como ler esta tabela:** "leitos-dia" é a unidade de consumo (1 cama × 1 dia). "Leitos liberados" converte para capacidade permanente (leitos-dia ÷ 365). Economizar 23.519 leitos-dia/ano equivale a liberar 64 camas que estariam permanentemente ocupadas — ou **38,3% de toda a capacidade anual dedicada a cálculo renal** no estado de São Paulo (~61.453 leitos-dia/ano).
 
 > Todas as estimativas usam dados de 2022+ anualizados ao longo de 4 anos (média de 61.453 leitos-dia/ano). Validação cruzada com SIA (136M registros ambulatoriais) confirmou que os códigos diagnósticos são exclusivamente hospitalares e que existe incentivo financeiro de 16× favorecendo a internação.
 
@@ -383,7 +383,7 @@ Aplicamos o gradiente permanência-mortalidade a cada cenário de economia de le
 | Dimensão | Impacto anual |
 |---|---|
 | **Economia financeira** | R$ 4,1M/ano |
-| **Leitos liberados** | 65 leitos (23.752 leitos-dia) |
+| **Leitos liberados** | 64 leitos (23.519 leitos-dia) |
 | **Vidas salvas** | 25–41 por ano (37% de redução) |
 
 ---
@@ -436,5 +436,6 @@ Um modelo de regressão anterior, mais simples, alcançou R² = 0,096, MAE = 1,6
 - **Economia de leitos**: Estimativas controladas por procedimento a partir de distribuições observadas.
 - **Validação cruzada SIH × SIA**: 136 milhões de registros ambulatoriais (SIA SP 2022–2023) cruzados com dados hospitalares. Confirmou que códigos diagnósticos 0305020021 e 0303150050 são exclusivamente hospitalares (zero registros no SIA) e que a remuneração SIH é 16× superior ao equivalente ambulatorial.
 - **Modelo de ML**: LightGBM com 27 features, split temporal treino/teste (≤2021 / ≥2022), análise SHAP para interpretabilidade. Ver `10_ml_prediction.ipynb`.
-- **Análises detalhadas**: Santos, São Carlos, Taubaté, Marília, Guarulhos, Limeira analisadas em nível hospitalar.
+- **Classificação hospitalar**: Hospitais classificados por tipo de estabelecimento (CNES TP_UNID), perfil de admissão (eletivo/urgência/misto) e case-mix para evitar falsos positivos em rankings. Ver notebook 02.
+- **Análises detalhadas**: Santos, Taubaté, Marília, Guarulhos, Limeira analisadas em nível hospitalar. Top performers identificados via ranking justo por grupo de comparabilidade.
 - **Ver**: `EXPERIMENT.md` para hipóteses pré-registradas. Notebooks `03`–`10` produzem todos os números deste documento.
