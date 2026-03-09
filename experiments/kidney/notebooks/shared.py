@@ -1,15 +1,29 @@
 """Shared constants and helpers for kidney stone analysis notebooks."""
+import json
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 from pathlib import Path
 
+# ---------------------------------------------------------------------------
+# Paths
+# ---------------------------------------------------------------------------
 OUTPUT_DIR = Path("../outputs")
 DATA_DIR = OUTPUT_DIR / "data"
 PLOT_DIR = OUTPUT_DIR / "notebook-plots"
 METRICS_DIR = DATA_DIR / "metrics"
 FINDINGS_DIR = OUTPUT_DIR / "findings"
-INVESTIGATION_DIR = OUTPUT_DIR / "admission-premium"
 
+PROJECT_ROOT = Path("../../..")
+RAW_DATA_DIR = PROJECT_ROOT / "data"
+RAW_SIH_DIR = RAW_DATA_DIR / "sih"
+RAW_CNES_DIR = RAW_DATA_DIR / "cnes"
+RAW_SIA_DIR = RAW_DATA_DIR / "sia"
+
+# ---------------------------------------------------------------------------
+# Procedure taxonomy
+# ---------------------------------------------------------------------------
 CATEGORY_MAP = {
     "0409010170": "SURGICAL",
     "0305020021": "DIAGNOSTIC",
@@ -70,9 +84,95 @@ CITY_NAMES = {
 
 NEW_PROC = "0409010596"
 
+# ---------------------------------------------------------------------------
+# Facility type mapping (CNES TP_UNID)
+# ---------------------------------------------------------------------------
+FACILITY_TYPE_MAP = {
+    "05": "hospital_geral",
+    "07": "hospital_especializado",
+    "15": "unidade_mista",
+    "20": "pronto_socorro",
+    "21": "pronto_socorro",
+    "36": "pronto_socorro",
+    "39": "upa",
+    "62": "hospital_dia",
+}
 
-def load_kidney(data_dir=DATA_DIR):
-    """Load kidney dataset with all standard type conversions."""
+# Legal nature broad categories (CNES NAT_JUR prefix)
+def classify_legal_nature(nat_jur: str) -> str:
+    if pd.isna(nat_jur):
+        return "unknown"
+    nat = str(nat_jur).strip()
+    if nat.startswith("1"):
+        return "public"
+    if nat in ("3999",):
+        return "assoc_privada"
+    if nat in ("4000",):
+        return "filantropica"
+    if nat.startswith("3"):
+        return "fundacao_privada"
+    if nat.startswith("2"):
+        return "private"
+    return "other"
+
+
+# ---------------------------------------------------------------------------
+# Plotting
+# ---------------------------------------------------------------------------
+PLOT_STYLE = {
+    "style": "whitegrid",
+    "palette": "deep",
+    "font_scale": 1.1,
+}
+
+COLORS = {
+    "primary": "#2563EB",
+    "secondary": "#7C3AED",
+    "success": "#059669",
+    "warning": "#D97706",
+    "danger": "#DC2626",
+    "muted": "#6B7280",
+}
+
+
+def setup_plot_style():
+    sns.set_theme(**PLOT_STYLE)
+    plt.rcParams["figure.dpi"] = 120
+    plt.rcParams["savefig.dpi"] = 150
+    plt.rcParams["savefig.bbox"] = "tight"
+    plt.rcParams["figure.figsize"] = (12, 6)
+
+
+def save_plot(fig, name: str, prefix: str = "", plot_dir: Path = PLOT_DIR):
+    plot_dir.mkdir(parents=True, exist_ok=True)
+    fname = f"{prefix}_{name}.png" if prefix else f"{name}.png"
+    fig.savefig(plot_dir / fname, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print(f"  Saved: {fname}")
+
+
+# ---------------------------------------------------------------------------
+# Metrics I/O
+# ---------------------------------------------------------------------------
+def save_metrics(metrics: dict, name: str, metrics_dir: Path = METRICS_DIR):
+    metrics_dir.mkdir(parents=True, exist_ok=True)
+    path = metrics_dir / f"{name}.json"
+    with open(path, "w") as f:
+        json.dump(metrics, f, indent=2, default=str)
+    print(f"  Saved metrics: {name}.json")
+
+
+def load_metrics(name: str, metrics_dir: Path = METRICS_DIR) -> dict:
+    path = metrics_dir / f"{name}.json"
+    with open(path) as f:
+        return json.load(f)
+
+
+# ---------------------------------------------------------------------------
+# Data loading
+# ---------------------------------------------------------------------------
+def load_kidney(data_dir: Path = DATA_DIR) -> pd.DataFrame:
+    """Load kidney dataset with all standard type conversions and derived columns."""
     kidney = pd.read_parquet(data_dir / "kidney_sih.parquet")
     kidney["PROC_REA"] = kidney["PROC_REA"].astype(str).str.strip()
     kidney["MUNIC_RES"] = kidney["MUNIC_RES"].astype(str).str.strip()
@@ -94,5 +194,50 @@ def load_kidney(data_dir=DATA_DIR):
     return kidney
 
 
-def city_name(code):
+def load_hospital_tags(data_dir: Path = DATA_DIR) -> pd.DataFrame:
+    """Load hospital classification tags (produced by notebook 01)."""
+    return pd.read_parquet(data_dir / "hospital_tags.parquet")
+
+
+def load_cnes_enriched(data_dir: Path = DATA_DIR) -> pd.DataFrame:
+    """Load enriched CNES facility features (produced by notebook 01)."""
+    path = data_dir / "cnes_enriched.parquet"
+    if path.exists():
+        return pd.read_parquet(path)
+    print("WARNING: cnes_enriched.parquet not found. Run notebook 01 first.")
+    return pd.DataFrame()
+
+
+def load_cnes_names(data_dir: Path = DATA_DIR) -> pd.DataFrame:
+    """Load hospital names fetched from the CNES API (CNES, nome_fantasia, nome_razao_social)."""
+    path = data_dir / "cnes_names.parquet"
+    if path.exists():
+        return pd.read_parquet(path)
+    print("WARNING: cnes_names.parquet not found. Run the name-fetching script first.")
+    return pd.DataFrame(columns=["CNES", "nome_fantasia", "nome_razao_social"])
+
+
+def hospital_name(cnes_code, names_df: pd.DataFrame | None = None) -> str:
+    """Return the nome_fantasia for a CNES code, or the code itself if not found."""
+    if names_df is None:
+        names_df = load_cnes_names()
+    row = names_df[names_df["CNES"] == cnes_code]
+    if len(row):
+        return row.iloc[0]["nome_fantasia"] or row.iloc[0]["nome_razao_social"]
+    return str(cnes_code)
+
+
+def city_name(code) -> str:
     return CITY_NAMES.get(str(code), str(code))
+
+
+# ---------------------------------------------------------------------------
+# SIH column spec
+# ---------------------------------------------------------------------------
+SIH_COLS = [
+    "DIAG_PRINC", "DIAG_SECUN", "PROC_REA", "PROC_SOLIC",
+    "DIAS_PERM", "MUNIC_RES", "MUNIC_MOV", "CAR_INT",
+    "ESPEC", "CNES", "IDADE", "COD_IDADE", "SEXO",
+    "VAL_TOT", "MORTE", "DT_INTER", "DT_SAIDA",
+    "MARCA_UTI", "COMPLEX", "NATUREZA", "UF_ZI",
+]
