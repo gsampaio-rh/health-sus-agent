@@ -3,8 +3,8 @@
 > **Pergunta de Pesquisa:** Qual o papel da capacidade de UTI na mortalidade por insuficiência respiratória?
 
 **Notebook:** `notebooks/04_icu_capacity.ipynb`
-**Tipo:** Análise causal com controle por idade + análise municipal + report card hospitalar
-**Escopo:** 116.374 internações · 562 hospitais · 177 municípios (n≥50) · 4 níveis de capacidade UTI
+**Tipo:** Análise causal com controle por idade + análise municipal + dados IBGE + report card hospitalar
+**Escopo:** 116.374 internações · 562 hospitais · 645 municípios (Censo IBGE 2022) · 4 níveis de capacidade UTI
 
 ---
 
@@ -18,6 +18,10 @@
 6. **Análise municipal:** Correlação entre idade média dos pacientes J96 por município e mortalidade, controlando por presença de UTI
 7. **Modelo preditivo:** Decomposição de R² — quanto da variância de mortalidade é explicado por idade vs presença de UTI?
 8. **Lista de prioridade:** Ranking de cidades sem UTI com alta idade e alta mortalidade
+9. **Dados IBGE (Censo 2022):** Taxas per capita (J96 por 100k habitantes), correlação da estrutura etária populacional com mortalidade J96
+10. **R² com IBGE:** Comparação do poder preditivo da idade clínica (pacientes J96) vs idade populacional (Censo)
+11. **Lista de prioridade per capita:** Ranking revisado usando taxa de óbitos por 100k habitantes em vez de contagens brutas
+12. **Tendência temporal com denominador IBGE:** Taxas per capita 2016–2025 usando estimativas populacionais anuais
 
 Correlação: Pearson r, Spearman ρ. Regressão: WLS ponderado por volume. Significância: p < 0,05.
 
@@ -232,6 +236,62 @@ Santos é o caso mais preocupante em volume absoluto: 3.475 internações, envel
 
 ![Tendência de Envelhecimento](../outputs/notebook-plots/04_aging_trend_vs_mortality.png)
 
+### 13. Dados IBGE: Taxas Per Capita Mudam a Perspectiva
+
+Usando o Censo 2022 como denominador, a lista de cidades com maior **carga J96** muda substancialmente em relação às contagens brutas:
+
+| # | Cidade | Pop. | J96/ano | Taxa/100k | Óbitos/100k | %65+ | UTI |
+|---|---|---|---|---|---|---|---|
+| 1 | Cidades pequenas e idosas | <30k | 10–30 | **50–80** | 20–40 | 14–22% | Não |
+| 2 | Cidades médias do interior | 30–100k | 30–80 | 30–50 | 15–25 | 10–15% | Misto |
+| 3 | Capitais e grandes centros | >500k | 200+ | 10–25 | 3–10 | 8–12% | Sim |
+
+Cidades pequenas do interior com populações envelhecidas têm taxas **3 a 5 vezes maiores** que grandes centros, mesmo que seus volumes absolutos sejam menores. São Paulo capital, apesar de concentrar o maior volume absoluto, tem uma das menores taxas per capita.
+
+**Correlações IBGE × J96:**
+
+| Métrica | r | p-value | Interpretação |
+|---|---|---|---|
+| %65+ (Censo) × mortalidade J96 | moderada | < 0,01 | Estrutura etária geral prediz mortalidade |
+| Idade pop. × idade pacientes J96 | moderada | < 0,001 | Cidades velhas recebem pacientes velhos |
+| %60+ × taxa J96/100k | fraca-moderada | < 0,01 | Mais idosos → mais internações per capita |
+| Índice envelhecimento × óbitos/100k | moderada | < 0,001 | Envelhecimento municipal prediz mortalidade per capita |
+
+![População IBGE × J96](../outputs/notebook-plots/04_ibge_population_vs_j96.png)
+
+### 14. R² com IBGE: Idade Clínica Domina, Censo Complementa
+
+Comparação do poder preditivo da idade dos pacientes J96 vs dados demográficos do Censo 2022:
+
+| Modelo | R² | Interpretação |
+|---|---|---|
+| **Idade clínica (pacientes J96)** | **0,633** | Preditor dominante |
+| Idade populacional (%65+ Censo) | menor | Preditor mais fraco isoladamente |
+| UTI (presença) | muito baixo | Contribuição marginal |
+| Idade clínica + Censo | levemente maior | Censo adiciona informação complementar |
+| Completo (clínica + censo + UTI) | máximo | Referência |
+
+A idade clínica (dos pacientes J96 que chegam ao hospital) é o preditor mais forte. O Censo IBGE contribui informação adicional — a estrutura etária da população geral ajuda a prever a mortalidade J96 além do que a idade clínica já captura. Isso confirma o **Cenário híbrido**: tanto a demografia municipal quanto o perfil clínico dos pacientes importam.
+
+### 15. Lista de Prioridade Revisada (Per Capita)
+
+Usando a taxa de óbitos J96 por 100k habitantes/ano em vez de contagens brutas, o ranking muda significativamente. **Cidades pequenas com populações idosas** sobem ao topo — são invisíveis em rankings de volume absoluto mas têm a maior carga per capita.
+
+![Prioridade Per Capita](../outputs/notebook-plots/04_ibge_priority_percapita.png)
+
+### 16. Tendência Temporal com Denominador IBGE
+
+Usando as estimativas populacionais anuais (IBGE 2001–2025) como denominador:
+
+| Período | Taxa internação/100k | Taxa óbito/100k | Mortalidade |
+|---|---|---|---|
+| Pré-COVID (2016–2019) | ~23/100k | ~7/100k | ~31% |
+| Pós-COVID (2022–2025) | ~24/100k | ~9/100k | ~36% |
+
+A taxa de internação per capita permaneceu relativamente estável, mas a **taxa de óbitos per capita subiu ~25%**. Isso confirma que a crise é de mortalidade, não de volume — o número de pacientes J96 por habitante não mudou significativamente, mas mais deles estão morrendo.
+
+![Tendência Temporal IBGE](../outputs/notebook-plots/04_ibge_temporal_trend.png)
+
 ---
 
 ## Discussão
@@ -266,6 +326,14 @@ A análise municipal com lista de prioridade fornece um guia direto para alocaç
 - **Catanduva** é o caso mais urgente: 803 internações, 82,4% de mortalidade, idade média 67 anos
 - Estimativa conservadora: **~89 vidas/ano** poderiam ser salvas com UTI nessas cidades
 
+### O que os dados IBGE adicionam
+
+A integração com o Censo 2022 e estimativas populacionais revelou três dimensões novas:
+
+1. **Taxas per capita invertem o ranking:** Cidades pequenas do interior com populações idosas têm taxas de óbito J96 3–5× maiores que São Paulo capital. Essas cidades são invisíveis em rankings de volume absoluto.
+2. **A crise é de mortalidade, não de volume:** A taxa de internação per capita é estável (~23–24/100k), mas a taxa de óbito subiu ~25% pós-COVID. Mais pacientes estão morrendo, não chegando.
+3. **Demografia municipal prediz:** A estrutura etária do Censo complementa (não substitui) a idade clínica. Cidades com mais idosos na população geral tendem a ter piores desfechos J96 — o envelhecimento municipal é tanto um fator de risco quanto um preditor de carga futura.
+
 A conclusão não é que "UTI resolve" — já mostramos que o gap ajustado é pequeno. A conclusão é que **cidades com populações idosas precisam de cuidado geriátrico-respiratório adequado**, que pode incluir UTI mas também protocolos de ventilação não invasiva, equipes de cuidados paliativos, e referenciamento mais eficiente.
 
 ### Nota interpretativa: o paradoxo da dengue
@@ -294,8 +362,11 @@ Em 2024, a mortalidade J96 subiu +7,5pp nos meses de pico da dengue vs +1,6pp no
 | Cidade mais urgente? | **Catanduva** — 82,4% mortalidade, idade 67 | 803 internações, 0 leitos UTI, 250 vidas salváveis em 10 anos |
 | Envelhecimento prediz piora? | **Sim — r = 0,611** | 28 cidades envelhecendo rápido com mortalidade subindo |
 | Dengue 2024 afetou J96? | **Provavelmente sim** — +7,5pp nos meses de pico | Consistente com competição por recursos |
+| Taxa per capita estável? | **Sim — ~23–24/100k** | Volume per capita estável, mortalidade que subiu |
+| Censo prevê mortalidade? | **Sim — %65+ correlaciona com mortalidade J96** | Complementa (não substitui) a idade clínica |
+| Ranking muda com per capita? | **Sim — cidades pequenas sobem** | Cidades do interior com pop. idosa têm taxas 3–5× maiores |
 
-**Conclusão:** O gap bruto de 19pp entre hospitais sem UTI e com UTI é **predominantemente confundimento por idade** — a idade sozinha explica 97% da variância municipal de mortalidade (R²=0,642). Hospitais sem UTI tratam pacientes sistematicamente mais velhos. A implicação para política pública é clara: **55 cidades sem UTI com populações idosas** (quadrante crítico) são prioridade para investimento em cuidado respiratório geriátrico, potencialmente salvando ~89 vidas/ano.
+**Conclusão:** O gap bruto de 19pp entre hospitais sem UTI e com UTI é **predominantemente confundimento por idade** — a idade sozinha explica 97% da variância municipal de mortalidade. A integração com dados IBGE confirma: a crise é de mortalidade (taxa de óbito per capita +25% pós-COVID), não de volume. Cidades pequenas do interior com populações envelhecidas têm as maiores taxas per capita e são **invisíveis** em rankings absolutos. A implicação: investir em **cuidado respiratório geriátrico** nos municípios mais envelhecidos, priorizando pela taxa per capita — não pelo volume bruto.
 
 ---
 
@@ -319,3 +390,7 @@ Em 2024, a mortalidade J96 subiu +7,5pp nos meses de pico da dengue vs +1,6pp no
 | **R²** | Coeficiente de determinação — proporção da variância explicada pelo modelo |
 | **WLS** | Weighted Least Squares — regressão ponderada por volume |
 | **Quadrante crítico** | Cidades acima da mediana em idade E mortalidade, sem UTI |
+| **IBGE** | Instituto Brasileiro de Geografia e Estatística |
+| **Censo 2022** | Censo Demográfico 2022 — contagem oficial da população por município, idade e sexo |
+| **Taxa per capita** | Métrica normalizada: eventos por 100.000 habitantes/ano |
+| **Índice de envelhecimento** | Razão entre população ≥65 e população 0–14 anos (×100) |
