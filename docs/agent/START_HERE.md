@@ -29,13 +29,17 @@ Each took ~25 human–AI interactions over multiple sessions. The human acted as
 
 ### The documents you must read
 
-1. **`docs/AGENT_LESSONS_LEARNED.md`** — The most important doc. Captures five failure modes of AI research (circular findings, satisficing, no counterfactual imagination, statistics without meaning, linear execution) and the architecture to fix them. **Read this first.**
+1. **`docs/agent/LESSONS_LEARNED.md`** — The most important doc. Captures five failure modes of AI research (circular findings, satisficing, no counterfactual imagination, statistics without meaning, linear execution) and the architecture to fix them. **Read this first.**
 
-2. **`docs/PRD_LANGGRAPH_AGENT.md`** — Earlier PRD with LangGraph architecture, state schema, REPL design, and MCP integration plan. Some parts are superseded by the lessons learned doc (especially: notebooks are output, not execution). Use as reference for state schema and tool design.
+2. **`docs/agent/ARCHITECTURE.md`** — Technical architecture: Skills, RLM pattern, Memory layers, graph structure, component inventory.
 
-3. **`experiments/respiratory_failure/EXPERIMENT.md`** — Example of a complete experiment specification. Shows the level of rigor expected: research questions, hypotheses, data sources, inclusion criteria, causal rigor notes.
+3. **`docs/agent/ROADMAP.md`** — Sprint-by-sprint plan with deliverables and definition of done.
 
-4. **`experiments/respiratory_failure/notebooks/shared.py`** — Example of the helper layer that each experiment uses. Data loading, plot styling, metrics saving.
+4. **`docs/agent/PRD.md`** — Earlier PRD with LangGraph architecture, state schema, REPL design, and MCP integration plan. Some parts are superseded by the lessons learned doc (especially: notebooks are output, not execution). Use as reference for state schema and tool design.
+
+5. **`experiments/respiratory_failure/EXPERIMENT.md`** — Example of a complete experiment specification. Shows the level of rigor expected: research questions, hypotheses, data sources, inclusion criteria, causal rigor notes.
+
+6. **`experiments/respiratory_failure/notebooks/shared.py`** — Example of the helper layer that each experiment uses. Data loading, plot styling, metrics saving.
 
 ---
 
@@ -81,7 +85,8 @@ or more precisely:
 | **Findings Accumulator** | Persistent cross-step knowledge. Facts, contradictions, open questions. | Prevents linear thinking. Propagates new insights back. |
 | **Output Renderer** | Generates notebooks, reports, metrics FROM the execution trace | Notebooks are output, not execution. |
 
-See `docs/AGENT_LESSONS_LEARNED.md` § 4.2–4.6 for full architecture description.
+See `docs/agent/LESSONS_LEARNED.md` § 4.2–4.6 for failure mode architecture.
+See `docs/agent/ARCHITECTURE.md` for full technical architecture.
 
 ---
 
