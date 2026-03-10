@@ -243,6 +243,27 @@ def load_related_conditions(data_dir: Path = DATA_DIR) -> pd.DataFrame:
     return pd.DataFrame()
 
 
+def load_cnes_names(data_dir: Path = DATA_DIR) -> pd.DataFrame:
+    """Load hospital names (CNES, nome_fantasia, nome_razao_social)."""
+    path = data_dir / "cnes_names.parquet"
+    if path.exists():
+        return pd.read_parquet(path)
+    return pd.DataFrame(columns=["CNES", "nome_fantasia", "nome_razao_social"])
+
+
+def hospital_name(cnes_code, names_df: pd.DataFrame | None = None) -> str:
+    """Return the nome_fantasia for a CNES code, or the code itself if not found."""
+    if names_df is None:
+        names_df = load_cnes_names()
+    cnes_code = str(cnes_code).strip()
+    row = names_df[names_df["CNES"] == cnes_code]
+    if len(row):
+        val = row.iloc[0].get("nome_fantasia") or row.iloc[0].get("nome_razao_social", "")
+        if val and str(val).strip() != "nan":
+            return str(val).strip()[:50]
+    return cnes_code
+
+
 def load_sim_respiratory(data_dir: Path = DATA_DIR) -> pd.DataFrame:
     """Load SIM mortality records for J96 causes."""
     path = data_dir / "sim_respiratory.parquet"
