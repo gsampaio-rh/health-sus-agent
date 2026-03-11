@@ -16,7 +16,7 @@
 - Critic adapted for tool-based evaluation
 - Performance: 59min -> 3.8min per investigation
 
-### Sprint 2 — Multi-Agent Spine (current)
+### Sprint 2 — Multi-Agent Spine
 - Repo cleanup: standalone agent project
 - Skills split into 7 per-capability files
 - InvestigationContext shared state
@@ -26,18 +26,28 @@
 - Structured output: reports/, traces/, plots/
 - E2E verified: J96 investigation, 12min, 10 agents, 0 errors
 
+### Sprint 2.5 — Robustness and Caching
+- **DataCatalog**: Auto-profiled schemas (column names, dtypes, sample values) injected into every RQ prompt — eliminates column-guessing errors
+- **Error recovery (Phase 3.5)**: Spine collects errors, retries agents with error rate > 30% and >= 3 errors, injecting `prior_errors` into prompts
+- **ArtifactStore**: Persistent cross-run cache for intermediate datasets (parquet) and charts (PNG) with source-data fingerprinting for staleness detection
+- **Filter prefix matching**: `filter_dataset` supports `"J96*"`, `{"startswith": "J96"}`, `{"contains": "96"}` for ICD codes — prevents 0-row filter results
+- **Empty data guards**: `filter_dataset` returns errors for 0-row results; `create_chart` rejects empty datasets; cache refuses 0-row entries
+- **Error routing fix**: `execute_tool` catches both `"Error:"` and `"Error "` prefixes, routing all tool errors to the `error` field in traces
+- **Pre-validation**: Dataset and column existence checked before tool execution, with enriched error messages listing available names
+- **Template placeholder detection**: `record_finding` rejects `{variable}` patterns, forcing the LLM to use actual values
+- **Documentation overhaul**: Rewrote `ARCHITECTURE.md` with 5 mermaid diagrams, created `EVALUATION.md` and `DATASETS.md`, updated `README.md`
+
 ## Next
 
-### Sprint 3 — Quality and Robustness
+### Sprint 3 — Quality Gates and Memory
 - Critic integration in RQAgent GPAOR loop (quality gates per step)
-- Retry logic for failed tool calls and LLM errors
 - Scratchpad persistence and resumable runs
 - Unit tests for all agents (mocked LLM)
 - Integration test with fixture data
-
-### Sprint 4 — RAG and Context
-- Embed skill files for retrieval during agent reasoning
 - Cross-investigation memory (persist findings across runs)
+
+### Sprint 4 — RAG and MCP
+- Embed skill files for retrieval during agent reasoning
 - Data dictionary auto-discovery from loaded datasets
 - MCP integration for querying large DATASUS datasets
 

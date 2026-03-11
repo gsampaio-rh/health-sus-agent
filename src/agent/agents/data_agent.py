@@ -13,13 +13,18 @@ from pathlib import Path
 from loguru import logger
 
 from src.agent.agents.base import BaseAgent, build_tools_description
+from src.agent.artifact_store import ArtifactStore
 
 
 class DataAgent(BaseAgent):
 
-    def __init__(self, *args, data_dir: str | Path = "", **kwargs):
+    def __init__(
+        self, *args, data_dir: str | Path = "",
+        artifact_store: ArtifactStore | None = None, **kwargs,
+    ):
         super().__init__(*args, **kwargs)
         self.data_dir = Path(data_dir) if data_dir else None
+        self.artifact_store = artifact_store
 
     @property
     def agent_name(self) -> str:
@@ -67,14 +72,61 @@ Respond with [] when done. Do NOT include any text outside the JSON array.
         )
 
     def run(self):
-        """Override: preload data before running the tool loop."""
+        """Override: preload data, check cache, then run the tool loop."""
         if self.data_dir and self.data_dir.exists():
             self._preload_data()
+            self._check_and_restore_cache()
 
         result = super().run()
 
         self._build_catalog()
+        self._persist_intermediates_to_cache()
         return result
+
+    def _check_and_restore_cache(self) -> None:
+        """Validate cache against source data. Restore or invalidate."""
+        if not self.artifact_store:
+            return
+
+        parquet_files = self._discover_parquet_files()
+        fingerprint = self.artifact_store.compute_fingerprint(parquet_files)
+
+        if self.artifact_store.is_cache_valid(fingerprint):
+            cached = self.artifact_store.load_all_cached_datasets()
+            if cached:
+                from src.agent.tools.data import _DATASETS
+                _DATASETS.update(cached)
+                logger.info(
+                    f"[{self.agent_name}] Cache valid — restored "
+                    f"{len(cached)} cached datasets"
+                )
+        else:
+            self.artifact_store.invalidate()
+            self.artifact_store.set_fingerprint(fingerprint, parquet_files)
+            logger.info(
+                f"[{self.agent_name}] Cache invalidated — "
+                f"new fingerprint {fingerprint[:8]}..."
+            )
+
+    def _persist_intermediates_to_cache(self) -> None:
+        """Save any new intermediate datasets created during profiling."""
+        if not self.artifact_store:
+            return
+
+        from src.agent.tools.data import _DATASETS
+
+        primary = set(self.context.datasets_loaded)
+        for name, df in _DATASETS.items():
+            if name in primary:
+                continue
+            if not self.artifact_store.has_dataset(name, "data_agent", {}):
+                self.artifact_store.save_dataset(name, df, "data_agent", {})
+
+        logger.info(
+            f"[{self.agent_name}] Cache: "
+            f"{self.artifact_store.cached_dataset_count()} datasets, "
+            f"{self.artifact_store.cached_chart_count()} charts"
+        )
 
     def _discover_parquet_files(self) -> list[Path]:
         """Find all parquet files/directories recursively."""

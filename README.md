@@ -6,17 +6,18 @@ Given a research question (e.g., *"Investigate respiratory failure (J96) mortali
 
 ## Architecture
 
-The agent uses a **spine** architecture: a rigid sequence of named agents, each with explicit input/output contracts.
+The agent uses a **spine** architecture: a rigid sequence of named agents, each with explicit input/output contracts, a persistent artifact cache, and automatic error recovery.
 
 ```
-DirectorAgent  ->  DataAgent  ->  RQAgent (per question)  ->  SynthesisAgent
-  plan.md          data_report.md   NN_topic.md               executive_summary.md
-  context.json     datasets         findings                   FINDINGS.md
+Director  ->  DataAgent  ->  RQAgent (x N)  ->  [Recovery]  ->  Synthesis
+ plan.md      datasets        findings           retry errors    executive_summary.md
+ context.json DataCatalog     charts             prior_errors    FINDINGS.md
+                              ↕ ArtifactStore (cache/)
 ```
 
-Each agent follows a **Goal-Plan-Act-Observe-Reflect** reasoning loop with a structured scratchpad, and is evaluated by a Critic quality gate.
+Each agent follows a **Goal-Plan-Act-Observe-Reflect** reasoning loop with pre-built tools, structured scratchpads, and multi-round LLM reasoning.
 
-See `docs/ARCHITECTURE.md` for the full technical design.
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full technical design with diagrams.
 
 ## Quick Start
 
@@ -40,32 +41,30 @@ python scripts/run_investigation.py \
 
 ```
 src/agent/
-  agents/           # Named agents (director, data, rq, synthesis)
-  tools/            # Pre-built analysis tools (data, analysis, viz, findings)
-  config.py         # LLM provider configuration
-  context.py        # Shared investigation context
-  critic.py         # 5-test quality gate
-  accumulator.py    # Cross-step findings store
-  state.py          # State dataclasses
-  tracer.py         # Structured logging
-  spine.py          # Pipeline orchestrator
-  skill.py          # Skill loader
+  agents/            # Named agents (director, data, rq, synthesis)
+  tools/             # Pre-built analysis tools (data, analysis, viz, findings)
+  artifact_store.py  # Persistent cache for datasets and charts
+  config.py          # LLM provider configuration
+  context.py         # Shared investigation context + DataCatalog
+  critic.py          # 5-test quality gate
+  accumulator.py     # Cross-step findings store
+  state.py           # State dataclasses
+  spine.py           # Pipeline orchestrator with error recovery
+  skill.py           # Skill loader
 
-skills/             # Per-capability domain knowledge
-  sus_domain.md     # SUS data schemas, ICD-10, IBGE codes
-  data_loading.md   # Parquet loading patterns
-  eda_patterns.md   # Analysis decomposition strategies
-  statistical_tests.md  # Statistical test selection
-  report_writing.md # Report structure and narrative style
-  sus_gotchas.md    # Common pitfalls
+skills/              # Per-capability domain knowledge (7 files)
 
-experiments/        # Data for investigations
-  respiratory_failure/outputs/data/  # J96 parquet files
-  kidney/outputs/data/               # N20 parquet files
+experiments/         # Pre-processed data for investigations
+  respiratory_failure/outputs/data/   # J96 parquet files (8 datasets)
 
-docs/               # Architecture and roadmap
-eval/               # Critic evaluation framework
-tests/              # Unit and integration tests
+cache/               # Persistent artifact cache (auto-managed, gitignored)
+  manifest.json      # Fingerprint + artifact registry
+  datasets/          # Cached intermediate parquets
+  plots/             # Cached chart PNGs
+
+docs/                # Architecture, evaluation, datasets, roadmap
+eval/                # Critic evaluation framework
+tests/               # Unit and integration tests
 ```
 
 ## Configuration
@@ -80,6 +79,15 @@ Environment variables (via pydantic-settings):
 | `AGENT_LLM_API_KEY` | — | API key |
 | `AGENT_LLM_MAX_TOKENS` | `4096` | Max output tokens |
 | `AGENT_LLM_TIMEOUT_SECONDS` | `120` | Request timeout |
+
+## Documentation
+
+| Document | Content |
+|----------|---------|
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Spine pipeline, GPAOR loop, tool system, cache, error recovery — with 5 mermaid diagrams |
+| [`docs/EVALUATION.md`](docs/EVALUATION.md) | Reading outputs, interpreting traces, quality metrics, Critic evaluation |
+| [`docs/DATASETS.md`](docs/DATASETS.md) | Experiment datasets, adding new investigations, DataCatalog |
+| [`docs/ROADMAP.md`](docs/ROADMAP.md) | Sprint history and future plans |
 
 ## Development
 

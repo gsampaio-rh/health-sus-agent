@@ -228,7 +228,14 @@ def filter_dataset(
     for col, val in conditions.items():
         if col not in df.columns:
             continue
-        if isinstance(val, list):
+        if isinstance(val, dict):
+            if "startswith" in val:
+                df = df[df[col].astype(str).str.startswith(str(val["startswith"]))]
+            elif "contains" in val:
+                df = df[df[col].astype(str).str.contains(str(val["contains"]), na=False)]
+            elif "isin" in val:
+                df = df[df[col].isin(val["isin"])]
+        elif isinstance(val, list):
             df = df[df[col].isin(val)]
         elif isinstance(val, str) and val[:1] in (">", "<"):
             op = val[:2] if val[:2] in (">=", "<=") else val[:1]
@@ -241,10 +248,33 @@ def filter_dataset(
                 df = df[df[col] >= num]
             elif op == "<=":
                 df = df[df[col] <= num]
+        elif isinstance(val, str) and val.endswith("*"):
+            prefix = val[:-1]
+            df = df[df[col].astype(str).str.startswith(prefix)]
         else:
             df = df[df[col] == val]
 
     save_name = new_name or f"{dataset}_filtered"
+
+    if len(df) == 0:
+        original_df = get_dataset(dataset)
+        sample_vals = {}
+        for col in conditions:
+            if col in original_df.columns:
+                unique = original_df[col].dropna().unique()[:8]
+                sample_vals[col] = [str(v) for v in unique]
+        hint = ""
+        if sample_vals:
+            hint = " Sample values: " + "; ".join(
+                f"{c}={vs}" for c, vs in sample_vals.items()
+            )
+        return (
+            f"Error: filter produced 0 rows from '{dataset}' "
+            f"({original_len} rows).{hint} "
+            f"For ICD codes use prefix matching: "
+            f'{{\"col\": \"J96*\"}} or {{\"col\": {{\"startswith\": \"J96\"}}}}'
+        )
+
     _DATASETS[save_name] = df
 
     return (

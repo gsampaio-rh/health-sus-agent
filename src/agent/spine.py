@@ -16,11 +16,12 @@ from pathlib import Path
 
 from loguru import logger
 
-from src.agent.agents.base import AgentResult
+from src.agent.agents.base import AgentResult, set_artifact_store
 from src.agent.agents.data_agent import DataAgent
 from src.agent.agents.director import DirectorAgent
 from src.agent.agents.rq_agent import RQAgent
 from src.agent.agents.synthesis import SynthesisAgent
+from src.agent.artifact_store import ArtifactStore
 from src.agent.config import AgentConfig, get_llm
 from src.agent.context import InvestigationContext
 from src.agent.tools import visualization as viz_tools
@@ -70,11 +71,15 @@ class Spine:
         output_dir: str | Path = "runs",
         max_tool_rounds: int = 5,
         enable_recovery: bool = True,
+        enable_cache: bool = True,
+        cache_dir: str | Path = "cache",
     ):
         self.config = config or AgentConfig()
         self.output_dir = Path(output_dir)
         self.max_tool_rounds = max_tool_rounds
         self.enable_recovery = enable_recovery
+        self.enable_cache = enable_cache
+        self.cache_dir = Path(cache_dir)
         self.llm = get_llm(self.config)
 
     def run(
@@ -93,6 +98,14 @@ class Spine:
         (run_dir / "plots").mkdir(exist_ok=True)
 
         viz_tools.set_output_dir(str(run_dir / "plots"))
+
+        store: ArtifactStore | None = None
+        if self.enable_cache:
+            store = ArtifactStore(self.cache_dir)
+            set_artifact_store(store)
+            logger.info(f"Cache enabled: {self.cache_dir}")
+        else:
+            set_artifact_store(None)
 
         context = InvestigationContext(
             question=question,
@@ -135,7 +148,8 @@ class Spine:
         logger.info("--- Phase 2: Data Agent ---")
         data_agent = DataAgent(
             llm=self.llm, context=context, run_dir=run_dir,
-            data_dir=data_dir, max_tool_rounds=self.max_tool_rounds,
+            data_dir=data_dir, artifact_store=store,
+            max_tool_rounds=self.max_tool_rounds,
         )
         data_result = data_agent.run()
         result.agent_results.append(data_result)
@@ -200,10 +214,18 @@ class Spine:
             if tc.error
         )
 
+        cache_info = ""
+        if store:
+            cache_info = (
+                f", cache: {store.cached_dataset_count()} datasets, "
+                f"{store.cached_chart_count()} charts"
+            )
+
         logger.info(
             f"=== Spine Complete: {result.duration_ms}ms total, "
             f"{len(result.agent_results)} agents, "
-            f"{total_tools} tool calls ({total_errors} errors) ==="
+            f"{total_tools} tool calls ({total_errors} errors)"
+            f"{cache_info} ==="
         )
 
         return result

@@ -25,6 +25,10 @@ def set_output_dir(path: str | Path) -> None:
     _OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
+def get_output_dir() -> Path:
+    return _OUTPUT_DIR
+
+
 def create_chart(
     chart_type: str,
     dataset: str,
@@ -53,6 +57,9 @@ def create_chart(
         Path to saved chart file.
     """
     df = get_dataset(dataset)
+
+    if len(df) == 0:
+        return f"Error: dataset '{dataset}' is empty (0 rows) — cannot create chart"
 
     for col in [x, y]:
         if col not in df.columns:

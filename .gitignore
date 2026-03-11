@@ -38,6 +38,9 @@ data/
 *.parquet
 experiments/*/outputs/data/
 
+# Artifact cache (regenerated from source data)
+cache/
+
 # Agent runtime outputs (reproducible)
 runs/
 outputs/

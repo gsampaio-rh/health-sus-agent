@@ -58,7 +58,11 @@ def _build_tool_descriptions() -> dict[str, str]:
         ),
         "filter_dataset": (
             "Filter & save as new dataset. "
-            "Args: dataset(str), conditions(dict), new_name(str, opt)"
+            "Args: dataset(str), conditions(dict), new_name(str, opt). "
+            "Supports: {\"col\": \"val\"} (exact), {\"col\": [v1,v2]} (isin), "
+            "{\"col\": \">50\"} (comparison), {\"col\": \"J96*\"} (prefix), "
+            "{\"col\": {\"startswith\": \"J96\"}} (prefix), "
+            "{\"col\": {\"contains\": \"96\"}} (substring)"
         ),
         "aggregate": (
             "Group-by aggregation, optionally save result. "
@@ -302,12 +306,93 @@ def _enrich_error(error_msg: str, tool_name: str, args: dict) -> str:
     return enriched
 
 
+_CACHEABLE_DATASET_TOOLS = {"aggregate", "time_series", "cross_tabulate", "filter_dataset"}
+
+# Module-level store reference — set by Spine before agents run
+_artifact_store: "ArtifactStore | None" = None
+
+
+def set_artifact_store(store: "ArtifactStore | None") -> None:
+    global _artifact_store
+    _artifact_store = store
+
+
+def _try_cache_hit(name: str, args: dict) -> ToolCall | None:
+    """Return a cached ToolCall if available, else None."""
+    if _artifact_store is None:
+        return None
+
+    new_name = args.get("new_name")
+    if name in _CACHEABLE_DATASET_TOOLS and new_name:
+        if _artifact_store.has_dataset(new_name, name, args):
+            from src.agent.tools.data import _DATASETS
+
+            df = _artifact_store.load_dataset(new_name)
+            if df is not None:
+                _DATASETS[new_name] = df
+                result = (
+                    f"[cached] Loaded '{new_name}' from cache: "
+                    f"{len(df)} rows, columns={list(df.columns)}"
+                )
+                return ToolCall(
+                    tool_name=name, arguments=args,
+                    result=result, duration_ms=0,
+                )
+
+    if name == "create_chart":
+        filename = args.get("filename", "")
+        if filename and _artifact_store.has_chart(filename, args):
+            cached_path = _artifact_store.get_chart_path(filename)
+            if cached_path:
+                dest = viz_tools.get_output_dir() / filename
+                import shutil
+                shutil.copy2(cached_path, dest)
+                return ToolCall(
+                    tool_name=name, arguments=args,
+                    result=f"[cached] Chart saved: {dest}",
+                    artifacts=[str(dest)], duration_ms=0,
+                )
+
+    return None
+
+
+def _save_to_cache(name: str, args: dict, tc: ToolCall) -> None:
+    """After successful execution, persist cacheable artifacts.
+
+    Skips empty datasets and charts generated from empty data.
+    """
+    if _artifact_store is None or tc.error:
+        return
+
+    new_name = args.get("new_name")
+    if name in _CACHEABLE_DATASET_TOOLS and new_name:
+        from src.agent.tools.data import _DATASETS
+        if new_name in _DATASETS and len(_DATASETS[new_name]) > 0:
+            _artifact_store.save_dataset(
+                new_name, _DATASETS[new_name], name, args,
+            )
+
+    if name == "create_chart" and tc.artifacts:
+        from src.agent.tools.data import _DATASETS
+        ds_name = args.get("dataset", "")
+        if ds_name in _DATASETS and len(_DATASETS[ds_name]) == 0:
+            return
+        filename = args.get("filename", "")
+        if filename and tc.artifacts:
+            _artifact_store.save_chart(filename, tc.artifacts[0], args)
+
+
 def execute_tool(name: str, args: dict) -> ToolCall:
-    """Execute a single tool call with pre-validation."""
+    """Execute a single tool call with cache check and pre-validation."""
     start = time.perf_counter()
 
     if name not in TOOL_REGISTRY:
         return ToolCall(tool_name=name, arguments=args, error=f"Unknown tool: {name}")
+
+    cached = _try_cache_hit(name, args)
+    if cached:
+        logger.debug(f"  Cache hit: {name}({args.get('new_name') or args.get('filename', '')})")
+        return cached
 
     validation_error = _pre_validate(name, args)
     if validation_error:
@@ -321,8 +406,10 @@ def execute_tool(name: str, args: dict) -> ToolCall:
         result = TOOL_REGISTRY[name](**args)
         duration = int((time.perf_counter() - start) * 1000)
 
-        if isinstance(result, str) and result.startswith("Error:"):
-            error_text = result[len("Error:"):].strip()
+        if isinstance(result, str) and (
+            result.startswith("Error:") or result.startswith("Error ")
+        ):
+            error_text = result.split(":", 1)[1].strip() if ":" in result else result
             enriched = _enrich_error(error_text, name, args)
             return ToolCall(
                 tool_name=name, arguments=args,
@@ -332,10 +419,13 @@ def execute_tool(name: str, args: dict) -> ToolCall:
         artifacts = []
         if isinstance(result, str) and "Chart saved:" in result:
             artifacts.append(result.replace("Chart saved: ", "").strip())
-        return ToolCall(
+
+        tc = ToolCall(
             tool_name=name, arguments=args, result=str(result),
             artifacts=artifacts, duration_ms=duration,
         )
+        _save_to_cache(name, args, tc)
+        return tc
     except Exception as e:
         duration = int((time.perf_counter() - start) * 1000)
         error_msg = f"{type(e).__name__}: {e}"
