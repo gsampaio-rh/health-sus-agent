@@ -25,6 +25,7 @@ from src.agent.artifact_store import ArtifactStore
 from src.agent.config import AgentConfig, get_llm
 from src.agent.context import InvestigationContext
 from src.agent.tools import visualization as viz_tools
+from src.agent.tree import save_tree
 
 
 @dataclass
@@ -199,10 +200,13 @@ class Spine:
         result.agent_results.append(synthesis_result)
         logger.info(f"Synthesis: {synthesis_result.duration_ms}ms")
 
-        # Save final context
+        # Save final context and investigation tree
         context.save(run_dir / "context.json")
 
         result.duration_ms = int((time.perf_counter() - start) * 1000)
+
+        tree_path = save_tree(result, context, run_dir)
+        logger.info(f"Investigation tree: {tree_path}")
 
         total_tools = sum(
             len(ar.trace.tool_calls) for ar in result.agent_results
