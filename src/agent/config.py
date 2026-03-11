@@ -25,6 +25,8 @@ class AgentConfig(BaseSettings):
     llm_base_url: str = ""
     llm_api_key: str = ""
     llm_temperature: float = 0.0
+    llm_max_tokens: int = 4096
+    llm_timeout_seconds: int = 120
 
     repl_timeout_seconds: int = 120
     repl_max_output_chars: int = 50_000
@@ -42,6 +44,7 @@ def get_llm(config: AgentConfig | None = None) -> BaseChatModel:
     kwargs: dict = {
         "model": config.resolved_model,
         "temperature": config.llm_temperature,
+        "max_tokens": config.llm_max_tokens,
     }
 
     if config.llm_provider == "anthropic":
@@ -58,4 +61,6 @@ def get_llm(config: AgentConfig | None = None) -> BaseChatModel:
         kwargs["base_url"] = config.llm_base_url
     if config.llm_api_key:
         kwargs["api_key"] = config.llm_api_key
+    kwargs["timeout"] = config.llm_timeout_seconds
+    kwargs["request_timeout"] = config.llm_timeout_seconds
     return ChatOpenAI(**kwargs)

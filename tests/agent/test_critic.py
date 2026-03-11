@@ -108,6 +108,37 @@ def test_parse_response_with_markdown_wrapping():
     assert reflection.decision == CriticDecision.PASS
 
 
+def test_parse_response_with_thinking_tags():
+    wrapped = (
+        "<think>Let me analyze this step...</think>\n"
+        + SAMPLE_PASS_RESPONSE
+    )
+    reflection = _parse_response(wrapped)
+    assert reflection.decision == CriticDecision.PASS
+
+
+def test_parse_response_with_control_characters():
+    """Ensure literal newlines inside JSON string values are sanitized."""
+    raw = (
+        '{"verdicts": ['
+        '{"test_name": "circularity", "passed": true, '
+        '"reasoning": "Not\ntautological"},'
+        '{"test_name": "depth", "passed": true, '
+        '"reasoning": "Has\tdecomposition"},'
+        '{"test_name": "surprise", "passed": true, '
+        '"reasoning": "ok"},'
+        '{"test_name": "confounders", "passed": true, '
+        '"reasoning": "ok"},'
+        '{"test_name": "so_what", "passed": true, '
+        '"reasoning": "ok"}'
+        '], "decision": "pass", '
+        '"summary": "Good\nanalysis.", "suggestions": []}'
+    )
+    reflection = _parse_response(raw)
+    assert reflection.decision == CriticDecision.PASS
+    assert len(reflection.verdicts) == 5
+
+
 # ---------------------------------------------------------------------------
 # Test Critic with mock LLM
 # ---------------------------------------------------------------------------

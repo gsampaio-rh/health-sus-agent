@@ -44,6 +44,41 @@ class CodeExecution:
     duration_ms: int = 0
 
 
+@dataclass
+class ToolCall:
+    """Record of a single tool invocation."""
+
+    tool_name: str
+    arguments: dict = field(default_factory=dict)
+    result: str = ""
+    error: str | None = None
+    artifacts: list[str] = field(default_factory=list)
+    duration_ms: int = 0
+
+
+@dataclass
+class StepTrace:
+    """Trace of a complete analysis step (may include multiple tool calls)."""
+
+    step_name: str
+    tool_calls: list[ToolCall] = field(default_factory=list)
+    llm_reasoning: str = ""
+    artifacts: list[str] = field(default_factory=list)
+    duration_ms: int = 0
+
+    @property
+    def output_summary(self) -> str:
+        """Concatenated tool outputs for Critic evaluation."""
+        parts = []
+        for tc in self.tool_calls:
+            parts.append(f"[{tc.tool_name}] {tc.result[:500]}")
+        return "\n\n".join(parts)
+
+    @property
+    def has_error(self) -> bool:
+        return any(tc.error for tc in self.tool_calls)
+
+
 # ---------------------------------------------------------------------------
 # Findings
 # ---------------------------------------------------------------------------
@@ -138,6 +173,7 @@ class InvestigationState:
 
     # Execution trace
     trace: list[CodeExecution] = field(default_factory=list)
+    step_traces: list[StepTrace] = field(default_factory=list)
 
     # Findings
     findings: list[Finding] = field(default_factory=list)

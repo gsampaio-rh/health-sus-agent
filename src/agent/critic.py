@@ -12,7 +12,13 @@ import json
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from src.agent.state import CodeExecution, CriticDecision, CriticVerdict, Reflection
+from src.agent.state import (
+    CodeExecution,
+    CriticDecision,
+    CriticVerdict,
+    Reflection,
+    StepTrace,
+)
 
 DOMAIN_PRIORS = [
     "Older patients have higher mortality",
@@ -175,6 +181,18 @@ def _extract_json(raw: str) -> str:
         if start != -1 and end != -1:
             text = text[start : end + 1]
 
+    # Sanitize control characters inside JSON string values.
+    # LLMs (especially qwen3) emit literal \n \t inside strings
+    # which are invalid JSON. Replace them within quoted strings.
+    def _sanitize_string_value(m: re.Match) -> str:
+        s = m.group(0)
+        inner = s[1:-1]
+        inner = inner.replace("\n", "\\n").replace("\r", "\\r")
+        inner = inner.replace("\t", "\\t")
+        return '"' + inner + '"'
+
+    text = re.sub(r'"(?:[^"\\]|\\.)*"', _sanitize_string_value, text)
+
     return text
 
 
@@ -207,6 +225,58 @@ def _parse_response(raw: str) -> Reflection:
     )
 
 
+def _build_step_prompt(
+    step_trace: StepTrace,
+    findings_summary: str,
+    domain_priors: list[str] | None = None,
+) -> str:
+    """Build a Critic prompt from tool-based step results."""
+    priors = domain_priors or DOMAIN_PRIORS
+    priors_text = "\n".join(f"- {p}" for p in priors)
+
+    tool_sections = []
+    for tc in step_trace.tool_calls:
+        section = f"### Tool: {tc.tool_name}\n"
+        if tc.arguments:
+            args_str = ", ".join(
+                f"{k}={v!r}" for k, v in tc.arguments.items()
+            )
+            section += f"Arguments: {args_str}\n"
+        section += f"Result:\n```\n{tc.result[:2000]}\n```"
+        if tc.error:
+            section += f"\nError: {tc.error}"
+        tool_sections.append(section)
+
+    tools_text = "\n\n".join(tool_sections)
+
+    artifacts_text = ""
+    if step_trace.artifacts:
+        artifacts_text = "\n".join(
+            f"- {a}" for a in step_trace.artifacts
+        )
+        artifacts_text = f"\n\n## Artifacts produced\n{artifacts_text}"
+
+    reasoning_text = ""
+    if step_trace.llm_reasoning:
+        reasoning_text = (
+            f"\n\n## Agent reasoning\n{step_trace.llm_reasoning[:1000]}"
+        )
+
+    return f"""\
+## Analysis step: {step_trace.step_name}
+
+## Tool calls and results
+{tools_text}
+{reasoning_text}{artifacts_text}
+
+## Previously established findings
+{findings_summary or "None yet — this is the first analysis step."}
+
+## Domain priors (things the audience already knows)
+{priors_text}
+"""
+
+
 class Critic:
     """LLM-based quality gate that evaluates analysis steps."""
 
@@ -229,6 +299,24 @@ class Critic:
             HumanMessage(
                 content=_build_user_prompt(
                     execution, findings_summary, self.domain_priors
+                )
+            ),
+        ]
+
+        response = self.llm.invoke(messages)
+        return _parse_response(response.content)
+
+    def evaluate_step(
+        self,
+        step_trace: StepTrace,
+        findings_summary: str = "",
+    ) -> Reflection:
+        """Run the 5-test quality evaluation on a tool-based step."""
+        messages = [
+            SystemMessage(content=SYSTEM_PROMPT),
+            HumanMessage(
+                content=_build_step_prompt(
+                    step_trace, findings_summary, self.domain_priors
                 )
             ),
         ]
