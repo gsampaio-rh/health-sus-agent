@@ -18,9 +18,7 @@ ENV/
 .idea/
 
 # Cursor
-.cursor/mcp.json
-.cursor/chat/
-.cursor/projects/
+.cursor/
 
 # Environment variables
 .env
